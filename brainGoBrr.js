@@ -1,15 +1,30 @@
 import * as THREE from 'three';
 
-createScene()
+document.addEventListener(`DOMContentLoaded`, function () {
 
-//threejs function zone
-
-function createScene() {
-    const canvas = document.querySelector('#threejsLoader');
+    const canvas = document.querySelector(`#threejsLoader`);
     const renderer = new THREE.WebGLRenderer({ antialias: true, canvas });
     const camera = new THREE.PerspectiveCamera(75, 2, 0.1, 5);
     const scene = new THREE.Scene();
     renderer.render(scene, camera);
-}
 
-//End of threejs function
+});
+
+//threejs function zone
+
+
+
+//End of threejs function zone
+
+
+//DOMContent function zone
+
+function elementById(id) {
+    return document.getElementById(id);
+};
+
+function addListener(id, event, code) {
+    elementById(id).addEventListener(event, (eventData) => { code(); });
+};
+
+//End of DOMContent funtion zone
