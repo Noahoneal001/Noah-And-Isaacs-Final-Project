@@ -4,12 +4,12 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 const canvas = document.querySelector(`#threejsLoader`);
 const renderer = new THREE.WebGLRenderer({ antialias: true, canvas });
 renderer.setSize(window.innerWidth, window.innerHeight);
-const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 500);
+const camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 1, 500);
 const scene = new THREE.Scene();
 renderer.render(scene, camera);
-camera.position.y = 5;
-camera.position.z = 5;
-camera.rotation.x = -0.6;
+camera.position.y = 6;
+camera.position.z = 5.5;
+camera.rotation.x = -0.7;
 
 scene.background = new THREE.Color(0x00000000);
 
@@ -44,9 +44,9 @@ gltfLoader.load(url, (gltf) => {
 
 
 const color = 0xFFFFFF;
-const intensity = 2;
-const light = new THREE.DirectionalLight(color, intensity);
-light.position.set(0, 3, 0);
+const intensity = 50;
+const light = new THREE.SpotLight(color, intensity);
+light.position.set(0, 10, -0.5);
 scene.add(light);
 
 
