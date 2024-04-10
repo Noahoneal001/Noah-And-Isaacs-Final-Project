@@ -44,9 +44,11 @@ gltfLoader.load(url, (gltf) => {
 
 
 const color = 0xFFFFFF;
-const intensity = 50;
+const intensity = 200;
 const light = new THREE.SpotLight(color, intensity);
-light.position.set(0, 10, -0.5);
+light.position.set(0, 10, 5);
+light.penumbra = .2
+light.angle = .4
 scene.add(light);
 
 
