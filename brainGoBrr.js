@@ -14,7 +14,7 @@ camera.rotation.x = -0.7;
 scene.background = new THREE.Color(0x00000000);
 
 const loader = new THREE.TextureLoader();
-const floorTexture = loader.load('assets/Floor.png');
+const floorTexture = loader.load('assets/basement.png');
 floorTexture.colorSpace = THREE.SRGBColorSpace;
 const floorSize = 40;
 const floorGeometry = new THREE.PlaneGeometry(floorSize, floorSize);
@@ -27,6 +27,7 @@ const repeats = floorSize / 2;
 floorTexture.repeat.set(repeats, repeats);
 const floor = new THREE.Mesh(floorGeometry, floorMaterial);
 floor.rotation.x = Math.PI * -.5;
+floorTexture.NearestFilter
 scene.add(floor);
 
 let table;
@@ -37,14 +38,27 @@ gltfLoader.load(url, (gltf) => {
   const root = gltf.scene;
   scene.add(root);
   console.log(dumpObject(root).join('\n'));
-  table = root.getObjectByName('Scene');
+  table = root.getObjectByName('bone');
   table.position.y = 2;
+  table.position.z = 1.5;
+  table.scale.setScalar(1.2)
   console.log(table.position)
 });
 
+gltfLoader.load(`assets/checkerboard.gltf`, (gltf) => {
+  const root = gltf.scene;
+  scene.add(root);
+  console.log(dumpObject(root).join('\n'));
+  table = root.getObjectByName('bone');
+  table.position.y = 2.8;
+  table.position.z = 1.5;
+  table.scale.setScalar(1.2)
+  console.log(table.position)
+})
+
 
 const color = 0xFFFFFF;
-const intensity = 200;
+const intensity = 220;
 const light = new THREE.SpotLight(color, intensity);
 light.position.set(0, 10, 5);
 light.penumbra = .2
