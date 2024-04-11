@@ -32,7 +32,7 @@ scene.add(floor);
 let table;
 
 const gltfLoader = new GLTFLoader();
-const url = 'assets/chess4_5.gltf';
+const url = 'assets/Table.gltf';
 gltfLoader.load(url, (gltf) => {
   const root = gltf.scene;
   scene.add(root);
