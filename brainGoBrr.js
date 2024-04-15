@@ -30,31 +30,34 @@ floor.rotation.x = Math.PI * -.5;
 floorTexture.NearestFilter
 scene.add(floor);
 
-let table;
+let table, borad;
 
 const gltfLoader = new GLTFLoader();
 const url = 'assets/Table.gltf';
-gltfLoader.load(url, (gltf) => {
-  const root = gltf.scene;
-  scene.add(root);
-  console.log(dumpObject(root).join('\n'));
-  table = root.getObjectByName('bone');
-  table.position.y = 2;
-  table.position.z = 1.5;
-  table.scale.setScalar(1.2)
-  console.log(table.position)
-});
 
-gltfLoader.load(`assets/checkerboard.gltf`, (gltf) => {
-  const root = gltf.scene;
-  scene.add(root);
-  console.log(dumpObject(root).join('\n'));
-  table = root.getObjectByName('bone');
-  table.position.y = 2.8;
-  table.position.z = 1.5;
-  table.scale.setScalar(1.2)
-  console.log(table.position)
-})
+table = loadObject('assets/Table.gltf', 'Table')
+
+// gltfLoader.load(url, (gltf) => {
+//   const root = gltf.scene;
+//   scene.add(root);
+//   console.log(dumpObject(root).join('\n'));
+//   table = root.getObjectByName('Table');
+//   table.position.y = 2;
+//   table.position.z = 1.5;
+//   table.scale.setScalar(1.2)
+//   console.log(table.position)
+// });
+
+// gltfLoader.load(`assets/checkerboard.gltf`, (gltf) => {
+//   const root = gltf.scene;
+//   scene.add(root);
+//   console.log(dumpObject(root).join('\n'));
+//   borad = root.getObjectByName('bone');
+//   borad.position.y = 2.8;
+//   borad.position.z = 1.5;
+//   borad.scale.setScalar(1.2)
+//   console.log(borad.position)
+// })
 
 
 const color = 0xFFFFFF;
@@ -68,15 +71,6 @@ scene.add(light);
 
 document.addEventListener(`DOMContentLoaded`, function () {
 
-  document.addEventListener(`keydown`, (eventData) => {
-    if (eventData.key == `ArrowLeft`) { camera.position.x -= .5 }
-    else if (eventData.key == `ArrowRight`) { camera.position.x += .5 }
-    else if (eventData.key == `ArrowUp`) { camera.position.y -= .5 }
-    else if (eventData.key == `ArrowDown`) { camera.position.y += .5 }
-    else if (eventData.key == `v`) { console.log(camera.rotation); console.log(camera.position) }
-  })
-
-
 })
 
 //threejs function zone
@@ -86,6 +80,19 @@ animate();
 function animate() {
   requestAnimationFrame(animate);
   renderer.render(scene, camera);
+}
+
+ function loadObject(url, objectName) {
+  let holdObject;
+  gltfLoader.load(url, (gltf) => {
+    const root = gltf.scene;
+    scene.add(root);
+    console.log(dumpObject(root).join('\n'));
+    holdObject = root.getObjectByName(objectName);
+    console.log(holdObject)
+  })
+  console.log(holdObject)
+  return (holdObject)
 }
 
 //End of threejs function zone
