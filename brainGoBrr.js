@@ -1,15 +1,11 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
-const canvas = document.querySelector(`#threejsLoader`);
-const renderer = new THREE.WebGLRenderer({ antialias: true, canvas });
-renderer.setSize(window.innerWidth, window.innerHeight);
-const camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 1, 500);
-const scene = new THREE.Scene();
-renderer.render(scene, camera);
-camera.position.y = 6;
-camera.position.z = 5.5;
-camera.rotation.x = -0.7;
+let canvas, renderer, camera, scene
+
+init();
+
+
 
 scene.background = new THREE.Color(0x00000000);
 
@@ -35,18 +31,21 @@ let table, borad;
 const gltfLoader = new GLTFLoader();
 const url = 'assets/Table.gltf';
 
-table = loadObject('assets/Table.gltf', 'Table')
 
-// gltfLoader.load(url, (gltf) => {
-//   const root = gltf.scene;
-//   scene.add(root);
-//   console.log(dumpObject(root).join('\n'));
-//   table = root.getObjectByName('Table');
-//   table.position.y = 2;
-//   table.position.z = 1.5;
-//   table.scale.setScalar(1.2)
-//   console.log(table.position)
-// });
+
+gltfLoader.load(url, (gltf) => {
+  const root = gltf.scene;
+  scene.add(root);
+  console.log(dumpObject(root).join('\n'));
+  table = root.getObjectByName('Table');
+  console.log(table.position)
+  console.log(dumpObject(scene).join('\n'));
+});
+
+table = scene.getObjectByName('Table')
+console.log(scene)
+console.log(scene.children[0])
+console.log(dumpObject(scene).join('\n'));
 
 // gltfLoader.load(`assets/checkerboard.gltf`, (gltf) => {
 //   const root = gltf.scene;
@@ -73,27 +72,44 @@ document.addEventListener(`DOMContentLoaded`, function () {
 
 })
 
+render();
+
 //threejs function zone
 
-animate();
+function init() {
 
-function animate() {
-  requestAnimationFrame(animate);
+  canvas = document.querySelector(`#threejsLoader`);
+  renderer = new THREE.WebGLRenderer({ antialias: true, canvas });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 1, 500);
+  scene = new THREE.Scene();
   renderer.render(scene, camera);
+  camera.position.set(0,6,5.5)
+  camera.rotation.x = -0.7;
 }
 
- function loadObject(url, objectName) {
-  let holdObject;
-  gltfLoader.load(url, (gltf) => {
-    const root = gltf.scene;
-    scene.add(root);
-    console.log(dumpObject(root).join('\n'));
-    holdObject = root.getObjectByName(objectName);
-    console.log(holdObject)
-  })
-  console.log(holdObject)
-  return (holdObject)
+function render(time) {
+  time *= 0.001;  // convert to seconds
+
+  const canvas = renderer.domElement;
+  camera.aspect = canvas.clientWidth / canvas.clientHeight;
+  camera.updateProjectionMatrix();
+
+  if (table) {
+    table.rotation.y = time;
+    table.position.y = 2;
+    table.position.z = 1.5;
+    table.scale.setScalar(1.2)
+
+  }
+
+  renderer.render(scene, camera);
+
+  requestAnimationFrame(render);
+
 }
+
+
 
 //End of threejs function zone
 
