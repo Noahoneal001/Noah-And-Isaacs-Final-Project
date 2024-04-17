@@ -15,9 +15,166 @@ contentTypes: []
 actions: []
 scripts: []
 assets:
-  - lastmod: 1713304434477
+  - lastmod: 1713386158202
     type: texture
     name: test
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 16
+    imgHeight: 16
+    width: 16
+    height: 16
+    offx: 0
+    offy: 0
+    origname: i4fgwq14BfdczDW.png
+    shape: rect
+    left: 0
+    right: 64
+    top: 0
+    bottom: 64
+    uid: 4fgwq14BfdczDW
+    padding: 1
+    isBlank: false
+    tiled: true
+    source: >-
+      C:\Users\150073267\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\basement.png
+  - type: room
+    oncreate: ''
+    onstep: ''
+    ondraw: ''
+    onleave: ''
+    gridX: 64
+    gridY: 64
+    diagonalGrid: false
+    disableGrid: true
+    simulate: true
+    width: 1280
+    height: 720
+    restrictCamera: false
+    restrictMaxX: 1280
+    restrictMinX: 1280
+    restrictMaxY: 720
+    restrictMinY: 720
+    isUi: false
+    name: Start Screen
+    backgroundColor: '#000000'
+    follow: -1
+    backgrounds:
+      - depth: 0
+        texture: 4fgwq14BfdczDW
+        shiftX: 0
+        shiftY: 0
+        parallaxX: 1
+        parallaxY: 1
+        movementX: 0
+        movementY: 0
+        scaleX: 1
+        scaleY: 1
+        repeat: repeat
+    copies:
+      - x: 400
+        'y': 320
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 2
+          'y': 2
+        rotation: 0
+        uid: LnJz2qc5Ngf4Mp
+        exts: {}
+        customProperties: {}
+        bindings: {}
+    tiles: []
+    extends: {}
+    lastmod: 1713387822272
+    events: []
+    behaviors: []
+    uid: npr3P8MBbkB68q
+  - type: template
+    baseClass: Button
+    name: PVE Button
+    depth: 0
+    texture: m96hHkhbLtkrLg
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnStep
+        lib: core
+        code: ''
+        arguments: {}
+      - eventKey: OnPointerClick
+        code: |-
+          console.log(`hi`)
+          rooms.switch('play')
+        arguments: {}
+        lib: core
+    extends: {}
+    lastmod: 1713386239790
+    uid: LnJz2qc5Ngf4Mp
+    behaviors: []
+    defaultText: ''
+    textStyle: -1
+    nineSliceSettings:
+      top: 16
+      left: 16
+      bottom: 16
+      right: 16
+      autoUpdate: false
+    hoverTexture: -1
+    pressedTexture: -1
+    disabledTexture: -1
+  - type: room
+    oncreate: ''
+    onstep: ''
+    ondraw: ''
+    onleave: ''
+    gridX: 64
+    gridY: 64
+    diagonalGrid: false
+    disableGrid: false
+    simulate: true
+    width: 1280
+    height: 720
+    restrictCamera: false
+    restrictMaxX: 1280
+    restrictMinX: 1280
+    restrictMaxY: 720
+    restrictMinY: 720
+    isUi: false
+    name: play
+    backgroundColor: '#000000'
+    follow: -1
+    backgrounds:
+      - depth: 0
+        texture: 4fgwq14BfdczDW
+        shiftX: 0
+        shiftY: 0
+        parallaxX: 1
+        parallaxY: 1
+        movementX: 0
+        movementY: 0
+        scaleX: 1
+        scaleY: 1
+        repeat: repeat
+    copies: []
+    tiles: []
+    extends: {}
+    lastmod: 1713386163463
+    events: []
+    behaviors: []
+    uid: q9RczdtWpFtg2M
+  - lastmod: 1713386230077
+    type: texture
+    name: Placeholder
     untill: 0
     grid:
       - 1
@@ -33,13 +190,13 @@ assets:
     height: 64
     offx: 0
     offy: 0
-    origname: i4fgwq14BfdczDW.png
+    origname: im96hHkhbLtkrLg.png
     shape: rect
     left: 0
     right: 64
     top: 0
     bottom: 64
-    uid: 4fgwq14BfdczDW
+    uid: m96hHkhbLtkrLg
     padding: 1
     isBlank: false
 settings:
