@@ -15,7 +15,7 @@ contentTypes: []
 actions: []
 scripts: []
 assets:
-  - lastmod: 1713386158202
+  - lastmod: 1713388030678
     type: texture
     name: test
     untill: 0
@@ -23,28 +23,27 @@ assets:
       - 1
       - 1
     axis:
-      - 0
-      - 0
+      - 640
+      - 360
     marginx: 0
     marginy: 0
-    imgWidth: 16
-    imgHeight: 16
-    width: 16
-    height: 16
+    imgWidth: 1280
+    imgHeight: 720
+    width: 1280
+    height: 720
     offx: 0
     offy: 0
     origname: i4fgwq14BfdczDW.png
     shape: rect
-    left: 0
-    right: 64
-    top: 0
-    bottom: 64
+    left: 640
+    right: 640
+    top: 360
+    bottom: 360
     uid: 4fgwq14BfdczDW
     padding: 1
     isBlank: false
     tiled: true
-    source: >-
-      C:\Users\150073267\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\basement.png
+    source: 'C:\Users\150073267\Downloads\tilebackground.png'
   - type: room
     oncreate: ''
     onstep: ''
@@ -93,7 +92,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1713387822272
+    lastmod: 1713472090734
     events: []
     behaviors: []
     uid: npr3P8MBbkB68q
@@ -114,11 +113,13 @@ assets:
       - eventKey: OnPointerClick
         code: |-
           console.log(`hi`)
+          console.log(this.zIndex)
           rooms.switch('play')
+          function freeme(s,E,n,d,h,e,l,p) {}
         arguments: {}
         lib: core
     extends: {}
-    lastmod: 1713386239790
+    lastmod: 1713471676251
     uid: LnJz2qc5Ngf4Mp
     behaviors: []
     defaultText: ''
@@ -199,6 +200,113 @@ assets:
     uid: m96hHkhbLtkrLg
     padding: 1
     isBlank: false
+  - lastmod: 1713480093919
+    type: texture
+    name: board
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 272
+      - 168
+    marginx: 0
+    marginy: 0
+    imgWidth: 544
+    imgHeight: 337
+    width: 544
+    height: 337
+    offx: 0
+    offy: 0
+    origname: ir7gdtW3c6DfTmF.png
+    shape: rect
+    left: 272
+    right: 272
+    top: 168
+    bottom: 169
+    uid: r7gdtW3c6DfTmF
+    padding: 1
+    isBlank: false
+    source: >-
+      C:\Users\150073267\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\board.png
+  - lastmod: 1713480070281
+    type: texture
+    name: black_pawn_norm
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 32
+      - 32
+    marginx: 0
+    marginy: 0
+    imgWidth: 64
+    imgHeight: 64
+    width: 64
+    height: 64
+    offx: 0
+    offy: 0
+    origname: iNm9zzgj3phHDHC.png
+    shape: rect
+    left: 32
+    right: 32
+    top: 32
+    bottom: 32
+    uid: Nm9zzgj3phHDHC
+    padding: 1
+    isBlank: false
+    source: >-
+      C:\Users\150073267\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\black
+      pawn norm.png
+  - lastmod: 1713480085194
+    type: texture
+    name: red_paw_norm
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 32
+      - 32
+    marginx: 0
+    marginy: 0
+    imgWidth: 64
+    imgHeight: 64
+    width: 64
+    height: 64
+    offx: 0
+    offy: 0
+    origname: izpcj4r2ThmM7CQ.png
+    shape: rect
+    left: 32
+    right: 32
+    top: 32
+    bottom: 32
+    uid: zpcj4r2ThmM7CQ
+    padding: 1
+    isBlank: false
+    source: >-
+      C:\Users\150073267\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\red
+      paw norm.png
+  - type: template
+    baseClass: Container
+    name: Playzone
+    depth: 0
+    texture: -1
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnStep
+        lib: core
+        code: this.move();
+        arguments: {}
+    extends: {}
+    lastmod: 1713480137379
+    uid: zMqzGq7BFqcbTk
+    behaviors: []
 settings:
   authoring:
     author: ''
