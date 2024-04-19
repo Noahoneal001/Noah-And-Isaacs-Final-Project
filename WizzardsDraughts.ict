@@ -181,7 +181,7 @@ assets:
         customProperties: {}
         bindings: {}
       - x: 402
-        'y': 534
+        'y': 523
         opacity: 1
         tint: 16777215
         scale:
@@ -192,8 +192,8 @@ assets:
         exts: {}
         customProperties: {}
         bindings: {}
-      - x: 1188.8000278771356
-        'y': 320.2000058725189
+      - x: 674
+        'y': 523
         opacity: 1
         tint: 16777215
         scale:
@@ -204,8 +204,8 @@ assets:
         exts: {}
         customProperties: {}
         bindings: {}
-      - x: 1145.5999553223107
-        'y': 470.59999487578
+      - x: 538
+        'y': 523
         opacity: 1
         tint: 16777215
         scale:
@@ -216,8 +216,8 @@ assets:
         exts: {}
         customProperties: {}
         bindings: {}
-      - x: 987.19993343
-        'y': 127.39997858
+      - x: 470
+        'y': 481
         opacity: 1
         tint: 16777215
         scale:
@@ -228,8 +228,8 @@ assets:
         exts: {}
         customProperties: {}
         bindings: {}
-      - x: 986.4000066834892
-        'y': 109.800003562553
+      - x: 606
+        'y': 481
         opacity: 1
         tint: 16777215
         scale:
@@ -240,8 +240,8 @@ assets:
         exts: {}
         customProperties: {}
         bindings: {}
-      - x: 1189.5999546222201
-        'y': 141.80000252144163
+      - x: 810
+        'y': 523
         opacity: 1
         tint: 16777215
         scale:
@@ -249,15 +249,235 @@ assets:
           'y': 1
         rotation: 0
         uid: QH2mWWbMnWrLDz
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 742
+        'y': 481
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QH2mWWbMnWrLDz
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 538
+        'y': 439
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QH2mWWbMnWrLDz
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 402
+        'y': 439
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QH2mWWbMnWrLDz
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 674
+        'y': 439
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QH2mWWbMnWrLDz
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 878
+        'y': 481
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QH2mWWbMnWrLDz
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 810
+        'y': 439
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QH2mWWbMnWrLDz
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 470
+        'y': 229
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 7Q7zB9NDt3wndF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 402
+        'y': 271
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 7Q7zB9NDt3wndF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 538
+        'y': 271
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 7Q7zB9NDt3wndF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 878
+        'y': 229
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 7Q7zB9NDt3wndF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 606
+        'y': 229
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 7Q7zB9NDt3wndF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 742
+        'y': 229
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 7Q7zB9NDt3wndF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 810
+        'y': 271
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 7Q7zB9NDt3wndF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 674
+        'y': 271
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 7Q7zB9NDt3wndF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 606
+        'y': 313
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 7Q7zB9NDt3wndF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 742
+        'y': 313
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 7Q7zB9NDt3wndF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 470
+        'y': 313
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 7Q7zB9NDt3wndF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 878
+        'y': 313
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 7Q7zB9NDt3wndF
         exts: {}
         customProperties: {}
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1713490412407
+    lastmod: 1713566774697
     events:
       - eventKey: OnRoomStart
-        code: this.hi = `hi there`
+        code: >-
+          //Change by 68 to move left and right. Change by 42 to move up and
+          down
+
+          this.playerOnesTurn = true
         arguments: {}
         lib: core
     behaviors: []
@@ -289,7 +509,7 @@ assets:
     uid: m96hHkhbLtkrLg
     padding: 1
     isBlank: false
-  - lastmod: 1713490156723
+  - lastmod: 1713557672509
     type: texture
     name: board
     untill: 0
@@ -297,29 +517,30 @@ assets:
       - 1
       - 1
     axis:
-      - 272
-      - 168
+      - 291
+      - 193
     marginx: 0
     marginy: 0
-    imgWidth: 544
-    imgHeight: 337
-    width: 544
-    height: 337
+    imgWidth: 582
+    imgHeight: 387
+    width: 582
+    height: 387
     offx: 0
     offy: 0
     origname: ir7gdtW3c6DfTmF.png
     shape: rect
-    left: 272
-    right: 272
-    top: 168
-    bottom: 169
+    left: 291
+    right: 291
+    top: 193
+    bottom: 194
     uid: r7gdtW3c6DfTmF
     padding: 1
     isBlank: false
     source: >-
-      C:\Users\150073267\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\board.png
+      C:\Users\150073267\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\better
+      board.png
     tiled: true
-  - lastmod: 1713480070281
+  - lastmod: 1713563285356
     type: texture
     name: black_pawn_norm
     untill: 0
@@ -339,17 +560,17 @@ assets:
     offy: 0
     origname: iNm9zzgj3phHDHC.png
     shape: rect
-    left: 32
-    right: 32
-    top: 32
-    bottom: 32
+    left: 31
+    right: 31
+    top: 21
+    bottom: 18
     uid: Nm9zzgj3phHDHC
     padding: 1
     isBlank: false
     source: >-
       C:\Users\150073267\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\black
       pawn norm.png
-  - lastmod: 1713480085194
+  - lastmod: 1713563258223
     type: texture
     name: red_paw_norm
     untill: 0
@@ -369,16 +590,17 @@ assets:
     offy: 0
     origname: izpcj4r2ThmM7CQ.png
     shape: rect
-    left: 32
-    right: 32
-    top: 32
-    bottom: 32
+    left: 31
+    right: 31
+    top: 21
+    bottom: 18
     uid: zpcj4r2ThmM7CQ
     padding: 1
     isBlank: false
     source: >-
       C:\Users\150073267\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\red
       paw norm.png
+    r: 32
   - type: template
     baseClass: Container
     name: Playzone
@@ -411,25 +633,12 @@ assets:
     animationFPS: 30
     visible: true
     events:
-      - eventKey: OnStep
-        lib: core
-        code: this.move();
-        arguments: {}
-      - eventKey: OnPointerClick
-        code: |-
-          console.log(templates)
-          console.log(rooms)
-          console.log(templates.templates['Board'])
-          console.log(rooms.current.hi)
-          console.log(templates.list['Red Pawn'])
-        arguments: {}
-        lib: core
       - eventKey: OnCreate
-        code: this.hi = `hello`
+        code: this.zIndex = -4
         arguments: {}
         lib: core
     extends: {}
-    lastmod: 1713489834497
+    lastmod: 1713561862227
     uid: k5dgFTKK7j5wLB
     behaviors: []
   - type: template
@@ -442,31 +651,308 @@ assets:
     animationFPS: 30
     visible: true
     events:
-      - eventKey: OnStep
-        lib: core
-        code: this.move();
+      - eventKey: OnCreate
+        code: |
+          this.team = `red`;
+          this.isKing = false;
+          this.isChessnt = false;
+          this.isNoped = false;
         arguments: {}
-      - eventKey: OnPointerClick
+        lib: core
+      - eventKey: OnStep
         code: |-
-          // console.log(templates.list['Board'][0].hi)
-          // templates.list['Board'][0].kill = true
-          let holder = place.occupied(this,`Pieces`)
-          console.log(holder)
-          if (holder.team = `red` && holder) {
-              console.log(`hi there`)
+          this.move;
+          if(this.y <= 229 && !this.isKing) {
+              this.isKing = true
+              this.tex = `red_paw_king`
           }
         arguments: {}
         lib: core
-      - eventKey: OnCreate
-        code: |-
-          this.team = `red`
-          this.isKing = false
+      - eventKey: OnPointerClick
+        code: |2-
+              if (this.x <= 402 && this.y < 523 && this.isKing){
+                  templates.copy('Spot Finder', this.x + 68, this.y + 42, { summoner: this })
+              }
+              else if (this.x >= 402 && this.y < 523 && this.isKing) {
+                  templates.copy('Spot Finder', this.x - 68, this.y + 42, { summoner: this })
+              }
+              else if (this.isKing) {
+                  templates.copy('Spot Finder', this.x + 68, this.y + 42, { summoner: this })
+                  templates.copy('Spot Finder', this.x - 68, this.y + 42, { summoner: this })
+                  templates.copy('Spot Finder', this.x + 68, this.y - 42, { summoner: this })
+                  templates.copy('Spot Finder', this.x - 68, this.y - 42, { summoner: this })
+              }
+              else if (this.x <= 402 && this.y > 229) {
+                  templates.copy('Spot Finder', this.x + 68, this.y - 42, { summoner: this })
+              }
+              else if (this.x >= 878 && this.y > 229) {
+                  templates.copy('Spot Finder', this.x - 68, this.y - 42, { summoner: this })
+              }
+              else if (this.y > 229) {
+                  templates.copy('Spot Finder', this.x + 68, this.y - 42, { summoner: this })
+                  templates.copy('Spot Finder', this.x - 68, this.y - 42, { summoner: this })
+              }
         arguments: {}
         lib: core
     extends:
       cgroup: Pieces
-    lastmod: 1713492042658
+    lastmod: 1713566940949
     uid: QH2mWWbMnWrLDz
+    behaviors: []
+  - lastmod: 1713559037145
+    type: texture
+    name: red_paw_chessnt
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 32
+      - 32
+    marginx: 0
+    marginy: 0
+    imgWidth: 64
+    imgHeight: 64
+    width: 64
+    height: 64
+    offx: 0
+    offy: 0
+    origname: izzgJrgLHbjrJLC.png
+    shape: rect
+    left: 32
+    right: 32
+    top: 32
+    bottom: 32
+    uid: zzgJrgLHbjrJLC
+    padding: 1
+    isBlank: false
+    source: >-
+      C:\Users\150073267\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\red
+      paw chessnt.png
+  - lastmod: 1713563912288
+    type: texture
+    name: red_paw_king
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 32
+      - 32
+    marginx: 0
+    marginy: 0
+    imgWidth: 64
+    imgHeight: 64
+    width: 64
+    height: 64
+    offx: 0
+    offy: 0
+    origname: im4KFm7drMBM83m.png
+    shape: rect
+    left: 31
+    right: 31
+    top: 30
+    bottom: 18
+    uid: m4KFm7drMBM83m
+    padding: 1
+    isBlank: false
+    source: >-
+      C:\Users\150073267\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\red
+      paw king.png
+  - lastmod: 1713559009127
+    type: texture
+    name: red_paw_shield
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 64
+    imgHeight: 64
+    width: 64
+    height: 64
+    offx: 0
+    offy: 0
+    origname: i2tM8f75DzKdW2B.png
+    shape: rect
+    left: 0
+    right: 64
+    top: 0
+    bottom: 64
+    uid: 2tM8f75DzKdW2B
+    padding: 1
+    isBlank: false
+    source: >-
+      C:\Users\150073267\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\red
+      paw shield.png
+  - lastmod: 1713559041465
+    type: texture
+    name: black_pawn_chessnt
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 32
+      - 32
+    marginx: 0
+    marginy: 0
+    imgWidth: 64
+    imgHeight: 64
+    width: 64
+    height: 64
+    offx: 0
+    offy: 0
+    origname: icmrGgdkdthkdrH.png
+    shape: rect
+    left: 32
+    right: 32
+    top: 32
+    bottom: 32
+    uid: cmrGgdkdthkdrH
+    padding: 1
+    isBlank: false
+    source: >-
+      C:\Users\150073267\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\black
+      pawn chessnt.png
+  - lastmod: 1713559120108
+    type: texture
+    name: black_pawn_king
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 32
+      - 32
+    marginx: 0
+    marginy: 0
+    imgWidth: 64
+    imgHeight: 64
+    width: 64
+    height: 64
+    offx: 0
+    offy: 0
+    origname: itJT8j78w7Cbbtj.png
+    shape: rect
+    left: 32
+    right: 32
+    top: 32
+    bottom: 32
+    uid: tJT8j78w7Cbbtj
+    padding: 1
+    isBlank: false
+    source: >-
+      C:\Users\150073267\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\black
+      pawn king.png
+  - lastmod: 1713559136907
+    type: texture
+    name: black_pawn_shield
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 32
+      - 32
+    marginx: 0
+    marginy: 0
+    imgWidth: 64
+    imgHeight: 64
+    width: 64
+    height: 64
+    offx: 0
+    offy: 0
+    origname: iwd4wbpFDPJ544r.png
+    shape: rect
+    left: 32
+    right: 32
+    top: 32
+    bottom: 32
+    uid: wd4wbpFDPJ544r
+    padding: 1
+    isBlank: false
+    source: >-
+      C:\Users\150073267\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\black
+      pawn shield.png
+  - lastmod: 1713564577140
+    type: texture
+    name: landing_spot
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 32
+      - 32
+    marginx: 0
+    marginy: 0
+    imgWidth: 64
+    imgHeight: 64
+    width: 64
+    height: 64
+    offx: 0
+    offy: 0
+    origname: iD93rbhpTcKFThh.png
+    shape: rect
+    left: 31
+    right: 31
+    top: 16
+    bottom: 19
+    uid: D93rbhpTcKFThh
+    padding: 1
+    isBlank: false
+    source: >-
+      C:\Users\150073267\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\landing
+      spot.png
+  - type: template
+    baseClass: AnimatedSprite
+    name: Black Pawn
+    depth: 0
+    texture: Nm9zzgj3phHDHC
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnCreate
+        code: |-
+          this.team = `black`;
+          this.isKing = false;
+          this.isChessnt = false;
+          this.isNoped = false;
+        arguments: {}
+        lib: core
+    extends: {}
+    lastmod: 1713561555915
+    uid: 7Q7zB9NDt3wndF
+    behaviors: []
+  - type: template
+    baseClass: AnimatedSprite
+    name: Spot Finder
+    depth: 0
+    texture: D93rbhpTcKFThh
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnPointerClick
+        code: |
+          this.summoner.x = this.x
+          this.summoner.y = this.y
+          for (let spot of templates.list[`Spot Finder`]) {
+              spot.kill = true;
+          }
+        arguments: {}
+        lib: core
+    extends: {}
+    lastmod: 1713565029651
+    uid: LdT8cChcc8KPJ1
     behaviors: []
 settings:
   authoring:
