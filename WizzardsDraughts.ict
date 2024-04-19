@@ -10,6 +10,7 @@ libs:
   keyboard: {}
   keyboard.polyfill: {}
   pointer.polyfill: {}
+  storage: {}
 startroom: -1
 contentTypes: []
 actions: []
@@ -141,7 +142,7 @@ assets:
     gridX: 64
     gridY: 64
     diagonalGrid: false
-    disableGrid: false
+    disableGrid: true
     simulate: true
     width: 1280
     height: 720
@@ -155,7 +156,7 @@ assets:
     backgroundColor: '#000000'
     follow: -1
     backgrounds:
-      - depth: 0
+      - depth: -5
         texture: 4fgwq14BfdczDW
         shiftX: 0
         shiftY: 0
@@ -166,11 +167,99 @@ assets:
         scaleX: 1
         scaleY: 1
         repeat: repeat
-    copies: []
+    copies:
+      - x: 640
+        'y': 384
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: k5dgFTKK7j5wLB
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 402
+        'y': 534
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QH2mWWbMnWrLDz
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1188.8000278771356
+        'y': 320.2000058725189
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QH2mWWbMnWrLDz
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1145.5999553223107
+        'y': 470.59999487578
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QH2mWWbMnWrLDz
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 987.19993343
+        'y': 127.39997858
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QH2mWWbMnWrLDz
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 986.4000066834892
+        'y': 109.800003562553
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QH2mWWbMnWrLDz
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1189.5999546222201
+        'y': 141.80000252144163
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QH2mWWbMnWrLDz
+        exts: {}
+        customProperties: {}
+        bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1713386163463
-    events: []
+    lastmod: 1713490412407
+    events:
+      - eventKey: OnRoomStart
+        code: this.hi = `hi there`
+        arguments: {}
+        lib: core
     behaviors: []
     uid: q9RczdtWpFtg2M
   - lastmod: 1713386230077
@@ -200,7 +289,7 @@ assets:
     uid: m96hHkhbLtkrLg
     padding: 1
     isBlank: false
-  - lastmod: 1713480093919
+  - lastmod: 1713490156723
     type: texture
     name: board
     untill: 0
@@ -229,6 +318,7 @@ assets:
     isBlank: false
     source: >-
       C:\Users\150073267\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\board.png
+    tiled: true
   - lastmod: 1713480070281
     type: texture
     name: black_pawn_norm
@@ -303,9 +393,80 @@ assets:
         lib: core
         code: this.move();
         arguments: {}
+      - eventKey: OnPointerClick
+        code: console.log(templates.templates.Board)
+        arguments: {}
+        lib: core
     extends: {}
-    lastmod: 1713480137379
+    lastmod: 1713485381029
     uid: zMqzGq7BFqcbTk
+    behaviors: []
+  - type: template
+    baseClass: AnimatedSprite
+    name: Board
+    depth: 0
+    texture: r7gdtW3c6DfTmF
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnStep
+        lib: core
+        code: this.move();
+        arguments: {}
+      - eventKey: OnPointerClick
+        code: |-
+          console.log(templates)
+          console.log(rooms)
+          console.log(templates.templates['Board'])
+          console.log(rooms.current.hi)
+          console.log(templates.list['Red Pawn'])
+        arguments: {}
+        lib: core
+      - eventKey: OnCreate
+        code: this.hi = `hello`
+        arguments: {}
+        lib: core
+    extends: {}
+    lastmod: 1713489834497
+    uid: k5dgFTKK7j5wLB
+    behaviors: []
+  - type: template
+    baseClass: AnimatedSprite
+    name: Red Pawn
+    depth: 0
+    texture: zpcj4r2ThmM7CQ
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnStep
+        lib: core
+        code: this.move();
+        arguments: {}
+      - eventKey: OnPointerClick
+        code: |-
+          // console.log(templates.list['Board'][0].hi)
+          // templates.list['Board'][0].kill = true
+          let holder = place.occupied(this,`Pieces`)
+          console.log(holder)
+          if (holder.team = `red` && holder) {
+              console.log(`hi there`)
+          }
+        arguments: {}
+        lib: core
+      - eventKey: OnCreate
+        code: |-
+          this.team = `red`
+          this.isKing = false
+        arguments: {}
+        lib: core
+    extends:
+      cgroup: Pieces
+    lastmod: 1713492042658
+    uid: QH2mWWbMnWrLDz
     behaviors: []
 settings:
   authoring:
