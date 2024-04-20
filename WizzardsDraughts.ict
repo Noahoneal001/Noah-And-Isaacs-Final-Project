@@ -470,7 +470,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1713566774697
+    lastmod: 1713575782469
     events:
       - eventKey: OnRoomStart
         code: >-
@@ -478,6 +478,12 @@ assets:
           down
 
           this.playerOnesTurn = true
+
+          this.clearSpotHelp = () => {
+              for (let spot of templates.list[`Spot Finder`]) {
+              spot.kill = true;
+              }
+          }
         arguments: {}
         lib: core
     behaviors: []
@@ -669,12 +675,36 @@ assets:
         arguments: {}
         lib: core
       - eventKey: OnPointerClick
-        code: |2-
-              if (this.x <= 402 && this.y < 523 && this.isKing){
+        code: |-
+          rooms.current.clearSpotHelp()
+
+              if (this.x <= 402 && this.y == 523 && this.isKing){
+                  templates.copy('Spot Finder', this.x + 68, this.y - 42, { summoner: this })
+              }
+              else if (this.x >= 878 && this.y == 523 && this.isKing) {
+                  templates.copy('Spot Finder', this.x - 68, this.y - 42, { summoner: this })
+              }
+              else if (this.x <= 402 && this.y == 229 && this.isKing) {
                   templates.copy('Spot Finder', this.x + 68, this.y + 42, { summoner: this })
               }
-              else if (this.x >= 402 && this.y < 523 && this.isKing) {
+              else if (this.x >= 878 && this.y == 229 && this.isKing) {
                   templates.copy('Spot Finder', this.x - 68, this.y + 42, { summoner: this })
+              }
+              else if (this.x <= 402 && this.isKing) {
+                  templates.copy('Spot Finder', this.x + 68, this.y + 42, { summoner: this })
+                  templates.copy('Spot Finder', this.x + 68, this.y - 42, { summoner: this })
+              }
+              else if (this.x >= 878 && this.isKing) {
+                  templates.copy('Spot Finder', this.x - 68, this.y + 42, { summoner: this })
+                  templates.copy('Spot Finder', this.x - 68, this.y - 42, { summoner: this })
+              }
+              else if (this.y == 229 && this.isKing) {
+                  templates.copy('Spot Finder', this.x + 68, this.y + 42, { summoner: this })
+                  templates.copy('Spot Finder', this.x - 68, this.y + 42, { summoner: this })
+              }
+              else if (this.y == 523 && this.isKing) {
+                  templates.copy('Spot Finder', this.x + 68, this.y - 42, { summoner: this })
+                  templates.copy('Spot Finder', this.x - 68, this.y - 42, { summoner: this })
               }
               else if (this.isKing) {
                   templates.copy('Spot Finder', this.x + 68, this.y + 42, { summoner: this })
@@ -696,7 +726,7 @@ assets:
         lib: core
     extends:
       cgroup: Pieces
-    lastmod: 1713566940949
+    lastmod: 1713575806701
     uid: QH2mWWbMnWrLDz
     behaviors: []
   - lastmod: 1713559037145
@@ -942,16 +972,15 @@ assets:
     visible: true
     events:
       - eventKey: OnPointerClick
-        code: |
+        code: |-
           this.summoner.x = this.x
           this.summoner.y = this.y
-          for (let spot of templates.list[`Spot Finder`]) {
-              spot.kill = true;
-          }
+          console.log(`summoner is now at ${this.x} x and ${this.y} y`)
+          rooms.current.clearSpotHelp()
         arguments: {}
         lib: core
     extends: {}
-    lastmod: 1713565029651
+    lastmod: 1713575732540
     uid: LdT8cChcc8KPJ1
     behaviors: []
 settings:
