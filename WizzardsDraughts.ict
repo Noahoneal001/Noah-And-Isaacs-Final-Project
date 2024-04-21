@@ -470,7 +470,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1713575782469
+    lastmod: 1713646944322
     events:
       - eventKey: OnRoomStart
         code: >-
@@ -478,6 +478,8 @@ assets:
           down
 
           this.playerOnesTurn = true
+
+          this.canDoubleJump = true
 
           this.clearSpotHelp = () => {
               for (let spot of templates.list[`Spot Finder`]) {
@@ -643,8 +645,12 @@ assets:
         code: this.zIndex = -4
         arguments: {}
         lib: core
+      - eventKey: OnPointerClick
+        code: rooms.current.clearSpotHelp()
+        arguments: {}
+        lib: core
     extends: {}
-    lastmod: 1713561862227
+    lastmod: 1713639518404
     uid: k5dgFTKK7j5wLB
     behaviors: []
   - type: template
@@ -678,7 +684,7 @@ assets:
         code: |-
           rooms.current.clearSpotHelp()
 
-              if (this.x <= 402 && this.y == 523 && this.isKing){
+              if (this.x <= 402 && this.y == 523 && this.isKing ){
                   templates.copy('Spot Finder', this.x + 68, this.y - 42, { summoner: this })
               }
               else if (this.x >= 878 && this.y == 523 && this.isKing) {
@@ -726,7 +732,7 @@ assets:
         lib: core
     extends:
       cgroup: Pieces
-    lastmod: 1713575806701
+    lastmod: 1713639373600
     uid: QH2mWWbMnWrLDz
     behaviors: []
   - lastmod: 1713559037145
@@ -957,8 +963,70 @@ assets:
           this.isNoped = false;
         arguments: {}
         lib: core
-    extends: {}
-    lastmod: 1713561555915
+      - eventKey: OnStep
+        code: |-
+          this.move;
+          if(this.y >= 523 && !this.isKing) {
+              this.isKing = true
+              this.tex = `black_pawn_king`
+          }
+        arguments: {}
+        lib: core
+      - eventKey: OnPointerClick
+        code: |2-
+              if (rooms.current.playerOnesTurn == false) {
+                  rooms.current.clearSpotHelp()
+
+                  if (this.x <= 402 && this.y == 523 && this.isKing) {
+                      templates.copy('Spot Finder', this.x + 68, this.y - 42, { summoner: this })
+                  }
+                  else if (this.x >= 878 && this.y == 523 && this.isKing) {
+                      templates.copy('Spot Finder', this.x - 68, this.y - 42, { summoner: this })
+                  }
+                  else if (this.x <= 402 && this.y == 229 && this.isKing) {
+                      templates.copy('Spot Finder', this.x + 68, this.y + 42, { summoner: this })
+                  }
+                  else if (this.x >= 878 && this.y == 229 && this.isKing) {
+                      templates.copy('Spot Finder', this.x - 68, this.y + 42, { summoner: this })
+                  }
+                  else if (this.x <= 402 && this.isKing) {
+                      templates.copy('Spot Finder', this.x + 68, this.y + 42, { summoner: this })
+                      templates.copy('Spot Finder', this.x + 68, this.y - 42, { summoner: this })
+                  }
+                  else if (this.x >= 878 && this.isKing) {
+                      templates.copy('Spot Finder', this.x - 68, this.y + 42, { summoner: this })
+                      templates.copy('Spot Finder', this.x - 68, this.y - 42, { summoner: this })
+                  }
+                  else if (this.y == 229 && this.isKing) {
+                      templates.copy('Spot Finder', this.x + 68, this.y + 42, { summoner: this })
+                      templates.copy('Spot Finder', this.x - 68, this.y + 42, { summoner: this })
+                  }
+                  else if (this.y == 523 && this.isKing) {
+                      templates.copy('Spot Finder', this.x + 68, this.y - 42, { summoner: this })
+                      templates.copy('Spot Finder', this.x - 68, this.y - 42, { summoner: this })
+                  }
+                  else if (this.isKing) {
+                      templates.copy('Spot Finder', this.x + 68, this.y + 42, { summoner: this })
+                      templates.copy('Spot Finder', this.x - 68, this.y + 42, { summoner: this })
+                      templates.copy('Spot Finder', this.x + 68, this.y - 42, { summoner: this })
+                      templates.copy('Spot Finder', this.x - 68, this.y - 42, { summoner: this })
+                  }
+                  else if (this.x <= 402 && this.y < 523) {
+                      templates.copy('Spot Finder', this.x + 68, this.y + 42, { summoner: this })
+                  }
+                  else if (this.x >= 878 && this.y < 523) {
+                      templates.copy('Spot Finder', this.x - 68, this.y + 42, { summoner: this })
+                  }
+                  else if (this.y < 523) {
+                      templates.copy('Spot Finder', this.x + 68, this.y + 42, { summoner: this })
+                      templates.copy('Spot Finder', this.x - 68, this.y + 42, { summoner: this })
+                  }
+              }
+        arguments: {}
+        lib: core
+    extends:
+      cgroup: Pieces
+    lastmod: 1713646937060
     uid: 7Q7zB9NDt3wndF
     behaviors: []
   - type: template
@@ -971,16 +1039,94 @@ assets:
     animationFPS: 30
     visible: true
     events:
+      - eventKey: OnCreate
+        code: >-
+          this.doubleJump = () => {
+              if (rooms.current.canDoubleJump) {
+                  
+              }
+          }
+
+
+          this.moveDirectionY = `UP`
+
+          this.moveDirectionX = `RIGHT`
+
+          if (this.summoner.y < this.y){
+              this.moveDirectionY = `DOWN`
+          }
+
+          if (this.summoner.x > this.x) {
+              this.moveDirectionX = `LEFT`
+          }
+
+          this.target = place.occupied(this, `Pieces`)
+
+          this.zIndex = -1
+
+
+          if (this.summoner.team == this.target.team || this.summoner.team ==
+          this.target.team) {
+              this.kill = true
+          }
+
+          else if ((this.summoner.team == `red` && this.target.team == `black`)
+          || (this.summoner.team == `black` && this.target.team == `red`)) {
+              if (this.moveDirectionY == `UP` && this.moveDirectionX == `RIGHT`) {
+                  if(place.occupied(this, this.x + 68, this.y - 42, `Pieces`) || this.x == 878 || this.y == 229) {
+                      this.kill = true;
+                  }
+                  else {
+                   this.x += 68;
+                   this.y -= 42;  
+                  };
+              }
+              else if (this.moveDirectionY == `UP` && this.moveDirectionX == `LEFT`){
+                  if (place.occupied(this, this.x - 68, this.y - 42, `Pieces`) || this.x == 402 || this.y == 229) {
+                      this.kill = true;
+                  }
+                  else {
+                      this.x -= 68;
+                      this.y -= 42;
+                  }
+              }
+              else if (this.moveDirectionY == `DOWN` && this.moveDirectionX == `RIGHT`) {
+                  if (place.occupied(this, this.x + 68, this.y + 42, `Pieces`) || this.x == 878 || this.y == 523) {
+                      this.kill = true;
+                  }
+                  else {
+                      this.x += 68;
+                      this.y += 42;
+                  }
+              }
+              else if (this.moveDirectionY == `DOWN` && this.moveDirectionX == `LEFT`) {
+                  if (place.occupied(this, this.x + 68, this.y + 42, `Pieces`) || this.x == 402 || this.y == 523) {
+                      this.kill = true;
+                  }
+                  else {
+                      this.x -= 68;
+                      this.y += 42;
+                  }
+              }
+          }
+        arguments: {}
+        lib: core
       - eventKey: OnPointerClick
-        code: |-
-          this.summoner.x = this.x
-          this.summoner.y = this.y
-          console.log(`summoner is now at ${this.x} x and ${this.y} y`)
-          rooms.current.clearSpotHelp()
+        code: |
+          this.summoner.x = this.x;
+          this.summoner.y = this.y;
+          if (this.target) {
+              this.target.kill = true;
+              
+          }
+          else {
+              rooms.current.playerOnesTurn = !rooms.current.playerOnesTurn;
+              rooms.current.clearSpotHelp();
+          }
         arguments: {}
         lib: core
     extends: {}
-    lastmod: 1713575732540
+    lastmod: 1713657638070
     uid: LdT8cChcc8KPJ1
     behaviors: []
 settings:
