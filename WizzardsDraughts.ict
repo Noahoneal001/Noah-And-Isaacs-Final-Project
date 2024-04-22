@@ -470,7 +470,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1713646944322
+    lastmod: 1713825144906
     events:
       - eventKey: OnRoomStart
         code: >-
@@ -485,6 +485,12 @@ assets:
               for (let spot of templates.list[`Spot Finder`]) {
               spot.kill = true;
               }
+          }
+
+          this.doubleJumpPain = (summonerOG) => {
+              this.clearSpotHelp()
+              this.playerOnesTurn = false
+              templates.copy('Spot Finder', summonerOG.x, summonerOG.y, {summoner:summonerOG, isTheChosenOne:true})
           }
         arguments: {}
         lib: core
@@ -732,7 +738,7 @@ assets:
         lib: core
     extends:
       cgroup: Pieces
-    lastmod: 1713639373600
+    lastmod: 1713823751695
     uid: QH2mWWbMnWrLDz
     behaviors: []
   - lastmod: 1713559037145
@@ -1041,13 +1047,6 @@ assets:
     events:
       - eventKey: OnCreate
         code: >-
-          this.doubleJump = () => {
-              if (rooms.current.canDoubleJump) {
-                  
-              }
-          }
-
-
           this.moveDirectionY = `UP`
 
           this.moveDirectionX = `RIGHT`
@@ -1064,6 +1063,7 @@ assets:
 
           this.zIndex = -1
 
+          if (rooms.current.canDoubleJump) {
 
           if (this.summoner.team == this.target.team || this.summoner.team ==
           this.target.team) {
@@ -1109,15 +1109,42 @@ assets:
                   }
               }
           }
+
+          }
+
+          else if (this.isTheChosenOne){
+              if (this.moveDirectionY == `UP` && !(this.y == 229 || this.y - 42 == 229)) {
+                  if (place.occupied(this, this.x + 68, this.y - 42, `Pieces`) && this.x == 878) {
+                      templates.copy('Spot Finder',this.x + 136, this.y - 84, {summoner:this.summoner, target:place.occupied(this, this.x + 68, this.y - 42, `Pieces`)})
+                  }
+                  if (place.occupied(this, this.x - 68, this.y - 42, `Pieces`) && this.x == 402) {
+                      templates.copy('Spot Finder',this.x - 136, this.y - 84, {summoner:this.summoner, target:place.occupied(this, this.x + 68, this.y - 42, `Pieces`)})
+                  }
+              }
+              else if (this.moveDirtectionY == `DOWN` && !(this.y == 523)) {
+                  if (place.occupied(this, this.x + 68, this.y + 42, `Pieces`) && this.x == 878) {
+                      templates.copy('Spot Finder',this.x + 136, this.y - 84, {summoner:this.summoner, target:place.occupied(this, this.x + 68, this.y - 42, `Pieces`)})
+                  }
+                  if (place.occupied(this, this.x - 68, this.y + 42, `Pieces`) && this.x == 402) {
+                      templates.copy('Spot Finder',this.x - 136, this.y - 84, {summoner:this.summoner, target:place.occupied(this, this.x + 68, this.y - 42, `Pieces`)})
+                  }
+              }
+              this.kill = true;
+          }
         arguments: {}
         lib: core
       - eventKey: OnPointerClick
         code: |
           this.summoner.x = this.x;
           this.summoner.y = this.y;
-          if (this.target) {
+          if (this.target && rooms.current.canDoubleJump) {
               this.target.kill = true;
-              
+              rooms.current.doubleJumpPain(this.summoner)
+          }
+          else if (this.target) {
+              this.target.kill = true;
+              rooms.current.playerOnesTurn = !rooms.current.playerOnesTurn;
+              rooms.current.clearSpotHelp();
           }
           else {
               rooms.current.playerOnesTurn = !rooms.current.playerOnesTurn;
@@ -1126,7 +1153,7 @@ assets:
         arguments: {}
         lib: core
     extends: {}
-    lastmod: 1713657638070
+    lastmod: 1713826028586
     uid: LdT8cChcc8KPJ1
     behaviors: []
 settings:
