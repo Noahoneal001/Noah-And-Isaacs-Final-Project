@@ -79,8 +79,8 @@ assets:
         scaleY: 1
         repeat: repeat
     copies:
-      - x: 400
-        'y': 320
+      - x: 354
+        'y': 406
         opacity: 1
         tint: 16777215
         scale:
@@ -93,7 +93,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1713472090734
+    lastmod: 1713841167750
     events: []
     behaviors: []
     uid: npr3P8MBbkB68q
@@ -101,7 +101,7 @@ assets:
     baseClass: Button
     name: PVE Button
     depth: 0
-    texture: m96hHkhbLtkrLg
+    texture: ndhJ196J15kJn8
     playAnimationOnStart: false
     loopAnimation: true
     animationFPS: 30
@@ -120,7 +120,7 @@ assets:
         arguments: {}
         lib: core
     extends: {}
-    lastmod: 1713471676251
+    lastmod: 1713841039224
     uid: LnJz2qc5Ngf4Mp
     behaviors: []
     defaultText: ''
@@ -470,7 +470,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1713825144906
+    lastmod: 1713841263084
     events:
       - eventKey: OnRoomStart
         code: >-
@@ -688,6 +688,7 @@ assets:
         lib: core
       - eventKey: OnPointerClick
         code: |-
+          if (rooms.current.playerOnesTurn && rooms.current.canDoubleJump) {
           rooms.current.clearSpotHelp()
 
               if (this.x <= 402 && this.y == 523 && this.isKing ){
@@ -734,11 +735,15 @@ assets:
                   templates.copy('Spot Finder', this.x + 68, this.y - 42, { summoner: this })
                   templates.copy('Spot Finder', this.x - 68, this.y - 42, { summoner: this })
               }
+              }
+          else if (this.isComboTime) {
+              
+          }
         arguments: {}
         lib: core
     extends:
       cgroup: Pieces
-    lastmod: 1713823751695
+    lastmod: 1713840512412
     uid: QH2mWWbMnWrLDz
     behaviors: []
   - lastmod: 1713559037145
@@ -1046,7 +1051,7 @@ assets:
     visible: true
     events:
       - eventKey: OnCreate
-        code: >-
+        code: >
           this.moveDirectionY = `UP`
 
           this.moveDirectionX = `RIGHT`
@@ -1063,7 +1068,6 @@ assets:
 
           this.zIndex = -1
 
-          if (rooms.current.canDoubleJump) {
 
           if (this.summoner.team == this.target.team || this.summoner.team ==
           this.target.team) {
@@ -1109,28 +1113,6 @@ assets:
                   }
               }
           }
-
-          }
-
-          else if (this.isTheChosenOne){
-              if (this.moveDirectionY == `UP` && !(this.y == 229 || this.y - 42 == 229)) {
-                  if (place.occupied(this, this.x + 68, this.y - 42, `Pieces`) && this.x == 878) {
-                      templates.copy('Spot Finder',this.x + 136, this.y - 84, {summoner:this.summoner, target:place.occupied(this, this.x + 68, this.y - 42, `Pieces`)})
-                  }
-                  if (place.occupied(this, this.x - 68, this.y - 42, `Pieces`) && this.x == 402) {
-                      templates.copy('Spot Finder',this.x - 136, this.y - 84, {summoner:this.summoner, target:place.occupied(this, this.x + 68, this.y - 42, `Pieces`)})
-                  }
-              }
-              else if (this.moveDirtectionY == `DOWN` && !(this.y == 523)) {
-                  if (place.occupied(this, this.x + 68, this.y + 42, `Pieces`) && this.x == 878) {
-                      templates.copy('Spot Finder',this.x + 136, this.y - 84, {summoner:this.summoner, target:place.occupied(this, this.x + 68, this.y - 42, `Pieces`)})
-                  }
-                  if (place.occupied(this, this.x - 68, this.y + 42, `Pieces`) && this.x == 402) {
-                      templates.copy('Spot Finder',this.x - 136, this.y - 84, {summoner:this.summoner, target:place.occupied(this, this.x + 68, this.y - 42, `Pieces`)})
-                  }
-              }
-              this.kill = true;
-          }
         arguments: {}
         lib: core
       - eventKey: OnPointerClick
@@ -1153,9 +1135,38 @@ assets:
         arguments: {}
         lib: core
     extends: {}
-    lastmod: 1713826028586
+    lastmod: 1713841259047
     uid: LdT8cChcc8KPJ1
     behaviors: []
+  - lastmod: 1713841163202
+    type: texture
+    name: vsPlayer
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 32
+      - 32
+    marginx: 0
+    marginy: 0
+    imgWidth: 64
+    imgHeight: 64
+    width: 64
+    height: 64
+    offx: 0
+    offy: 0
+    origname: indhJ196J15kJn8.png
+    shape: rect
+    left: 32
+    right: 32
+    top: 32
+    bottom: 32
+    uid: ndhJ196J15kJn8
+    padding: 1
+    isBlank: false
+    source: >-
+      C:\Users\niceh\OneDrive\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\vsPlayer.png
 settings:
   authoring:
     author: ''
@@ -1206,3 +1217,4 @@ settings:
     alternativeLogo: false
     customLoadingText: ''
   fps: 30
+palette: []
