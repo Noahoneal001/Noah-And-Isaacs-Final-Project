@@ -470,7 +470,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1713841263084
+    lastmod: 1713845742796
     events:
       - eventKey: OnRoomStart
         code: >-
@@ -479,18 +479,12 @@ assets:
 
           this.playerOnesTurn = true
 
-          this.canDoubleJump = true
+          this.letHimCook = false
 
           this.clearSpotHelp = () => {
               for (let spot of templates.list[`Spot Finder`]) {
               spot.kill = true;
               }
-          }
-
-          this.doubleJumpPain = (summonerOG) => {
-              this.clearSpotHelp()
-              this.playerOnesTurn = false
-              templates.copy('Spot Finder', summonerOG.x, summonerOG.y, {summoner:summonerOG, isTheChosenOne:true})
           }
         arguments: {}
         lib: core
@@ -688,7 +682,7 @@ assets:
         lib: core
       - eventKey: OnPointerClick
         code: |-
-          if (rooms.current.playerOnesTurn && rooms.current.canDoubleJump) {
+          if (rooms.current.playerOnesTurn && !rooms.current.letHimCook) {
           rooms.current.clearSpotHelp()
 
               if (this.x <= 402 && this.y == 523 && this.isKing ){
@@ -737,13 +731,31 @@ assets:
               }
               }
           else if (this.isComboTime) {
-              
+              if (this.isKing) {
+                  if (place.occupied(this,this.x + 68,this.y + 42,`Pieces`) && !(this.x == 878 || this.x == 810) && !(this.y == 523 || this.y == 481)) {
+                      templates.copy('Spot Finder',this.x + 136, this.y + 84,{summoner:this, targetCombo:place.occupied(this,this.x + 68,this.y + 42,`Pieces`)})
+                  }
+                  if (place.occupied(this,this.x + 68,this.y + 42,`Pieces`) && !(this.x == 402 || this.x == 470) && !(this.y == 523 || this.y == 481)) {
+                      templates.copy('Spot Finder',this.x - 136, this.y + 84,{summoner:this, targetCombo:place.occupied(this,this.x - 68,this.y + 42,`Pieces`)})
+                  }
+              }
+              if (place.occupied(this,this.x + 68,this.y - 42,`Pieces`) && !(this.x == 878 || this.x == 810) && !(this.y == 523 || this.y == 481)) {
+                  templates.copy('Spot Finder',this.x + 136, this.y - 84,{summoner:this, targetCombo:place.occupied(this,this.x + 68,this.y - 42,`Pieces`)})
+              }
+              if (place.occupied(this,this.x + 68,this.y - 42,`Pieces`) && !(this.x == 402 || this.x == 470) && !(this.y == 523 || this.y == 481)) {
+                  templates.copy('Spot Finder',this.x - 136, this.y - 84,{summoner:this, targetCombo:place.occupied(this,this.x - 68,this.y - 42,`Pieces`)})
+              }
+              if (!templates.exists('Spot Finder')) {
+                  this.isComboTime = false;
+                  rooms.current.letHimCook = false;
+                  rooms.current.playerOnesTurn = false
+              }
           }
         arguments: {}
         lib: core
     extends:
       cgroup: Pieces
-    lastmod: 1713840512412
+    lastmod: 1713845900434
     uid: QH2mWWbMnWrLDz
     behaviors: []
   - lastmod: 1713559037145
@@ -1064,7 +1076,10 @@ assets:
               this.moveDirectionX = `LEFT`
           }
 
-          this.target = place.occupied(this, `Pieces`)
+          if (!this.target) {
+              this.target = place.occupied(this, `Pieces`)
+          }
+
 
           this.zIndex = -1
 
@@ -1119,13 +1134,16 @@ assets:
         code: |
           this.summoner.x = this.x;
           this.summoner.y = this.y;
-          if (this.target && rooms.current.canDoubleJump) {
-              this.target.kill = true;
-              rooms.current.doubleJumpPain(this.summoner)
+          console.log(this.target)
+          console.log(this.targetForce)
+          if (this.targetCombo){
+              this.targetCombo.kill = true;
+              console.log(this.targetCombo)
           }
-          else if (this.target) {
+          else if (this.target || this.targetForce) {
               this.target.kill = true;
-              rooms.current.playerOnesTurn = !rooms.current.playerOnesTurn;
+              this.summoner.isComboTime = true
+              rooms.current.letHimCook = true
               rooms.current.clearSpotHelp();
           }
           else {
@@ -1135,7 +1153,7 @@ assets:
         arguments: {}
         lib: core
     extends: {}
-    lastmod: 1713841259047
+    lastmod: 1713846184164
     uid: LdT8cChcc8KPJ1
     behaviors: []
   - lastmod: 1713841163202
