@@ -470,7 +470,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1713845742796
+    lastmod: 1713911788178
     events:
       - eventKey: OnRoomStart
         code: >-
@@ -1045,11 +1045,32 @@ assets:
                       templates.copy('Spot Finder', this.x - 68, this.y + 42, { summoner: this })
                   }
               }
+              else if (this.isComboTime) {
+              if (this.isKing) {
+                  if (place.occupied(this,this.x + 68,this.y - 42,`Pieces`) && !(this.x == 878 || this.x == 810) && !(this.y == 523 || this.y == 481)) {
+                      templates.copy('Spot Finder',this.x + 136, this.y - 84,{summoner:this, targetCombo:place.occupied(this,this.x + 68,this.y - 42,`Pieces`)})
+                  }
+                  if (place.occupied(this,this.x + 68,this.y - 42,`Pieces`) && !(this.x == 402 || this.x == 470) && !(this.y == 523 || this.y == 481)) {
+                      templates.copy('Spot Finder',this.x - 136, this.y - 84,{summoner:this, targetCombo:place.occupied(this,this.x - 68,this.y - 42,`Pieces`)})
+                  }
+              }
+              if (place.occupied(this,this.x + 68,this.y + 42,`Pieces`) && !(this.x == 878 || this.x == 810) && !(this.y == 523 || this.y == 481)) {
+                  templates.copy('Spot Finder',this.x + 136, this.y + 84,{summoner:this, targetCombo:place.occupied(this,this.x + 68,this.y + 42,`Pieces`)})
+              }
+              if (place.occupied(this,this.x + 68,this.y + 42,`Pieces`) && !(this.x == 402 || this.x == 470) && !(this.y == 523 || this.y == 481)) {
+                  templates.copy('Spot Finder',this.x - 136, this.y + 84,{summoner:this, targetCombo:place.occupied(this,this.x - 68,this.y + 42,`Pieces`)})
+              }
+              if (!templates.exists('Spot Finder')) {
+                  this.isComboTime = false;
+                  rooms.current.letHimCook = false;
+                  rooms.current.playerOnesTurn = false
+              }
+          }
         arguments: {}
         lib: core
     extends:
       cgroup: Pieces
-    lastmod: 1713646937060
+    lastmod: 1713911526619
     uid: 7Q7zB9NDt3wndF
     behaviors: []
   - type: template
