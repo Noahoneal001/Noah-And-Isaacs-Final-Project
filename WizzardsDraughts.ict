@@ -80,8 +80,8 @@ assets:
         scaleY: 1
         repeat: repeat
     copies:
-      - x: 354
-        'y': 406
+      - x: 298.00000066
+        'y': 421.20004237
         opacity: 1
         tint: 16777215
         scale:
@@ -92,9 +92,21 @@ assets:
         exts: {}
         customProperties: {}
         bindings: {}
+      - x: 640.00004881
+        'y': 272.99999439
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 0.8
+          'y': 0.8
+        rotation: 0
+        uid: M7kmw7HjtLK8Nb
+        exts: {}
+        customProperties: {}
+        bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1713841167750
+    lastmod: 1713994183676
     events: []
     behaviors: []
     uid: npr3P8MBbkB68q
@@ -1293,14 +1305,61 @@ assets:
       - allInFont
     customCharset: ''
     uid: DwB9KGKF95gpmn
+  - lastmod: 1713994003832
+    type: texture
+    name: Logo
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 640
+      - 360
+    marginx: 0
+    marginy: 0
+    imgWidth: 1280
+    imgHeight: 720
+    width: 1280
+    height: 720
+    offx: 0
+    offy: 0
+    origname: i7FPhpcwBNP8cdw.png
+    shape: rect
+    left: 440
+    right: 452
+    top: 321
+    bottom: 154
+    uid: 7FPhpcwBNP8cdw
+    padding: 1
+    isBlank: false
+    source: >-
+      C:\Users\150073267\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\Logo.png
+  - type: template
+    baseClass: AnimatedSprite
+    name: LOGO
+    depth: 0
+    texture: 7FPhpcwBNP8cdw
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnStep
+        lib: core
+        code: this.move();
+        arguments: {}
+    extends: {}
+    lastmod: 1713994063936
+    uid: M7kmw7HjtLK8Nb
+    behaviors: []
 settings:
   authoring:
-    author: ''
+    author: Noah & Isaac
     site: ''
-    title: ''
+    title: Wizard's Draughts
     version:
       - 0
-      - 0
+      - 1
       - 0
     versionPostfix: ''
     appId: ''
@@ -1312,7 +1371,7 @@ settings:
     highDensity: true
     desktopMode: maximized
     hideCursor: false
-    mobileScreenOrientation: unspecified
+    mobileScreenOrientation: landscape
     viewMode: scaleFit
   export:
     autocloseDesktop: true
@@ -1333,14 +1392,14 @@ settings:
       tandem: false
       script: false
   branding:
-    accent: '#446adb'
+    accent: '#000000'
     invertPreloaderScheme: true
     icon: -1
     splashScreen: -1
     forceSmoothIcons: false
     forceSmoothSplashScreen: false
-    hideLoadingLogo: false
+    hideLoadingLogo: true
     alternativeLogo: false
-    customLoadingText: ''
+    customLoadingText: Wizard Time
   fps: 30
 palette: []
