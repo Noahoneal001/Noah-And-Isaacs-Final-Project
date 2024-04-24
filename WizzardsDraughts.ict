@@ -182,7 +182,7 @@ assets:
         repeat: repeat
     copies:
       - x: 640
-        'y': 384
+        'y': 385
         opacity: 1
         tint: 16777215
         scale:
@@ -495,7 +495,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1713991069104
+    lastmod: 1713995446389
     events:
       - eventKey: OnRoomStart
         code: >-
@@ -542,7 +542,7 @@ assets:
     uid: m96hHkhbLtkrLg
     padding: 1
     isBlank: false
-  - lastmod: 1713557672509
+  - lastmod: 1713995251619
     type: texture
     name: board
     untill: 0
