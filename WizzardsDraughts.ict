@@ -468,9 +468,21 @@ assets:
         exts: {}
         customProperties: {}
         bindings: {}
+      - x: 28.00005856
+        'y': 21.79999117
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: Mrnf4t68RC2HWM
+        exts: {}
+        customProperties: {}
+        bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1713911788178
+    lastmod: 1713929992094
     events:
       - eventKey: OnRoomStart
         code: >-
@@ -610,10 +622,10 @@ assets:
       paw norm.png
     r: 32
   - type: template
-    baseClass: Container
+    baseClass: Button
     name: Playzone
     depth: 0
-    texture: -1
+    texture: m96hHkhbLtkrLg
     playAnimationOnStart: false
     loopAnimation: true
     animationFPS: 30
@@ -624,13 +636,24 @@ assets:
         code: this.move();
         arguments: {}
       - eventKey: OnPointerClick
-        code: console.log(templates.templates.Board)
+        code: ''
         arguments: {}
         lib: core
     extends: {}
-    lastmod: 1713485381029
+    lastmod: 1713922910046
     uid: zMqzGq7BFqcbTk
     behaviors: []
+    defaultText: ''
+    textStyle: -1
+    nineSliceSettings:
+      top: 16
+      left: 16
+      bottom: 16
+      right: 16
+      autoUpdate: false
+    hoverTexture: -1
+    pressedTexture: -1
+    disabledTexture: -1
   - type: template
     baseClass: AnimatedSprite
     name: Board
@@ -731,18 +754,19 @@ assets:
               }
               }
           else if (this.isComboTime) {
+              rooms.current.clearSpotHelp()
               if (this.isKing) {
-                  if (place.occupied(this,this.x + 68,this.y + 42,`Pieces`) && !(this.x == 878 || this.x == 810) && !(this.y == 523 || this.y == 481)) {
+                  if (place.occupied(this,this.x + 68,this.y + 42,`Pieces`) && !place.occupied(this,this.x + 136,this.y + 84,`Pieces`) && !(this.x == 878 || this.x == 810) && !(this.y == 523 || this.y == 481)) {
                       templates.copy('Spot Finder',this.x + 136, this.y + 84,{summoner:this, targetCombo:place.occupied(this,this.x + 68,this.y + 42,`Pieces`)})
                   }
-                  if (place.occupied(this,this.x + 68,this.y + 42,`Pieces`) && !(this.x == 402 || this.x == 470) && !(this.y == 523 || this.y == 481)) {
+                  if (place.occupied(this,this.x - 68,this.y + 42,`Pieces`) && !place.occupied(this,this.x - 136,this.y + 84,`Pieces`) && !(this.x == 402 || this.x == 470) && !(this.y == 523 || this.y == 481)) {
                       templates.copy('Spot Finder',this.x - 136, this.y + 84,{summoner:this, targetCombo:place.occupied(this,this.x - 68,this.y + 42,`Pieces`)})
                   }
               }
-              if (place.occupied(this,this.x + 68,this.y - 42,`Pieces`) && !(this.x == 878 || this.x == 810) && !(this.y == 523 || this.y == 481)) {
+              if (place.occupied(this,this.x + 68,this.y - 42,`Pieces`) && !place.occupied(this,this.x + 136,this.y - 84,`Pieces`) && !(this.x == 878 || this.x == 810) && !(this.y == 229 || this.y == 271)) {
                   templates.copy('Spot Finder',this.x + 136, this.y - 84,{summoner:this, targetCombo:place.occupied(this,this.x + 68,this.y - 42,`Pieces`)})
               }
-              if (place.occupied(this,this.x + 68,this.y - 42,`Pieces`) && !(this.x == 402 || this.x == 470) && !(this.y == 523 || this.y == 481)) {
+              if (place.occupied(this,this.x - 68,this.y - 42,`Pieces`) && !place.occupied(this,this.x - 136,this.y - 84,`Pieces`) && !(this.x == 402 || this.x == 470) && !(this.y == 229 || this.y == 271)) {
                   templates.copy('Spot Finder',this.x - 136, this.y - 84,{summoner:this, targetCombo:place.occupied(this,this.x - 68,this.y - 42,`Pieces`)})
               }
               if (!templates.exists('Spot Finder')) {
@@ -755,7 +779,7 @@ assets:
         lib: core
     extends:
       cgroup: Pieces
-    lastmod: 1713845900434
+    lastmod: 1713928676416
     uid: QH2mWWbMnWrLDz
     behaviors: []
   - lastmod: 1713559037145
@@ -997,7 +1021,7 @@ assets:
         lib: core
       - eventKey: OnPointerClick
         code: |2-
-              if (rooms.current.playerOnesTurn == false) {
+              if (rooms.current.playerOnesTurn == false && !rooms.current.letHimCook) {
                   rooms.current.clearSpotHelp()
 
                   if (this.x <= 402 && this.y == 523 && this.isKing) {
@@ -1046,31 +1070,32 @@ assets:
                   }
               }
               else if (this.isComboTime) {
-              if (this.isKing) {
-                  if (place.occupied(this,this.x + 68,this.y - 42,`Pieces`) && !(this.x == 878 || this.x == 810) && !(this.y == 523 || this.y == 481)) {
-                      templates.copy('Spot Finder',this.x + 136, this.y - 84,{summoner:this, targetCombo:place.occupied(this,this.x + 68,this.y - 42,`Pieces`)})
+                  if (this.isKing) {
+                      if (place.occupied(this, this.x + 68, this.y - 42, `Pieces`) && !place.occupied(this,this.x + 136,this.y - 84,`Pieces`) && !(this.x == 878 || this.x == 810) && !(this.y == 229 || this.y == 271)) {
+                          templates.copy('Spot Finder', this.x + 136, this.y - 84, { summoner: this, targetCombo: place.occupied(this, this.x + 68, this.y - 42, `Pieces`) })
+                      }
+                      if (place.occupied(this, this.x - 68, this.y - 42, `Pieces`) && !place.occupied(this,this.x - 136,this.y - 84,`Pieces`) && !(this.x == 402 || this.x == 470) && !(this.y == 229 || this.y == 271)) {
+                          templates.copy('Spot Finder', this.x - 136, this.y - 84, { summoner: this, targetCombo: place.occupied(this, this.x - 68, this.y - 42, `Pieces`) })
+                      }
                   }
-                  if (place.occupied(this,this.x + 68,this.y - 42,`Pieces`) && !(this.x == 402 || this.x == 470) && !(this.y == 523 || this.y == 481)) {
-                      templates.copy('Spot Finder',this.x - 136, this.y - 84,{summoner:this, targetCombo:place.occupied(this,this.x - 68,this.y - 42,`Pieces`)})
-                  }
+              if (place.occupied(this, this.x + 68, this.y + 42, `Pieces`) && !place.occupied(this,this.x + 136,this.y + 84,`Pieces`) && !(this.x == 878 || this.x == 810) && !(this.y == 523 || this.y == 481)) {
+                  templates.copy('Spot Finder', this.x + 136, this.y + 84, { summoner: this, targetCombo: place.occupied(this, this.x + 68, this.y + 42, `Pieces`) })
               }
-              if (place.occupied(this,this.x + 68,this.y + 42,`Pieces`) && !(this.x == 878 || this.x == 810) && !(this.y == 523 || this.y == 481)) {
-                  templates.copy('Spot Finder',this.x + 136, this.y + 84,{summoner:this, targetCombo:place.occupied(this,this.x + 68,this.y + 42,`Pieces`)})
-              }
-              if (place.occupied(this,this.x + 68,this.y + 42,`Pieces`) && !(this.x == 402 || this.x == 470) && !(this.y == 523 || this.y == 481)) {
-                  templates.copy('Spot Finder',this.x - 136, this.y + 84,{summoner:this, targetCombo:place.occupied(this,this.x - 68,this.y + 42,`Pieces`)})
+              if (place.occupied(this, this.x - 68, this.y + 42, `Pieces`) && !place.occupied(this,this.x - 136,this.y + 84,`Pieces`) && !(this.x == 402 || this.x == 470) && !(this.y == 523 || this.y == 481)) {
+                  templates.copy('Spot Finder', this.x - 136, this.y + 84, { summoner: this, targetCombo: place.occupied(this, this.x - 68, this.y + 42, `Pieces`) })
               }
               if (!templates.exists('Spot Finder')) {
                   this.isComboTime = false;
                   rooms.current.letHimCook = false;
-                  rooms.current.playerOnesTurn = false
+                  rooms.current.playerOnesTurn = true
               }
+
           }
         arguments: {}
         lib: core
     extends:
       cgroup: Pieces
-    lastmod: 1713911526619
+    lastmod: 1713929681331
     uid: 7Q7zB9NDt3wndF
     behaviors: []
   - type: template
@@ -1113,7 +1138,7 @@ assets:
           else if ((this.summoner.team == `red` && this.target.team == `black`)
           || (this.summoner.team == `black` && this.target.team == `red`)) {
               if (this.moveDirectionY == `UP` && this.moveDirectionX == `RIGHT`) {
-                  if(place.occupied(this, this.x + 68, this.y - 42, `Pieces`) || this.x == 878 || this.y == 229) {
+                  if(place.occupied(this, this.x + 68, this.y - 42, `Pieces`) || this.x >= 878 || this.y <= 229) {
                       this.kill = true;
                   }
                   else {
@@ -1122,7 +1147,7 @@ assets:
                   };
               }
               else if (this.moveDirectionY == `UP` && this.moveDirectionX == `LEFT`){
-                  if (place.occupied(this, this.x - 68, this.y - 42, `Pieces`) || this.x == 402 || this.y == 229) {
+                  if (place.occupied(this, this.x - 68, this.y - 42, `Pieces`) || this.x <= 402 || this.y <= 229) {
                       this.kill = true;
                   }
                   else {
@@ -1131,7 +1156,7 @@ assets:
                   }
               }
               else if (this.moveDirectionY == `DOWN` && this.moveDirectionX == `RIGHT`) {
-                  if (place.occupied(this, this.x + 68, this.y + 42, `Pieces`) || this.x == 878 || this.y == 523) {
+                  if (place.occupied(this, this.x + 68, this.y + 42, `Pieces`) || this.x >= 878 || this.y >= 523) {
                       this.kill = true;
                   }
                   else {
@@ -1140,7 +1165,7 @@ assets:
                   }
               }
               else if (this.moveDirectionY == `DOWN` && this.moveDirectionX == `LEFT`) {
-                  if (place.occupied(this, this.x + 68, this.y + 42, `Pieces`) || this.x == 402 || this.y == 523) {
+                  if (place.occupied(this, this.x - 68, this.y + 42, `Pieces`) || this.x <= 402 || this.y >= 523) {
                       this.kill = true;
                   }
                   else {
@@ -1174,7 +1199,7 @@ assets:
         arguments: {}
         lib: core
     extends: {}
-    lastmod: 1713846184164
+    lastmod: 1713924823373
     uid: LdT8cChcc8KPJ1
     behaviors: []
   - lastmod: 1713841163202
@@ -1206,6 +1231,32 @@ assets:
     isBlank: false
     source: >-
       C:\Users\niceh\OneDrive\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\vsPlayer.png
+  - type: template
+    baseClass: Text
+    name: Player Turn
+    depth: 0
+    texture: -1
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnStep
+        lib: core
+        code: |-
+          if (rooms.current.playerOnesTurn) {
+              this.text = `PLAYER 1`
+          }
+          else {
+              this.text = `PLAYER 2`
+          }
+        arguments: {}
+    extends: {}
+    lastmod: 1713930098528
+    uid: Mrnf4t68RC2HWM
+    behaviors: []
+    defaultText: ''
+    textStyle: -1
 settings:
   authoring:
     author: ''
