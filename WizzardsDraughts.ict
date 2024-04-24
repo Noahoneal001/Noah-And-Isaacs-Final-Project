@@ -11,6 +11,7 @@ libs:
   keyboard.polyfill: {}
   pointer.polyfill: {}
   storage: {}
+  random: {}
 startroom: -1
 contentTypes: []
 actions: []
@@ -468,8 +469,8 @@ assets:
         exts: {}
         customProperties: {}
         bindings: {}
-      - x: 28.00005856
-        'y': 21.79999117
+      - x: 4
+        'y': -11
         opacity: 1
         tint: 16777215
         scale:
@@ -482,7 +483,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1713929992094
+    lastmod: 1713991069104
     events:
       - eventKey: OnRoomStart
         code: >-
@@ -1252,11 +1253,46 @@ assets:
           }
         arguments: {}
     extends: {}
-    lastmod: 1713930098528
+    lastmod: 1713990567188
     uid: Mrnf4t68RC2HWM
     behaviors: []
-    defaultText: ''
-    textStyle: -1
+    defaultText: PLAYER 1
+    textStyle: bB52C3b5NBNHhB
+  - type: style
+    name: Text Color Go Brrr
+    uid: bB52C3b5NBNHhB
+    font:
+      family: '"CTPROJFONTSilkscreen-Regular", "Silkscreen-Regular", sans-serif'
+      halign: left
+      italic: false
+      size: 40
+      weight: '400'
+      wrap: true
+      wrapPosition: 640
+      lineHeight: 53.3
+    fill:
+      type: 0
+      color: '#FFFFFF'
+      color1: '#cccccc'
+      color2: '#ffffff'
+      gradtype: 1
+    lastmod: 1713990937488
+    stroke:
+      color: '#000000'
+      weight: 4
+  - type: font
+    typefaceName: Silkscreen-Regular
+    weight: '400'
+    italic: false
+    origname: fDwB9KGKF95gpmn.ttf
+    lastmod: 1713990930684
+    bitmapFont: false
+    bitmapFontSize: 16
+    bitmapFontLineHeight: 18
+    charsets:
+      - allInFont
+    customCharset: ''
+    uid: DwB9KGKF95gpmn
 settings:
   authoring:
     author: ''
@@ -1272,7 +1308,7 @@ settings:
     usePixiLegacy: true
     transparent: false
     maxFPS: 60
-    pixelatedrender: false
+    pixelatedrender: true
     highDensity: true
     desktopMode: maximized
     hideCursor: false
