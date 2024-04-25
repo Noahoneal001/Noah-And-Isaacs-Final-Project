@@ -435,11 +435,47 @@ assets:
                   this.text = `${minute}:${second}`
                 arguments: {}
             extends: {}
-            lastmod: 1714074727216
+            lastmod: 1714085281546
             uid: GwbHRmMjC6wn5h
             behaviors: []
             defaultText: '0:00'
             textStyle: bB52C3b5NBNHhB
+          - type: template
+            baseClass: AnimatedSprite
+            name: Card Pile
+            depth: 0
+            texture: Gw9NzGqgDkFr1H
+            playAnimationOnStart: false
+            loopAnimation: true
+            animationFPS: 30
+            visible: true
+            events:
+              - eventKey: OnPointerClick
+                code: 'window.alert(`I do nothing yet :3`)'
+                arguments: {}
+                lib: core
+            extends: {}
+            lastmod: 1714081649603
+            uid: TpL88D4BmjMhLz
+            behaviors: []
+          - type: template
+            baseClass: AnimatedSprite
+            name: Pause Button
+            depth: 0
+            texture: 1gHhgDGwRzfNgW
+            playAnimationOnStart: false
+            loopAnimation: true
+            animationFPS: 30
+            visible: true
+            events:
+              - eventKey: OnPointerClick
+                code: 'window.alert(`:3`)'
+                arguments: {}
+                lib: core
+            extends: {}
+            lastmod: 1714082546288
+            uid: W6Q2gPjp1jTR38
+            behaviors: []
       - type: folder
         uid: BC8MgMpmMpkkQK
         colorClass: text
@@ -947,9 +983,33 @@ assets:
             exts: {}
             customProperties: {}
             bindings: {}
+          - x: 1024
+            'y': 320
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 5
+              'y': 5
+            rotation: 0
+            uid: TpL88D4BmjMhLz
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 1221
+            'y': 48
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 3
+              'y': 3
+            rotation: 0
+            uid: W6Q2gPjp1jTR38
+            exts: {}
+            customProperties: {}
+            bindings: {}
         tiles: []
         extends: {}
-        lastmod: 1714075533552
+        lastmod: 1714082740893
         events:
           - eventKey: OnRoomStart
             code: >
@@ -968,7 +1028,7 @@ assets:
                   }
               }
 
-              this.timerpain = timer.add(1200000,`the final brain cell`) 
+              this.timerpain = timer.add(600000,`the final brain cell`) 
 
               this.timerpain.then(() => {
                   console.log('Done!');
@@ -977,10 +1037,11 @@ assets:
                       rooms.switch('Win Screen')
                   }
                   else if (templates.list['Black Pawn'].length > templates.list['Red Pawn'].length) {
-                      sessionStorage.winner = `PLAYER 1 WINS`
+                      sessionStorage.winner = `PLAYER 2 WINS`
                       rooms.switch('Win Screen')
                   }
                   else {
+                      sessionStorage.winner = `NO WINNER`
                       rooms.switch('Win Screen')
                   }
               })
@@ -1637,6 +1698,64 @@ assets:
                 source: >-
                   C:\Users\150073267\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\shield
                   card.png
+          - lastmod: 1714081281097
+            type: texture
+            name: cardupsidedown
+            untill: 0
+            grid:
+              - 1
+              - 1
+            axis:
+              - 7
+              - 15
+            marginx: 0
+            marginy: 0
+            imgWidth: 15
+            imgHeight: 30
+            width: 15
+            height: 30
+            offx: 0
+            offy: 0
+            origname: iGw9NzGqgDkFr1H.png
+            shape: rect
+            left: 7
+            right: 8
+            top: 15
+            bottom: 5
+            uid: Gw9NzGqgDkFr1H
+            padding: 1
+            isBlank: false
+            source: >-
+              C:\Users\150073267\Documents\GitHub\WizzardsDraughts\assets\cardupsidedown.png
+          - lastmod: 1714082437085
+            type: texture
+            name: pausebutton
+            untill: 0
+            grid:
+              - 1
+              - 1
+            axis:
+              - 11
+              - 11
+            marginx: 0
+            marginy: 0
+            imgWidth: 23
+            imgHeight: 23
+            width: 23
+            height: 23
+            offx: 0
+            offy: 0
+            origname: i1gHhgDGwRzfNgW.png
+            shape: rect
+            left: 11
+            right: 12
+            top: 11
+            bottom: 12
+            uid: 1gHhgDGwRzfNgW
+            padding: 1
+            isBlank: false
+            source: >-
+              C:\Users\150073267\Documents\GitHub\WizzardsDraughts\assets\pausebutton.png
       - type: folder
         uid: hzjmK6hCH3Ptd4
         colorClass: text
