@@ -435,7 +435,7 @@ assets:
                   this.text = `${minute}:${second}`
                 arguments: {}
             extends: {}
-            lastmod: 1714021835909
+            lastmod: 1714074727216
             uid: GwbHRmMjC6wn5h
             behaviors: []
             defaultText: '0:00'
@@ -949,7 +949,7 @@ assets:
             bindings: {}
         tiles: []
         extends: {}
-        lastmod: 1714022989053
+        lastmod: 1714075533552
         events:
           - eventKey: OnRoomStart
             code: >
@@ -972,6 +972,17 @@ assets:
 
               this.timerpain.then(() => {
                   console.log('Done!');
+                  if (templates.list['Red Pawn'].length > templates.list['Black Pawn'].length) {
+                      sessionStorage.winner = `PLAYER 1 WINS`
+                      rooms.switch('Win Screen')
+                  }
+                  else if (templates.list['Black Pawn'].length > templates.list['Red Pawn'].length) {
+                      sessionStorage.winner = `PLAYER 1 WINS`
+                      rooms.switch('Win Screen')
+                  }
+                  else {
+                      rooms.switch('Win Screen')
+                  }
               })
 
 
@@ -1470,6 +1481,162 @@ assets:
             isBlank: false
             source: >-
               C:\Users\niceh\OneDrive\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\tableTop.png
+          - type: folder
+            uid: H8mgrwjJMwPNth
+            colorClass: success
+            icon: package
+            name: Cards
+            lastmod: 1714075867787
+            entries:
+              - lastmod: 1714075971006
+                type: texture
+                name: cardupsidedown
+                untill: 0
+                grid:
+                  - 1
+                  - 1
+                axis:
+                  - 7
+                  - 15
+                marginx: 0
+                marginy: 0
+                imgWidth: 15
+                imgHeight: 30
+                width: 15
+                height: 30
+                offx: 0
+                offy: 0
+                origname: i59jJWM6dLbk6gL.png
+                shape: rect
+                left: 7
+                right: 8
+                top: 15
+                bottom: 5
+                uid: 59jJWM6dLbk6gL
+                padding: 1
+                isBlank: false
+                source: >-
+                  C:\Users\150073267\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\cardupsidedown.png
+              - lastmod: 1714076043658
+                type: texture
+                name: bishop_card
+                untill: 0
+                grid:
+                  - 1
+                  - 1
+                axis:
+                  - 7
+                  - 15
+                marginx: 0
+                marginy: 0
+                imgWidth: 15
+                imgHeight: 30
+                width: 15
+                height: 30
+                offx: 0
+                offy: 0
+                origname: i5n2gH6rz28JcQ4.png
+                shape: rect
+                left: 7
+                right: 8
+                top: 15
+                bottom: 5
+                uid: 5n2gH6rz28JcQ4
+                padding: 1
+                isBlank: false
+                source: >-
+                  C:\Users\150073267\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\bishop
+                  card.png
+              - lastmod: 1714076072538
+                type: texture
+                name: fireball_card
+                untill: 0
+                grid:
+                  - 1
+                  - 1
+                axis:
+                  - 7
+                  - 15
+                marginx: 0
+                marginy: 0
+                imgWidth: 15
+                imgHeight: 30
+                width: 15
+                height: 30
+                offx: 0
+                offy: 0
+                origname: ifpjrQkczMgRdPf.png
+                shape: rect
+                left: 7
+                right: 8
+                top: 15
+                bottom: 5
+                uid: fpjrQkczMgRdPf
+                padding: 1
+                isBlank: false
+                source: >-
+                  C:\Users\150073267\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\fireball
+                  card.png
+              - lastmod: 1714076137675
+                type: texture
+                name: mine_card
+                untill: 0
+                grid:
+                  - 1
+                  - 1
+                axis:
+                  - 7
+                  - 15
+                marginx: 0
+                marginy: 0
+                imgWidth: 15
+                imgHeight: 30
+                width: 15
+                height: 30
+                offx: 0
+                offy: 0
+                origname: izRgfzdMhJ2G12F.png
+                shape: rect
+                left: 7
+                right: 8
+                top: 15
+                bottom: 5
+                uid: zRgfzdMhJ2G12F
+                padding: 1
+                isBlank: false
+                source: >-
+                  C:\Users\150073267\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\mine
+                  card.png
+              - lastmod: 1714076401898
+                type: texture
+                name: shield_card
+                untill: 0
+                grid:
+                  - 1
+                  - 1
+                axis:
+                  - 7
+                  - 15
+                marginx: 0
+                marginy: 0
+                imgWidth: 15
+                imgHeight: 30
+                width: 15
+                height: 30
+                offx: 0
+                offy: 0
+                origname: iP184H4g4Q6PgNt.png
+                shape: rect
+                left: 7
+                right: 8
+                top: 15
+                bottom: 5
+                uid: P184H4g4Q6PgNt
+                padding: 1
+                isBlank: false
+                source: >-
+                  C:\Users\150073267\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\shield
+                  card.png
       - type: folder
         uid: hzjmK6hCH3Ptd4
         colorClass: text
