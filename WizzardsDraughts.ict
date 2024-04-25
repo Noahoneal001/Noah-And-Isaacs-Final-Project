@@ -17,1341 +17,1607 @@ contentTypes: []
 actions: []
 scripts: []
 assets:
-  - lastmod: 1713388030678
-    type: texture
-    name: test
-    untill: 0
-    grid:
-      - 1
-      - 1
-    axis:
-      - 640
-      - 360
-    marginx: 0
-    marginy: 0
-    imgWidth: 1280
-    imgHeight: 720
-    width: 1280
-    height: 720
-    offx: 0
-    offy: 0
-    origname: i4fgwq14BfdczDW.png
-    shape: rect
-    left: 640
-    right: 640
-    top: 360
-    bottom: 360
-    uid: 4fgwq14BfdczDW
-    padding: 1
-    isBlank: false
-    tiled: true
-    source: 'C:\Users\150073267\Downloads\tilebackground.png'
-  - type: room
-    oncreate: ''
-    onstep: ''
-    ondraw: ''
-    onleave: ''
-    gridX: 64
-    gridY: 64
-    diagonalGrid: false
-    disableGrid: true
-    simulate: true
-    width: 1280
-    height: 720
-    restrictCamera: false
-    restrictMaxX: 1280
-    restrictMinX: 1280
-    restrictMaxY: 720
-    restrictMinY: 720
-    isUi: false
-    name: Start Screen
-    backgroundColor: '#000000'
-    follow: -1
-    backgrounds:
-      - depth: 0
-        texture: 4fgwq14BfdczDW
-        shiftX: 0
-        shiftY: 0
-        parallaxX: 1
-        parallaxY: 1
-        movementX: 0
-        movementY: 0
-        scaleX: 1
-        scaleY: 1
-        repeat: repeat
-    copies:
-      - x: 298.00000066
-        'y': 421.20004237
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 2
-          'y': 2
-        rotation: 0
-        uid: LnJz2qc5Ngf4Mp
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 640.00004881
-        'y': 272.99999439
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 0.8
-          'y': 0.8
-        rotation: 0
-        uid: M7kmw7HjtLK8Nb
-        exts: {}
-        customProperties: {}
-        bindings: {}
-    tiles: []
-    extends: {}
-    lastmod: 1713994183676
-    events: []
-    behaviors: []
-    uid: npr3P8MBbkB68q
-  - type: template
-    baseClass: Button
-    name: PVE Button
-    depth: 0
-    texture: ndhJ196J15kJn8
-    playAnimationOnStart: false
-    loopAnimation: true
-    animationFPS: 30
-    visible: true
-    events:
-      - eventKey: OnStep
-        lib: core
-        code: ''
-        arguments: {}
-      - eventKey: OnPointerClick
-        code: |-
-          console.log(`hi`)
-          console.log(this.zIndex)
-          rooms.switch('play')
-          function freeme(s,E,n,d,h,e,l,p) {}
-        arguments: {}
-        lib: core
-    extends: {}
-    lastmod: 1713841039224
-    uid: LnJz2qc5Ngf4Mp
-    behaviors: []
-    defaultText: ''
-    textStyle: -1
-    nineSliceSettings:
-      top: 16
-      left: 16
-      bottom: 16
-      right: 16
-      autoUpdate: false
-    hoverTexture: -1
-    pressedTexture: -1
-    disabledTexture: -1
-  - type: room
-    oncreate: ''
-    onstep: ''
-    ondraw: ''
-    onleave: ''
-    gridX: 64
-    gridY: 64
-    diagonalGrid: false
-    disableGrid: true
-    simulate: true
-    width: 1280
-    height: 720
-    restrictCamera: false
-    restrictMaxX: 1280
-    restrictMinX: 1280
-    restrictMaxY: 720
-    restrictMinY: 720
-    isUi: false
-    name: play
-    backgroundColor: '#000000'
-    follow: -1
-    backgrounds:
-      - depth: -5
-        texture: 4fgwq14BfdczDW
-        shiftX: 0
-        shiftY: 0
-        parallaxX: 1
-        parallaxY: 1
-        movementX: 0
-        movementY: 0
-        scaleX: 1
-        scaleY: 1
-        repeat: repeat
-    copies:
-      - x: 640
-        'y': 385
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: k5dgFTKK7j5wLB
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 402
-        'y': 523
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: QH2mWWbMnWrLDz
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 674
-        'y': 523
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: QH2mWWbMnWrLDz
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 538
-        'y': 523
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: QH2mWWbMnWrLDz
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 470
-        'y': 481
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: QH2mWWbMnWrLDz
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 606
-        'y': 481
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: QH2mWWbMnWrLDz
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 810
-        'y': 523
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: QH2mWWbMnWrLDz
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 742
-        'y': 481
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: QH2mWWbMnWrLDz
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 538
-        'y': 439
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: QH2mWWbMnWrLDz
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 402
-        'y': 439
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: QH2mWWbMnWrLDz
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 674
-        'y': 439
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: QH2mWWbMnWrLDz
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 878
-        'y': 481
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: QH2mWWbMnWrLDz
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 810
-        'y': 439
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: QH2mWWbMnWrLDz
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 470
-        'y': 229
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: 7Q7zB9NDt3wndF
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 402
-        'y': 271
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: 7Q7zB9NDt3wndF
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 538
-        'y': 271
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: 7Q7zB9NDt3wndF
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 878
-        'y': 229
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: 7Q7zB9NDt3wndF
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 606
-        'y': 229
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: 7Q7zB9NDt3wndF
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 742
-        'y': 229
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: 7Q7zB9NDt3wndF
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 810
-        'y': 271
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: 7Q7zB9NDt3wndF
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 674
-        'y': 271
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: 7Q7zB9NDt3wndF
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 606
-        'y': 313
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: 7Q7zB9NDt3wndF
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 742
-        'y': 313
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: 7Q7zB9NDt3wndF
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 470
-        'y': 313
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: 7Q7zB9NDt3wndF
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 878
-        'y': 313
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: 7Q7zB9NDt3wndF
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 4
-        'y': -11
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: Mrnf4t68RC2HWM
-        exts: {}
-        customProperties: {}
-        bindings: {}
-    tiles: []
-    extends: {}
-    lastmod: 1713995446389
-    events:
-      - eventKey: OnRoomStart
-        code: >-
-          //Change by 68 to move left and right. Change by 42 to move up and
-          down
-
-          this.playerOnesTurn = true
-
-          this.letHimCook = false
-
-          this.clearSpotHelp = () => {
-              for (let spot of templates.list[`Spot Finder`]) {
-              spot.kill = true;
-              }
-          }
-        arguments: {}
-        lib: core
-    behaviors: []
-    uid: q9RczdtWpFtg2M
-  - lastmod: 1713386230077
-    type: texture
-    name: Placeholder
-    untill: 0
-    grid:
-      - 1
-      - 1
-    axis:
-      - 0
-      - 0
-    marginx: 0
-    marginy: 0
-    imgWidth: 64
-    imgHeight: 64
-    width: 64
-    height: 64
-    offx: 0
-    offy: 0
-    origname: im96hHkhbLtkrLg.png
-    shape: rect
-    left: 0
-    right: 64
-    top: 0
-    bottom: 64
-    uid: m96hHkhbLtkrLg
-    padding: 1
-    isBlank: false
-  - lastmod: 1713995251619
-    type: texture
-    name: board
-    untill: 0
-    grid:
-      - 1
-      - 1
-    axis:
-      - 291
-      - 193
-    marginx: 0
-    marginy: 0
-    imgWidth: 582
-    imgHeight: 387
-    width: 582
-    height: 387
-    offx: 0
-    offy: 0
-    origname: ir7gdtW3c6DfTmF.png
-    shape: rect
-    left: 291
-    right: 291
-    top: 193
-    bottom: 194
-    uid: r7gdtW3c6DfTmF
-    padding: 1
-    isBlank: false
-    source: >-
-      C:\Users\150073267\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\better
-      board.png
-    tiled: true
-  - lastmod: 1713563285356
-    type: texture
-    name: black_pawn_norm
-    untill: 0
-    grid:
-      - 1
-      - 1
-    axis:
-      - 32
-      - 32
-    marginx: 0
-    marginy: 0
-    imgWidth: 64
-    imgHeight: 64
-    width: 64
-    height: 64
-    offx: 0
-    offy: 0
-    origname: iNm9zzgj3phHDHC.png
-    shape: rect
-    left: 31
-    right: 31
-    top: 21
-    bottom: 18
-    uid: Nm9zzgj3phHDHC
-    padding: 1
-    isBlank: false
-    source: >-
-      C:\Users\150073267\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\black
-      pawn norm.png
-  - lastmod: 1713563258223
-    type: texture
-    name: red_paw_norm
-    untill: 0
-    grid:
-      - 1
-      - 1
-    axis:
-      - 32
-      - 32
-    marginx: 0
-    marginy: 0
-    imgWidth: 64
-    imgHeight: 64
-    width: 64
-    height: 64
-    offx: 0
-    offy: 0
-    origname: izpcj4r2ThmM7CQ.png
-    shape: rect
-    left: 31
-    right: 31
-    top: 21
-    bottom: 18
-    uid: zpcj4r2ThmM7CQ
-    padding: 1
-    isBlank: false
-    source: >-
-      C:\Users\150073267\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\red
-      paw norm.png
-    r: 32
-  - type: template
-    baseClass: Button
-    name: Playzone
-    depth: 0
-    texture: m96hHkhbLtkrLg
-    playAnimationOnStart: false
-    loopAnimation: true
-    animationFPS: 30
-    visible: true
-    events:
-      - eventKey: OnStep
-        lib: core
-        code: this.move();
-        arguments: {}
-      - eventKey: OnPointerClick
-        code: ''
-        arguments: {}
-        lib: core
-    extends: {}
-    lastmod: 1713922910046
-    uid: zMqzGq7BFqcbTk
-    behaviors: []
-    defaultText: ''
-    textStyle: -1
-    nineSliceSettings:
-      top: 16
-      left: 16
-      bottom: 16
-      right: 16
-      autoUpdate: false
-    hoverTexture: -1
-    pressedTexture: -1
-    disabledTexture: -1
-  - type: template
-    baseClass: AnimatedSprite
-    name: Board
-    depth: 0
-    texture: r7gdtW3c6DfTmF
-    playAnimationOnStart: false
-    loopAnimation: true
-    animationFPS: 30
-    visible: true
-    events:
-      - eventKey: OnCreate
-        code: this.zIndex = -4
-        arguments: {}
-        lib: core
-      - eventKey: OnPointerClick
-        code: rooms.current.clearSpotHelp()
-        arguments: {}
-        lib: core
-    extends: {}
-    lastmod: 1713639518404
-    uid: k5dgFTKK7j5wLB
-    behaviors: []
-  - type: template
-    baseClass: AnimatedSprite
-    name: Red Pawn
-    depth: 0
-    texture: zpcj4r2ThmM7CQ
-    playAnimationOnStart: false
-    loopAnimation: true
-    animationFPS: 30
-    visible: true
-    events:
-      - eventKey: OnCreate
-        code: |
-          this.team = `red`;
-          this.isKing = false;
-          this.isChessnt = false;
-          this.isNoped = false;
-        arguments: {}
-        lib: core
-      - eventKey: OnStep
-        code: |-
-          this.move;
-          if(this.y <= 229 && !this.isKing) {
-              this.isKing = true
-              this.tex = `red_paw_king`
-          }
-        arguments: {}
-        lib: core
-      - eventKey: OnPointerClick
-        code: |-
-          if (rooms.current.playerOnesTurn && !rooms.current.letHimCook) {
-          rooms.current.clearSpotHelp()
-
-              if (this.x <= 402 && this.y == 523 && this.isKing ){
-                  templates.copy('Spot Finder', this.x + 68, this.y - 42, { summoner: this })
-              }
-              else if (this.x >= 878 && this.y == 523 && this.isKing) {
-                  templates.copy('Spot Finder', this.x - 68, this.y - 42, { summoner: this })
-              }
-              else if (this.x <= 402 && this.y == 229 && this.isKing) {
-                  templates.copy('Spot Finder', this.x + 68, this.y + 42, { summoner: this })
-              }
-              else if (this.x >= 878 && this.y == 229 && this.isKing) {
-                  templates.copy('Spot Finder', this.x - 68, this.y + 42, { summoner: this })
-              }
-              else if (this.x <= 402 && this.isKing) {
-                  templates.copy('Spot Finder', this.x + 68, this.y + 42, { summoner: this })
-                  templates.copy('Spot Finder', this.x + 68, this.y - 42, { summoner: this })
-              }
-              else if (this.x >= 878 && this.isKing) {
-                  templates.copy('Spot Finder', this.x - 68, this.y + 42, { summoner: this })
-                  templates.copy('Spot Finder', this.x - 68, this.y - 42, { summoner: this })
-              }
-              else if (this.y == 229 && this.isKing) {
-                  templates.copy('Spot Finder', this.x + 68, this.y + 42, { summoner: this })
-                  templates.copy('Spot Finder', this.x - 68, this.y + 42, { summoner: this })
-              }
-              else if (this.y == 523 && this.isKing) {
-                  templates.copy('Spot Finder', this.x + 68, this.y - 42, { summoner: this })
-                  templates.copy('Spot Finder', this.x - 68, this.y - 42, { summoner: this })
-              }
-              else if (this.isKing) {
-                  templates.copy('Spot Finder', this.x + 68, this.y + 42, { summoner: this })
-                  templates.copy('Spot Finder', this.x - 68, this.y + 42, { summoner: this })
-                  templates.copy('Spot Finder', this.x + 68, this.y - 42, { summoner: this })
-                  templates.copy('Spot Finder', this.x - 68, this.y - 42, { summoner: this })
-              }
-              else if (this.x <= 402 && this.y > 229) {
-                  templates.copy('Spot Finder', this.x + 68, this.y - 42, { summoner: this })
-              }
-              else if (this.x >= 878 && this.y > 229) {
-                  templates.copy('Spot Finder', this.x - 68, this.y - 42, { summoner: this })
-              }
-              else if (this.y > 229) {
-                  templates.copy('Spot Finder', this.x + 68, this.y - 42, { summoner: this })
-                  templates.copy('Spot Finder', this.x - 68, this.y - 42, { summoner: this })
-              }
-              }
-          else if (this.isComboTime) {
-              rooms.current.clearSpotHelp()
-              if (this.isKing) {
-                  if (place.occupied(this,this.x + 68,this.y + 42,`Pieces`) && !place.occupied(this,this.x + 136,this.y + 84,`Pieces`) && !(this.x == 878 || this.x == 810) && !(this.y == 523 || this.y == 481)) {
-                      templates.copy('Spot Finder',this.x + 136, this.y + 84,{summoner:this, targetCombo:place.occupied(this,this.x + 68,this.y + 42,`Pieces`)})
+  - type: folder
+    uid: 3dWPnKDBTb65Fw
+    colorClass: act
+    icon: template
+    name: Game Templates
+    lastmod: 1714004734562
+    entries:
+      - type: folder
+        uid: 79Pbjr4W2hqC87
+        colorClass: success
+        icon: space-shooter
+        name: Gameplay Templates
+        lastmod: 1714005278329
+        entries:
+          - type: template
+            baseClass: AnimatedSprite
+            name: Black Pawn
+            depth: 0
+            texture: Nm9zzgj3phHDHC
+            playAnimationOnStart: false
+            loopAnimation: true
+            animationFPS: 30
+            visible: true
+            events:
+              - eventKey: OnCreate
+                code: |-
+                  this.team = `black`;
+                  this.isKing = false;
+                  this.isChessnt = false;
+                  this.isNoped = false;
+                arguments: {}
+                lib: core
+              - eventKey: OnStep
+                code: |-
+                  this.move;
+                  if(this.y >= 523 && !this.isKing) {
+                      this.isKing = true
+                      this.tex = `black_pawn_king`
                   }
-                  if (place.occupied(this,this.x - 68,this.y + 42,`Pieces`) && !place.occupied(this,this.x - 136,this.y + 84,`Pieces`) && !(this.x == 402 || this.x == 470) && !(this.y == 523 || this.y == 481)) {
-                      templates.copy('Spot Finder',this.x - 136, this.y + 84,{summoner:this, targetCombo:place.occupied(this,this.x - 68,this.y + 42,`Pieces`)})
+                arguments: {}
+                lib: core
+              - eventKey: OnPointerClick
+                code: |2-
+                      if (rooms.current.playerOnesTurn == false && !rooms.current.letHimCook) {
+                          rooms.current.clearSpotHelp()
+
+                          if (this.x <= 402 && this.y == 523 && this.isKing) {
+                              templates.copy('Spot Finder', this.x + 68, this.y - 42, { summoner: this })
+                          }
+                          else if (this.x >= 878 && this.y == 523 && this.isKing) {
+                              templates.copy('Spot Finder', this.x - 68, this.y - 42, { summoner: this })
+                          }
+                          else if (this.x <= 402 && this.y == 229 && this.isKing) {
+                              templates.copy('Spot Finder', this.x + 68, this.y + 42, { summoner: this })
+                          }
+                          else if (this.x >= 878 && this.y == 229 && this.isKing) {
+                              templates.copy('Spot Finder', this.x - 68, this.y + 42, { summoner: this })
+                          }
+                          else if (this.x <= 402 && this.isKing) {
+                              templates.copy('Spot Finder', this.x + 68, this.y + 42, { summoner: this })
+                              templates.copy('Spot Finder', this.x + 68, this.y - 42, { summoner: this })
+                          }
+                          else if (this.x >= 878 && this.isKing) {
+                              templates.copy('Spot Finder', this.x - 68, this.y + 42, { summoner: this })
+                              templates.copy('Spot Finder', this.x - 68, this.y - 42, { summoner: this })
+                          }
+                          else if (this.y == 229 && this.isKing) {
+                              templates.copy('Spot Finder', this.x + 68, this.y + 42, { summoner: this })
+                              templates.copy('Spot Finder', this.x - 68, this.y + 42, { summoner: this })
+                          }
+                          else if (this.y == 523 && this.isKing) {
+                              templates.copy('Spot Finder', this.x + 68, this.y - 42, { summoner: this })
+                              templates.copy('Spot Finder', this.x - 68, this.y - 42, { summoner: this })
+                          }
+                          else if (this.isKing) {
+                              templates.copy('Spot Finder', this.x + 68, this.y + 42, { summoner: this })
+                              templates.copy('Spot Finder', this.x - 68, this.y + 42, { summoner: this })
+                              templates.copy('Spot Finder', this.x + 68, this.y - 42, { summoner: this })
+                              templates.copy('Spot Finder', this.x - 68, this.y - 42, { summoner: this })
+                          }
+                          else if (this.x <= 402 && this.y < 523) {
+                              templates.copy('Spot Finder', this.x + 68, this.y + 42, { summoner: this })
+                          }
+                          else if (this.x >= 878 && this.y < 523) {
+                              templates.copy('Spot Finder', this.x - 68, this.y + 42, { summoner: this })
+                          }
+                          else if (this.y < 523) {
+                              templates.copy('Spot Finder', this.x + 68, this.y + 42, { summoner: this })
+                              templates.copy('Spot Finder', this.x - 68, this.y + 42, { summoner: this })
+                          }
+                      }
+                      else if (this.isComboTime) {
+                          if (this.isKing) {
+                              if (place.occupied(this, this.x + 68, this.y - 42, `Pieces`) && !place.occupied(this,this.x + 136,this.y - 84,`Pieces`) && !(this.x == 878 || this.x == 810) && !(this.y == 229 || this.y == 271)) {
+                                  templates.copy('Spot Finder', this.x + 136, this.y - 84, { summoner: this, targetCombo: place.occupied(this, this.x + 68, this.y - 42, `Pieces`) })
+                              }
+                              if (place.occupied(this, this.x - 68, this.y - 42, `Pieces`) && !place.occupied(this,this.x - 136,this.y - 84,`Pieces`) && !(this.x == 402 || this.x == 470) && !(this.y == 229 || this.y == 271)) {
+                                  templates.copy('Spot Finder', this.x - 136, this.y - 84, { summoner: this, targetCombo: place.occupied(this, this.x - 68, this.y - 42, `Pieces`) })
+                              }
+                          }
+                      if (place.occupied(this, this.x + 68, this.y + 42, `Pieces`) && !place.occupied(this,this.x + 136,this.y + 84,`Pieces`) && !(this.x == 878 || this.x == 810) && !(this.y == 523 || this.y == 481)) {
+                          templates.copy('Spot Finder', this.x + 136, this.y + 84, { summoner: this, targetCombo: place.occupied(this, this.x + 68, this.y + 42, `Pieces`) })
+                      }
+                      if (place.occupied(this, this.x - 68, this.y + 42, `Pieces`) && !place.occupied(this,this.x - 136,this.y + 84,`Pieces`) && !(this.x == 402 || this.x == 470) && !(this.y == 523 || this.y == 481)) {
+                          templates.copy('Spot Finder', this.x - 136, this.y + 84, { summoner: this, targetCombo: place.occupied(this, this.x - 68, this.y + 42, `Pieces`) })
+                      }
+                      if (!templates.exists('Spot Finder')) {
+                          this.isComboTime = false;
+                          rooms.current.letHimCook = false;
+                          rooms.current.playerOnesTurn = true
+                      }
+
                   }
-              }
-              if (place.occupied(this,this.x + 68,this.y - 42,`Pieces`) && !place.occupied(this,this.x + 136,this.y - 84,`Pieces`) && !(this.x == 878 || this.x == 810) && !(this.y == 229 || this.y == 271)) {
-                  templates.copy('Spot Finder',this.x + 136, this.y - 84,{summoner:this, targetCombo:place.occupied(this,this.x + 68,this.y - 42,`Pieces`)})
-              }
-              if (place.occupied(this,this.x - 68,this.y - 42,`Pieces`) && !place.occupied(this,this.x - 136,this.y - 84,`Pieces`) && !(this.x == 402 || this.x == 470) && !(this.y == 229 || this.y == 271)) {
-                  templates.copy('Spot Finder',this.x - 136, this.y - 84,{summoner:this, targetCombo:place.occupied(this,this.x - 68,this.y - 42,`Pieces`)})
-              }
-              if (!templates.exists('Spot Finder')) {
-                  this.isComboTime = false;
-                  rooms.current.letHimCook = false;
-                  rooms.current.playerOnesTurn = false
-              }
-          }
-        arguments: {}
-        lib: core
-    extends:
-      cgroup: Pieces
-    lastmod: 1713928676416
-    uid: QH2mWWbMnWrLDz
-    behaviors: []
-  - lastmod: 1713559037145
-    type: texture
-    name: red_paw_chessnt
-    untill: 0
-    grid:
-      - 1
-      - 1
-    axis:
-      - 32
-      - 32
-    marginx: 0
-    marginy: 0
-    imgWidth: 64
-    imgHeight: 64
-    width: 64
-    height: 64
-    offx: 0
-    offy: 0
-    origname: izzgJrgLHbjrJLC.png
-    shape: rect
-    left: 32
-    right: 32
-    top: 32
-    bottom: 32
-    uid: zzgJrgLHbjrJLC
-    padding: 1
-    isBlank: false
-    source: >-
-      C:\Users\150073267\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\red
-      paw chessnt.png
-  - lastmod: 1713563912288
-    type: texture
-    name: red_paw_king
-    untill: 0
-    grid:
-      - 1
-      - 1
-    axis:
-      - 32
-      - 32
-    marginx: 0
-    marginy: 0
-    imgWidth: 64
-    imgHeight: 64
-    width: 64
-    height: 64
-    offx: 0
-    offy: 0
-    origname: im4KFm7drMBM83m.png
-    shape: rect
-    left: 31
-    right: 31
-    top: 30
-    bottom: 18
-    uid: m4KFm7drMBM83m
-    padding: 1
-    isBlank: false
-    source: >-
-      C:\Users\150073267\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\red
-      paw king.png
-  - lastmod: 1713559009127
-    type: texture
-    name: red_paw_shield
-    untill: 0
-    grid:
-      - 1
-      - 1
-    axis:
-      - 0
-      - 0
-    marginx: 0
-    marginy: 0
-    imgWidth: 64
-    imgHeight: 64
-    width: 64
-    height: 64
-    offx: 0
-    offy: 0
-    origname: i2tM8f75DzKdW2B.png
-    shape: rect
-    left: 0
-    right: 64
-    top: 0
-    bottom: 64
-    uid: 2tM8f75DzKdW2B
-    padding: 1
-    isBlank: false
-    source: >-
-      C:\Users\150073267\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\red
-      paw shield.png
-  - lastmod: 1713559041465
-    type: texture
-    name: black_pawn_chessnt
-    untill: 0
-    grid:
-      - 1
-      - 1
-    axis:
-      - 32
-      - 32
-    marginx: 0
-    marginy: 0
-    imgWidth: 64
-    imgHeight: 64
-    width: 64
-    height: 64
-    offx: 0
-    offy: 0
-    origname: icmrGgdkdthkdrH.png
-    shape: rect
-    left: 32
-    right: 32
-    top: 32
-    bottom: 32
-    uid: cmrGgdkdthkdrH
-    padding: 1
-    isBlank: false
-    source: >-
-      C:\Users\150073267\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\black
-      pawn chessnt.png
-  - lastmod: 1713559120108
-    type: texture
-    name: black_pawn_king
-    untill: 0
-    grid:
-      - 1
-      - 1
-    axis:
-      - 32
-      - 32
-    marginx: 0
-    marginy: 0
-    imgWidth: 64
-    imgHeight: 64
-    width: 64
-    height: 64
-    offx: 0
-    offy: 0
-    origname: itJT8j78w7Cbbtj.png
-    shape: rect
-    left: 32
-    right: 32
-    top: 32
-    bottom: 32
-    uid: tJT8j78w7Cbbtj
-    padding: 1
-    isBlank: false
-    source: >-
-      C:\Users\150073267\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\black
-      pawn king.png
-  - lastmod: 1713559136907
-    type: texture
-    name: black_pawn_shield
-    untill: 0
-    grid:
-      - 1
-      - 1
-    axis:
-      - 32
-      - 32
-    marginx: 0
-    marginy: 0
-    imgWidth: 64
-    imgHeight: 64
-    width: 64
-    height: 64
-    offx: 0
-    offy: 0
-    origname: iwd4wbpFDPJ544r.png
-    shape: rect
-    left: 32
-    right: 32
-    top: 32
-    bottom: 32
-    uid: wd4wbpFDPJ544r
-    padding: 1
-    isBlank: false
-    source: >-
-      C:\Users\150073267\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\black
-      pawn shield.png
-  - lastmod: 1713564577140
-    type: texture
-    name: landing_spot
-    untill: 0
-    grid:
-      - 1
-      - 1
-    axis:
-      - 32
-      - 32
-    marginx: 0
-    marginy: 0
-    imgWidth: 64
-    imgHeight: 64
-    width: 64
-    height: 64
-    offx: 0
-    offy: 0
-    origname: iD93rbhpTcKFThh.png
-    shape: rect
-    left: 31
-    right: 31
-    top: 16
-    bottom: 19
-    uid: D93rbhpTcKFThh
-    padding: 1
-    isBlank: false
-    source: >-
-      C:\Users\150073267\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\landing
-      spot.png
-  - type: template
-    baseClass: AnimatedSprite
-    name: Black Pawn
-    depth: 0
-    texture: Nm9zzgj3phHDHC
-    playAnimationOnStart: false
-    loopAnimation: true
-    animationFPS: 30
-    visible: true
-    events:
-      - eventKey: OnCreate
-        code: |-
-          this.team = `black`;
-          this.isKing = false;
-          this.isChessnt = false;
-          this.isNoped = false;
-        arguments: {}
-        lib: core
-      - eventKey: OnStep
-        code: |-
-          this.move;
-          if(this.y >= 523 && !this.isKing) {
-              this.isKing = true
-              this.tex = `black_pawn_king`
-          }
-        arguments: {}
-        lib: core
-      - eventKey: OnPointerClick
-        code: |2-
-              if (rooms.current.playerOnesTurn == false && !rooms.current.letHimCook) {
+                arguments: {}
+                lib: core
+            extends:
+              cgroup: Pieces
+            lastmod: 1713929681331
+            uid: 7Q7zB9NDt3wndF
+            behaviors: []
+          - type: template
+            baseClass: AnimatedSprite
+            name: Board
+            depth: 0
+            texture: r7gdtW3c6DfTmF
+            playAnimationOnStart: false
+            loopAnimation: true
+            animationFPS: 30
+            visible: true
+            events:
+              - eventKey: OnCreate
+                code: this.zIndex = -4
+                arguments: {}
+                lib: core
+              - eventKey: OnPointerClick
+                code: rooms.current.clearSpotHelp()
+                arguments: {}
+                lib: core
+            extends: {}
+            lastmod: 1713639518404
+            uid: k5dgFTKK7j5wLB
+            behaviors: []
+          - type: template
+            baseClass: AnimatedSprite
+            name: Spot Finder
+            depth: 0
+            texture: D93rbhpTcKFThh
+            playAnimationOnStart: false
+            loopAnimation: true
+            animationFPS: 30
+            visible: true
+            events:
+              - eventKey: OnCreate
+                code: >
+                  this.moveDirectionY = `UP`
+
+                  this.moveDirectionX = `RIGHT`
+
+                  if (this.summoner.y < this.y){
+                      this.moveDirectionY = `DOWN`
+                  }
+
+                  if (this.summoner.x > this.x) {
+                      this.moveDirectionX = `LEFT`
+                  }
+
+                  if (!this.target) {
+                      this.target = place.occupied(this, `Pieces`)
+                  }
+
+
+                  this.zIndex = -1
+
+
+                  if (this.summoner.team == this.target.team ||
+                  this.summoner.team == this.target.team) {
+                      this.kill = true
+                  }
+
+                  else if ((this.summoner.team == `red` && this.target.team ==
+                  `black`) || (this.summoner.team == `black` && this.target.team
+                  == `red`)) {
+                      if (this.moveDirectionY == `UP` && this.moveDirectionX == `RIGHT`) {
+                          if(place.occupied(this, this.x + 68, this.y - 42, `Pieces`) || this.x >= 878 || this.y <= 229) {
+                              this.kill = true;
+                          }
+                          else {
+                           this.x += 68;
+                           this.y -= 42;  
+                          };
+                      }
+                      else if (this.moveDirectionY == `UP` && this.moveDirectionX == `LEFT`){
+                          if (place.occupied(this, this.x - 68, this.y - 42, `Pieces`) || this.x <= 402 || this.y <= 229) {
+                              this.kill = true;
+                          }
+                          else {
+                              this.x -= 68;
+                              this.y -= 42;
+                          }
+                      }
+                      else if (this.moveDirectionY == `DOWN` && this.moveDirectionX == `RIGHT`) {
+                          if (place.occupied(this, this.x + 68, this.y + 42, `Pieces`) || this.x >= 878 || this.y >= 523) {
+                              this.kill = true;
+                          }
+                          else {
+                              this.x += 68;
+                              this.y += 42;
+                          }
+                      }
+                      else if (this.moveDirectionY == `DOWN` && this.moveDirectionX == `LEFT`) {
+                          if (place.occupied(this, this.x - 68, this.y + 42, `Pieces`) || this.x <= 402 || this.y >= 523) {
+                              this.kill = true;
+                          }
+                          else {
+                              this.x -= 68;
+                              this.y += 42;
+                          }
+                      }
+                  }
+                arguments: {}
+                lib: core
+              - eventKey: OnPointerClick
+                code: |
+                  this.summoner.x = this.x;
+                  this.summoner.y = this.y;
+                  console.log(this.target)
+                  console.log(this.targetForce)
+                  if (this.targetCombo){
+                      this.targetCombo.kill = true;
+                      console.log(this.targetCombo)
+                  }
+                  else if (this.target || this.targetForce) {
+                      this.target.kill = true;
+                      this.summoner.isComboTime = true
+                      rooms.current.letHimCook = true
+                      rooms.current.clearSpotHelp();
+                  }
+                  else {
+                      rooms.current.playerOnesTurn = !rooms.current.playerOnesTurn;
+                      rooms.current.clearSpotHelp();
+                  }
+                arguments: {}
+                lib: core
+            extends: {}
+            lastmod: 1713924823373
+            uid: LdT8cChcc8KPJ1
+            behaviors: []
+          - type: template
+            baseClass: AnimatedSprite
+            name: Red Pawn
+            depth: 0
+            texture: zpcj4r2ThmM7CQ
+            playAnimationOnStart: false
+            loopAnimation: true
+            animationFPS: 30
+            visible: true
+            events:
+              - eventKey: OnCreate
+                code: |
+                  this.team = `red`;
+                  this.isKing = false;
+                  this.isChessnt = false;
+                  this.isNoped = false;
+                arguments: {}
+                lib: core
+              - eventKey: OnStep
+                code: |-
+                  this.move;
+                  if(this.y <= 229 && !this.isKing) {
+                      this.isKing = true
+                      this.tex = `red_paw_king`
+                  }
+                arguments: {}
+                lib: core
+              - eventKey: OnPointerClick
+                code: >-
+                  if (rooms.current.playerOnesTurn && !rooms.current.letHimCook)
+                  {
+
                   rooms.current.clearSpotHelp()
 
-                  if (this.x <= 402 && this.y == 523 && this.isKing) {
-                      templates.copy('Spot Finder', this.x + 68, this.y - 42, { summoner: this })
-                  }
-                  else if (this.x >= 878 && this.y == 523 && this.isKing) {
-                      templates.copy('Spot Finder', this.x - 68, this.y - 42, { summoner: this })
-                  }
-                  else if (this.x <= 402 && this.y == 229 && this.isKing) {
-                      templates.copy('Spot Finder', this.x + 68, this.y + 42, { summoner: this })
-                  }
-                  else if (this.x >= 878 && this.y == 229 && this.isKing) {
-                      templates.copy('Spot Finder', this.x - 68, this.y + 42, { summoner: this })
-                  }
-                  else if (this.x <= 402 && this.isKing) {
-                      templates.copy('Spot Finder', this.x + 68, this.y + 42, { summoner: this })
-                      templates.copy('Spot Finder', this.x + 68, this.y - 42, { summoner: this })
-                  }
-                  else if (this.x >= 878 && this.isKing) {
-                      templates.copy('Spot Finder', this.x - 68, this.y + 42, { summoner: this })
-                      templates.copy('Spot Finder', this.x - 68, this.y - 42, { summoner: this })
-                  }
-                  else if (this.y == 229 && this.isKing) {
-                      templates.copy('Spot Finder', this.x + 68, this.y + 42, { summoner: this })
-                      templates.copy('Spot Finder', this.x - 68, this.y + 42, { summoner: this })
-                  }
-                  else if (this.y == 523 && this.isKing) {
-                      templates.copy('Spot Finder', this.x + 68, this.y - 42, { summoner: this })
-                      templates.copy('Spot Finder', this.x - 68, this.y - 42, { summoner: this })
-                  }
-                  else if (this.isKing) {
-                      templates.copy('Spot Finder', this.x + 68, this.y + 42, { summoner: this })
-                      templates.copy('Spot Finder', this.x - 68, this.y + 42, { summoner: this })
-                      templates.copy('Spot Finder', this.x + 68, this.y - 42, { summoner: this })
-                      templates.copy('Spot Finder', this.x - 68, this.y - 42, { summoner: this })
-                  }
-                  else if (this.x <= 402 && this.y < 523) {
-                      templates.copy('Spot Finder', this.x + 68, this.y + 42, { summoner: this })
-                  }
-                  else if (this.x >= 878 && this.y < 523) {
-                      templates.copy('Spot Finder', this.x - 68, this.y + 42, { summoner: this })
-                  }
-                  else if (this.y < 523) {
-                      templates.copy('Spot Finder', this.x + 68, this.y + 42, { summoner: this })
-                      templates.copy('Spot Finder', this.x - 68, this.y + 42, { summoner: this })
-                  }
-              }
-              else if (this.isComboTime) {
-                  if (this.isKing) {
-                      if (place.occupied(this, this.x + 68, this.y - 42, `Pieces`) && !place.occupied(this,this.x + 136,this.y - 84,`Pieces`) && !(this.x == 878 || this.x == 810) && !(this.y == 229 || this.y == 271)) {
-                          templates.copy('Spot Finder', this.x + 136, this.y - 84, { summoner: this, targetCombo: place.occupied(this, this.x + 68, this.y - 42, `Pieces`) })
+                      if (this.x <= 402 && this.y == 523 && this.isKing ){
+                          templates.copy('Spot Finder', this.x + 68, this.y - 42, { summoner: this })
                       }
-                      if (place.occupied(this, this.x - 68, this.y - 42, `Pieces`) && !place.occupied(this,this.x - 136,this.y - 84,`Pieces`) && !(this.x == 402 || this.x == 470) && !(this.y == 229 || this.y == 271)) {
-                          templates.copy('Spot Finder', this.x - 136, this.y - 84, { summoner: this, targetCombo: place.occupied(this, this.x - 68, this.y - 42, `Pieces`) })
+                      else if (this.x >= 878 && this.y == 523 && this.isKing) {
+                          templates.copy('Spot Finder', this.x - 68, this.y - 42, { summoner: this })
+                      }
+                      else if (this.x <= 402 && this.y == 229 && this.isKing) {
+                          templates.copy('Spot Finder', this.x + 68, this.y + 42, { summoner: this })
+                      }
+                      else if (this.x >= 878 && this.y == 229 && this.isKing) {
+                          templates.copy('Spot Finder', this.x - 68, this.y + 42, { summoner: this })
+                      }
+                      else if (this.x <= 402 && this.isKing) {
+                          templates.copy('Spot Finder', this.x + 68, this.y + 42, { summoner: this })
+                          templates.copy('Spot Finder', this.x + 68, this.y - 42, { summoner: this })
+                      }
+                      else if (this.x >= 878 && this.isKing) {
+                          templates.copy('Spot Finder', this.x - 68, this.y + 42, { summoner: this })
+                          templates.copy('Spot Finder', this.x - 68, this.y - 42, { summoner: this })
+                      }
+                      else if (this.y == 229 && this.isKing) {
+                          templates.copy('Spot Finder', this.x + 68, this.y + 42, { summoner: this })
+                          templates.copy('Spot Finder', this.x - 68, this.y + 42, { summoner: this })
+                      }
+                      else if (this.y == 523 && this.isKing) {
+                          templates.copy('Spot Finder', this.x + 68, this.y - 42, { summoner: this })
+                          templates.copy('Spot Finder', this.x - 68, this.y - 42, { summoner: this })
+                      }
+                      else if (this.isKing) {
+                          templates.copy('Spot Finder', this.x + 68, this.y + 42, { summoner: this })
+                          templates.copy('Spot Finder', this.x - 68, this.y + 42, { summoner: this })
+                          templates.copy('Spot Finder', this.x + 68, this.y - 42, { summoner: this })
+                          templates.copy('Spot Finder', this.x - 68, this.y - 42, { summoner: this })
+                      }
+                      else if (this.x <= 402 && this.y > 229) {
+                          templates.copy('Spot Finder', this.x + 68, this.y - 42, { summoner: this })
+                      }
+                      else if (this.x >= 878 && this.y > 229) {
+                          templates.copy('Spot Finder', this.x - 68, this.y - 42, { summoner: this })
+                      }
+                      else if (this.y > 229) {
+                          templates.copy('Spot Finder', this.x + 68, this.y - 42, { summoner: this })
+                          templates.copy('Spot Finder', this.x - 68, this.y - 42, { summoner: this })
+                      }
+                      }
+                  else if (this.isComboTime) {
+                      rooms.current.clearSpotHelp()
+                      if (this.isKing) {
+                          if (place.occupied(this,this.x + 68,this.y + 42,`Pieces`) && !place.occupied(this,this.x + 136,this.y + 84,`Pieces`) && !(this.x == 878 || this.x == 810) && !(this.y == 523 || this.y == 481)) {
+                              templates.copy('Spot Finder',this.x + 136, this.y + 84,{summoner:this, targetCombo:place.occupied(this,this.x + 68,this.y + 42,`Pieces`)})
+                          }
+                          if (place.occupied(this,this.x - 68,this.y + 42,`Pieces`) && !place.occupied(this,this.x - 136,this.y + 84,`Pieces`) && !(this.x == 402 || this.x == 470) && !(this.y == 523 || this.y == 481)) {
+                              templates.copy('Spot Finder',this.x - 136, this.y + 84,{summoner:this, targetCombo:place.occupied(this,this.x - 68,this.y + 42,`Pieces`)})
+                          }
+                      }
+                      if (place.occupied(this,this.x + 68,this.y - 42,`Pieces`) && !place.occupied(this,this.x + 136,this.y - 84,`Pieces`) && !(this.x == 878 || this.x == 810) && !(this.y == 229 || this.y == 271)) {
+                          templates.copy('Spot Finder',this.x + 136, this.y - 84,{summoner:this, targetCombo:place.occupied(this,this.x + 68,this.y - 42,`Pieces`)})
+                      }
+                      if (place.occupied(this,this.x - 68,this.y - 42,`Pieces`) && !place.occupied(this,this.x - 136,this.y - 84,`Pieces`) && !(this.x == 402 || this.x == 470) && !(this.y == 229 || this.y == 271)) {
+                          templates.copy('Spot Finder',this.x - 136, this.y - 84,{summoner:this, targetCombo:place.occupied(this,this.x - 68,this.y - 42,`Pieces`)})
+                      }
+                      if (!templates.exists('Spot Finder')) {
+                          this.isComboTime = false;
+                          rooms.current.letHimCook = false;
+                          rooms.current.playerOnesTurn = false
                       }
                   }
-              if (place.occupied(this, this.x + 68, this.y + 42, `Pieces`) && !place.occupied(this,this.x + 136,this.y + 84,`Pieces`) && !(this.x == 878 || this.x == 810) && !(this.y == 523 || this.y == 481)) {
-                  templates.copy('Spot Finder', this.x + 136, this.y + 84, { summoner: this, targetCombo: place.occupied(this, this.x + 68, this.y + 42, `Pieces`) })
-              }
-              if (place.occupied(this, this.x - 68, this.y + 42, `Pieces`) && !place.occupied(this,this.x - 136,this.y + 84,`Pieces`) && !(this.x == 402 || this.x == 470) && !(this.y == 523 || this.y == 481)) {
-                  templates.copy('Spot Finder', this.x - 136, this.y + 84, { summoner: this, targetCombo: place.occupied(this, this.x - 68, this.y + 42, `Pieces`) })
-              }
-              if (!templates.exists('Spot Finder')) {
-                  this.isComboTime = false;
-                  rooms.current.letHimCook = false;
-                  rooms.current.playerOnesTurn = true
-              }
-
-          }
-        arguments: {}
-        lib: core
-    extends:
-      cgroup: Pieces
-    lastmod: 1713929681331
-    uid: 7Q7zB9NDt3wndF
-    behaviors: []
-  - type: template
-    baseClass: AnimatedSprite
-    name: Spot Finder
-    depth: 0
-    texture: D93rbhpTcKFThh
-    playAnimationOnStart: false
-    loopAnimation: true
-    animationFPS: 30
-    visible: true
-    events:
-      - eventKey: OnCreate
-        code: >
-          this.moveDirectionY = `UP`
-
-          this.moveDirectionX = `RIGHT`
-
-          if (this.summoner.y < this.y){
-              this.moveDirectionY = `DOWN`
-          }
-
-          if (this.summoner.x > this.x) {
-              this.moveDirectionX = `LEFT`
-          }
-
-          if (!this.target) {
-              this.target = place.occupied(this, `Pieces`)
-          }
-
-
-          this.zIndex = -1
-
-
-          if (this.summoner.team == this.target.team || this.summoner.team ==
-          this.target.team) {
-              this.kill = true
-          }
-
-          else if ((this.summoner.team == `red` && this.target.team == `black`)
-          || (this.summoner.team == `black` && this.target.team == `red`)) {
-              if (this.moveDirectionY == `UP` && this.moveDirectionX == `RIGHT`) {
-                  if(place.occupied(this, this.x + 68, this.y - 42, `Pieces`) || this.x >= 878 || this.y <= 229) {
-                      this.kill = true;
+                arguments: {}
+                lib: core
+            extends:
+              cgroup: Pieces
+            lastmod: 1713928676416
+            uid: QH2mWWbMnWrLDz
+            behaviors: []
+          - type: template
+            baseClass: Text
+            name: Player Turn
+            depth: 0
+            texture: -1
+            playAnimationOnStart: false
+            loopAnimation: true
+            animationFPS: 30
+            visible: true
+            events:
+              - eventKey: OnStep
+                lib: core
+                code: |-
+                  if (rooms.current.playerOnesTurn) {
+                      this.text = `PLAYER 1`
                   }
                   else {
-                   this.x += 68;
-                   this.y -= 42;  
-                  };
+                      this.text = `PLAYER 2`
+                  }
+                arguments: {}
+            extends: {}
+            lastmod: 1713990567188
+            uid: Mrnf4t68RC2HWM
+            behaviors: []
+            defaultText: PLAYER 1
+            textStyle: bB52C3b5NBNHhB
+          - type: template
+            baseClass: AnimatedSprite
+            name: Table Top
+            depth: -5
+            texture: g9dzNRnphKjh2F
+            playAnimationOnStart: false
+            loopAnimation: true
+            animationFPS: 30
+            visible: true
+            events:
+              - eventKey: OnCreate
+                code: ''
+                arguments: {}
+                lib: core
+            extends: {}
+            lastmod: 1714010087951
+            uid: 3HkdDrpKGFcnkD
+            behaviors: []
+      - type: folder
+        uid: BC8MgMpmMpkkQK
+        colorClass: text
+        icon: home
+        name: Main Menu Templates
+        lastmod: 1714005319178
+        entries:
+          - type: template
+            baseClass: AnimatedSprite
+            name: LOGO
+            depth: 0
+            texture: 7FPhpcwBNP8cdw
+            playAnimationOnStart: false
+            loopAnimation: true
+            animationFPS: 30
+            visible: true
+            events:
+              - eventKey: OnStep
+                lib: core
+                code: this.move();
+                arguments: {}
+            extends: {}
+            lastmod: 1713994063936
+            uid: M7kmw7HjtLK8Nb
+            behaviors: []
+          - type: template
+            baseClass: Button
+            name: PVE Button
+            depth: 0
+            texture: ndhJ196J15kJn8
+            playAnimationOnStart: false
+            loopAnimation: true
+            animationFPS: 30
+            visible: true
+            events:
+              - eventKey: OnStep
+                lib: core
+                code: ''
+                arguments: {}
+              - eventKey: OnPointerClick
+                code: |-
+                  console.log(`hi`)
+                  console.log(this.zIndex)
+                  rooms.switch('play')
+                  function freeme(s,E,n,d,h,e,l,p) {}
+                arguments: {}
+                lib: core
+            extends: {}
+            lastmod: 1713841039224
+            uid: LnJz2qc5Ngf4Mp
+            behaviors: []
+            defaultText: ''
+            textStyle: -1
+            nineSliceSettings:
+              top: 16
+              left: 16
+              bottom: 16
+              right: 16
+              autoUpdate: false
+            hoverTexture: -1
+            pressedTexture: -1
+            disabledTexture: -1
+      - type: folder
+        uid: 6dNbQGkmMRtp2f
+        colorClass: act
+        icon: test-tube
+        name: Placeholders
+        lastmod: 1714005359052
+        entries:
+          - type: template
+            baseClass: Button
+            name: Playzone
+            depth: 0
+            texture: m96hHkhbLtkrLg
+            playAnimationOnStart: false
+            loopAnimation: true
+            animationFPS: 30
+            visible: true
+            events:
+              - eventKey: OnStep
+                lib: core
+                code: this.move();
+                arguments: {}
+              - eventKey: OnPointerClick
+                code: ''
+                arguments: {}
+                lib: core
+            extends: {}
+            lastmod: 1713922910046
+            uid: zMqzGq7BFqcbTk
+            behaviors: []
+            defaultText: ''
+            textStyle: -1
+            nineSliceSettings:
+              top: 16
+              left: 16
+              bottom: 16
+              right: 16
+              autoUpdate: false
+            hoverTexture: -1
+            pressedTexture: -1
+            disabledTexture: -1
+      - type: folder
+        uid: TBgjH2wkkBWfDG
+        colorClass: warning
+        icon: star
+        name: Win Screen Templats
+        lastmod: 1714010735777
+        entries:
+          - type: template
+            baseClass: Text
+            name: Who Won
+            depth: 0
+            texture: -1
+            playAnimationOnStart: false
+            loopAnimation: true
+            animationFPS: 30
+            visible: true
+            events:
+              - eventKey: OnStep
+                lib: core
+                code: this.move();
+                arguments: {}
+            extends: {}
+            lastmod: 1714010973596
+            uid: FrjnmmG6tRB8Nt
+            behaviors: []
+            defaultText: NO WINNER
+            textStyle: 24Q7H1f395pg44
+  - type: folder
+    uid: Lfc5rfBNCNbgW8
+    colorClass: warning
+    icon: room
+    name: Game Rooms
+    lastmod: 1714004789703
+    entries:
+      - type: room
+        oncreate: ''
+        onstep: ''
+        ondraw: ''
+        onleave: ''
+        gridX: 64
+        gridY: 64
+        diagonalGrid: false
+        disableGrid: false
+        simulate: true
+        width: 1280
+        height: 720
+        restrictCamera: false
+        restrictMaxX: 1280
+        restrictMinX: 1280
+        restrictMaxY: 720
+        restrictMinY: 720
+        isUi: false
+        name: play
+        backgroundColor: '#000000'
+        follow: -1
+        backgrounds:
+          - depth: -10
+            texture: 4fgwq14BfdczDW
+            shiftX: 0
+            shiftY: 0
+            parallaxX: 1
+            parallaxY: 1
+            movementX: 0
+            movementY: 0
+            scaleX: 1
+            scaleY: 1
+            repeat: repeat
+        copies:
+          - x: 640
+            'y': 385
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: k5dgFTKK7j5wLB
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 402
+            'y': 523
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: QH2mWWbMnWrLDz
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 674
+            'y': 523
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: QH2mWWbMnWrLDz
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 538
+            'y': 523
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: QH2mWWbMnWrLDz
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 470
+            'y': 481
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: QH2mWWbMnWrLDz
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 606
+            'y': 481
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: QH2mWWbMnWrLDz
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 810
+            'y': 523
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: QH2mWWbMnWrLDz
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 742
+            'y': 481
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: QH2mWWbMnWrLDz
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 538
+            'y': 439
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: QH2mWWbMnWrLDz
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 402
+            'y': 439
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: QH2mWWbMnWrLDz
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 674
+            'y': 439
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: QH2mWWbMnWrLDz
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 878
+            'y': 481
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: QH2mWWbMnWrLDz
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 810
+            'y': 439
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: QH2mWWbMnWrLDz
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 470
+            'y': 229
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: 7Q7zB9NDt3wndF
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 402
+            'y': 271
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: 7Q7zB9NDt3wndF
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 538
+            'y': 271
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: 7Q7zB9NDt3wndF
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 878
+            'y': 229
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: 7Q7zB9NDt3wndF
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 606
+            'y': 229
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: 7Q7zB9NDt3wndF
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 742
+            'y': 229
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: 7Q7zB9NDt3wndF
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 810
+            'y': 271
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: 7Q7zB9NDt3wndF
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 674
+            'y': 271
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: 7Q7zB9NDt3wndF
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 606
+            'y': 313
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: 7Q7zB9NDt3wndF
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 742
+            'y': 313
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: 7Q7zB9NDt3wndF
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 470
+            'y': 313
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: 7Q7zB9NDt3wndF
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 878
+            'y': 313
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: 7Q7zB9NDt3wndF
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 4
+            'y': -11
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: Mrnf4t68RC2HWM
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 646
+            'y': 386
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 30
+              'y': 30
+            rotation: 0
+            uid: 3HkdDrpKGFcnkD
+            exts: {}
+            customProperties:
+              newProperty1: ''
+            bindings: {}
+        tiles: []
+        extends: {}
+        lastmod: 1714010557117
+        events:
+          - eventKey: OnRoomStart
+            code: >-
+              //Change by 68 to move left and right. Change by 42 to move up and
+              down
+
+              this.playerOnesTurn = true
+
+              this.letHimCook = false
+
+              this.clearSpotHelp = () => {
+                  for (let spot of templates.list[`Spot Finder`]) {
+                  spot.kill = true;
+                  }
               }
-              else if (this.moveDirectionY == `UP` && this.moveDirectionX == `LEFT`){
-                  if (place.occupied(this, this.x - 68, this.y - 42, `Pieces`) || this.x <= 402 || this.y <= 229) {
-                      this.kill = true;
-                  }
-                  else {
-                      this.x -= 68;
-                      this.y -= 42;
-                  }
-              }
-              else if (this.moveDirectionY == `DOWN` && this.moveDirectionX == `RIGHT`) {
-                  if (place.occupied(this, this.x + 68, this.y + 42, `Pieces`) || this.x >= 878 || this.y >= 523) {
-                      this.kill = true;
-                  }
-                  else {
-                      this.x += 68;
-                      this.y += 42;
-                  }
-              }
-              else if (this.moveDirectionY == `DOWN` && this.moveDirectionX == `LEFT`) {
-                  if (place.occupied(this, this.x - 68, this.y + 42, `Pieces`) || this.x <= 402 || this.y >= 523) {
-                      this.kill = true;
-                  }
-                  else {
-                      this.x -= 68;
-                      this.y += 42;
-                  }
-              }
-          }
-        arguments: {}
-        lib: core
-      - eventKey: OnPointerClick
-        code: |
-          this.summoner.x = this.x;
-          this.summoner.y = this.y;
-          console.log(this.target)
-          console.log(this.targetForce)
-          if (this.targetCombo){
-              this.targetCombo.kill = true;
-              console.log(this.targetCombo)
-          }
-          else if (this.target || this.targetForce) {
-              this.target.kill = true;
-              this.summoner.isComboTime = true
-              rooms.current.letHimCook = true
-              rooms.current.clearSpotHelp();
-          }
-          else {
-              rooms.current.playerOnesTurn = !rooms.current.playerOnesTurn;
-              rooms.current.clearSpotHelp();
-          }
-        arguments: {}
-        lib: core
-    extends: {}
-    lastmod: 1713924823373
-    uid: LdT8cChcc8KPJ1
-    behaviors: []
-  - lastmod: 1713841163202
-    type: texture
-    name: vsPlayer
-    untill: 0
-    grid:
-      - 1
-      - 1
-    axis:
-      - 32
-      - 32
-    marginx: 0
-    marginy: 0
-    imgWidth: 64
-    imgHeight: 64
-    width: 64
-    height: 64
-    offx: 0
-    offy: 0
-    origname: indhJ196J15kJn8.png
-    shape: rect
-    left: 32
-    right: 32
-    top: 32
-    bottom: 32
-    uid: ndhJ196J15kJn8
-    padding: 1
-    isBlank: false
-    source: >-
-      C:\Users\niceh\OneDrive\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\vsPlayer.png
-  - type: template
-    baseClass: Text
-    name: Player Turn
-    depth: 0
-    texture: -1
-    playAnimationOnStart: false
-    loopAnimation: true
-    animationFPS: 30
-    visible: true
-    events:
-      - eventKey: OnStep
-        lib: core
-        code: |-
-          if (rooms.current.playerOnesTurn) {
-              this.text = `PLAYER 1`
-          }
-          else {
-              this.text = `PLAYER 2`
-          }
-        arguments: {}
-    extends: {}
-    lastmod: 1713990567188
-    uid: Mrnf4t68RC2HWM
-    behaviors: []
-    defaultText: PLAYER 1
-    textStyle: bB52C3b5NBNHhB
-  - type: style
-    name: Text Color Go Brrr
-    uid: bB52C3b5NBNHhB
-    font:
-      family: '"CTPROJFONTSilkscreen-Regular", "Silkscreen-Regular", sans-serif'
-      halign: left
-      italic: false
-      size: 40
-      weight: '400'
-      wrap: true
-      wrapPosition: 640
-      lineHeight: 53.3
-    fill:
-      type: 0
-      color: '#FFFFFF'
-      color1: '#cccccc'
-      color2: '#ffffff'
-      gradtype: 1
-    lastmod: 1713990937488
-    stroke:
-      color: '#000000'
-      weight: 4
-  - type: font
-    typefaceName: Silkscreen-Regular
-    weight: '400'
-    italic: false
-    origname: fDwB9KGKF95gpmn.ttf
-    lastmod: 1713990930684
-    bitmapFont: false
-    bitmapFontSize: 16
-    bitmapFontLineHeight: 18
-    charsets:
-      - allInFont
-    customCharset: ''
-    uid: DwB9KGKF95gpmn
-  - lastmod: 1713994003832
-    type: texture
-    name: Logo
-    untill: 0
-    grid:
-      - 1
-      - 1
-    axis:
-      - 640
-      - 360
-    marginx: 0
-    marginy: 0
-    imgWidth: 1280
-    imgHeight: 720
-    width: 1280
-    height: 720
-    offx: 0
-    offy: 0
-    origname: i7FPhpcwBNP8cdw.png
-    shape: rect
-    left: 440
-    right: 452
-    top: 321
-    bottom: 154
-    uid: 7FPhpcwBNP8cdw
-    padding: 1
-    isBlank: false
-    source: >-
-      C:\Users\150073267\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\Logo.png
-  - type: template
-    baseClass: AnimatedSprite
-    name: LOGO
-    depth: 0
-    texture: 7FPhpcwBNP8cdw
-    playAnimationOnStart: false
-    loopAnimation: true
-    animationFPS: 30
-    visible: true
-    events:
-      - eventKey: OnStep
-        lib: core
-        code: this.move();
-        arguments: {}
-    extends: {}
-    lastmod: 1713994063936
-    uid: M7kmw7HjtLK8Nb
-    behaviors: []
+            arguments: {}
+            lib: core
+        behaviors: []
+        uid: q9RczdtWpFtg2M
+      - type: room
+        oncreate: ''
+        onstep: ''
+        ondraw: ''
+        onleave: ''
+        gridX: 64
+        gridY: 64
+        diagonalGrid: false
+        disableGrid: true
+        simulate: true
+        width: 1280
+        height: 720
+        restrictCamera: false
+        restrictMaxX: 1280
+        restrictMinX: 1280
+        restrictMaxY: 720
+        restrictMinY: 720
+        isUi: false
+        name: Start Screen
+        backgroundColor: '#000000'
+        follow: -1
+        backgrounds:
+          - depth: 0
+            texture: 4fgwq14BfdczDW
+            shiftX: 0
+            shiftY: 0
+            parallaxX: 1
+            parallaxY: 1
+            movementX: 0
+            movementY: 0
+            scaleX: 1
+            scaleY: 1
+            repeat: repeat
+        copies:
+          - x: 298.00000066
+            'y': 421.20004237
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 2
+              'y': 2
+            rotation: 0
+            uid: LnJz2qc5Ngf4Mp
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 640.00004881
+            'y': 272.99999439
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 0.8
+              'y': 0.8
+            rotation: 0
+            uid: M7kmw7HjtLK8Nb
+            exts: {}
+            customProperties: {}
+            bindings: {}
+        tiles: []
+        extends: {}
+        lastmod: 1713994183676
+        events: []
+        behaviors: []
+        uid: npr3P8MBbkB68q
+      - type: room
+        oncreate: ''
+        onstep: ''
+        ondraw: ''
+        onleave: ''
+        gridX: 64
+        gridY: 64
+        diagonalGrid: false
+        disableGrid: true
+        simulate: true
+        width: 1280
+        height: 720
+        restrictCamera: false
+        restrictMaxX: 1280
+        restrictMinX: 1280
+        restrictMaxY: 720
+        restrictMinY: 720
+        isUi: false
+        name: Win Screen
+        backgroundColor: '#000000'
+        follow: -1
+        backgrounds:
+          - depth: 0
+            texture: 4fgwq14BfdczDW
+            shiftX: 0
+            shiftY: 0
+            parallaxX: 1
+            parallaxY: 1
+            movementX: 0
+            movementY: 0
+            scaleX: 1
+            scaleY: 1
+            repeat: repeat
+        copies:
+          - x: 145
+            'y': 128
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: FrjnmmG6tRB8Nt
+            exts: {}
+            customProperties: {}
+            bindings: {}
+        tiles: []
+        extends: {}
+        lastmod: 1714011328387
+        events: []
+        behaviors: []
+        uid: 21NH5pc2kf8N4w
+  - type: folder
+    uid: 2TQCBfnLFTqcR6
+    colorClass: error
+    icon: texture
+    name: Game Textures
+    lastmod: 1714004881354
+    entries:
+      - type: folder
+        uid: pcJDnjNLHq5dQc
+        colorClass: success
+        icon: space-shooter
+        name: Gameplay Textures
+        lastmod: 1714004972719
+        entries:
+          - lastmod: 1713995251619
+            type: texture
+            name: board
+            untill: 0
+            grid:
+              - 1
+              - 1
+            axis:
+              - 291
+              - 193
+            marginx: 0
+            marginy: 0
+            imgWidth: 582
+            imgHeight: 387
+            width: 582
+            height: 387
+            offx: 0
+            offy: 0
+            origname: ir7gdtW3c6DfTmF.png
+            shape: rect
+            left: 291
+            right: 291
+            top: 193
+            bottom: 194
+            uid: r7gdtW3c6DfTmF
+            padding: 1
+            isBlank: false
+            source: >-
+              C:\Users\150073267\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\better
+              board.png
+            tiled: true
+          - lastmod: 1713564577140
+            type: texture
+            name: landing_spot
+            untill: 0
+            grid:
+              - 1
+              - 1
+            axis:
+              - 32
+              - 32
+            marginx: 0
+            marginy: 0
+            imgWidth: 64
+            imgHeight: 64
+            width: 64
+            height: 64
+            offx: 0
+            offy: 0
+            origname: iD93rbhpTcKFThh.png
+            shape: rect
+            left: 31
+            right: 31
+            top: 16
+            bottom: 19
+            uid: D93rbhpTcKFThh
+            padding: 1
+            isBlank: false
+            source: >-
+              C:\Users\150073267\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\landing
+              spot.png
+          - type: folder
+            uid: KTj1D7mrWQQLmJ
+            colorClass: text
+            icon: platformer
+            name: Black Pieces
+            lastmod: 1714005143497
+            entries:
+              - lastmod: 1713559041465
+                type: texture
+                name: black_pawn_chessnt
+                untill: 0
+                grid:
+                  - 1
+                  - 1
+                axis:
+                  - 32
+                  - 32
+                marginx: 0
+                marginy: 0
+                imgWidth: 64
+                imgHeight: 64
+                width: 64
+                height: 64
+                offx: 0
+                offy: 0
+                origname: icmrGgdkdthkdrH.png
+                shape: rect
+                left: 32
+                right: 32
+                top: 32
+                bottom: 32
+                uid: cmrGgdkdthkdrH
+                padding: 1
+                isBlank: false
+                source: >-
+                  C:\Users\150073267\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\black
+                  pawn chessnt.png
+              - lastmod: 1713559120108
+                type: texture
+                name: black_pawn_king
+                untill: 0
+                grid:
+                  - 1
+                  - 1
+                axis:
+                  - 32
+                  - 32
+                marginx: 0
+                marginy: 0
+                imgWidth: 64
+                imgHeight: 64
+                width: 64
+                height: 64
+                offx: 0
+                offy: 0
+                origname: itJT8j78w7Cbbtj.png
+                shape: rect
+                left: 32
+                right: 32
+                top: 32
+                bottom: 32
+                uid: tJT8j78w7Cbbtj
+                padding: 1
+                isBlank: false
+                source: >-
+                  C:\Users\150073267\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\black
+                  pawn king.png
+              - lastmod: 1713563285356
+                type: texture
+                name: black_pawn_norm
+                untill: 0
+                grid:
+                  - 1
+                  - 1
+                axis:
+                  - 32
+                  - 32
+                marginx: 0
+                marginy: 0
+                imgWidth: 64
+                imgHeight: 64
+                width: 64
+                height: 64
+                offx: 0
+                offy: 0
+                origname: iNm9zzgj3phHDHC.png
+                shape: rect
+                left: 31
+                right: 31
+                top: 21
+                bottom: 18
+                uid: Nm9zzgj3phHDHC
+                padding: 1
+                isBlank: false
+                source: >-
+                  C:\Users\150073267\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\black
+                  pawn norm.png
+              - lastmod: 1713559136907
+                type: texture
+                name: black_pawn_shield
+                untill: 0
+                grid:
+                  - 1
+                  - 1
+                axis:
+                  - 32
+                  - 32
+                marginx: 0
+                marginy: 0
+                imgWidth: 64
+                imgHeight: 64
+                width: 64
+                height: 64
+                offx: 0
+                offy: 0
+                origname: iwd4wbpFDPJ544r.png
+                shape: rect
+                left: 32
+                right: 32
+                top: 32
+                bottom: 32
+                uid: wd4wbpFDPJ544r
+                padding: 1
+                isBlank: false
+                source: >-
+                  C:\Users\150073267\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\black
+                  pawn shield.png
+          - type: folder
+            uid: 8wMqJGQtTH6tP1
+            colorClass: error
+            icon: platformer
+            name: Red Pieces
+            lastmod: 1714005189182
+            entries:
+              - lastmod: 1713559037145
+                type: texture
+                name: red_paw_chessnt
+                untill: 0
+                grid:
+                  - 1
+                  - 1
+                axis:
+                  - 32
+                  - 32
+                marginx: 0
+                marginy: 0
+                imgWidth: 64
+                imgHeight: 64
+                width: 64
+                height: 64
+                offx: 0
+                offy: 0
+                origname: izzgJrgLHbjrJLC.png
+                shape: rect
+                left: 32
+                right: 32
+                top: 32
+                bottom: 32
+                uid: zzgJrgLHbjrJLC
+                padding: 1
+                isBlank: false
+                source: >-
+                  C:\Users\150073267\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\red
+                  paw chessnt.png
+              - lastmod: 1713563912288
+                type: texture
+                name: red_paw_king
+                untill: 0
+                grid:
+                  - 1
+                  - 1
+                axis:
+                  - 32
+                  - 32
+                marginx: 0
+                marginy: 0
+                imgWidth: 64
+                imgHeight: 64
+                width: 64
+                height: 64
+                offx: 0
+                offy: 0
+                origname: im4KFm7drMBM83m.png
+                shape: rect
+                left: 31
+                right: 31
+                top: 30
+                bottom: 18
+                uid: m4KFm7drMBM83m
+                padding: 1
+                isBlank: false
+                source: >-
+                  C:\Users\150073267\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\red
+                  paw king.png
+              - lastmod: 1713563258223
+                type: texture
+                name: red_paw_norm
+                untill: 0
+                grid:
+                  - 1
+                  - 1
+                axis:
+                  - 32
+                  - 32
+                marginx: 0
+                marginy: 0
+                imgWidth: 64
+                imgHeight: 64
+                width: 64
+                height: 64
+                offx: 0
+                offy: 0
+                origname: izpcj4r2ThmM7CQ.png
+                shape: rect
+                left: 31
+                right: 31
+                top: 21
+                bottom: 18
+                uid: zpcj4r2ThmM7CQ
+                padding: 1
+                isBlank: false
+                source: >-
+                  C:\Users\150073267\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\red
+                  paw norm.png
+                r: 32
+              - lastmod: 1713559009127
+                type: texture
+                name: red_paw_shield
+                untill: 0
+                grid:
+                  - 1
+                  - 1
+                axis:
+                  - 0
+                  - 0
+                marginx: 0
+                marginy: 0
+                imgWidth: 64
+                imgHeight: 64
+                width: 64
+                height: 64
+                offx: 0
+                offy: 0
+                origname: i2tM8f75DzKdW2B.png
+                shape: rect
+                left: 0
+                right: 64
+                top: 0
+                bottom: 64
+                uid: 2tM8f75DzKdW2B
+                padding: 1
+                isBlank: false
+                source: >-
+                  C:\Users\150073267\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\red
+                  paw shield.png
+          - lastmod: 1714005493318
+            type: texture
+            name: tableTop
+            untill: 0
+            grid:
+              - 1
+              - 1
+            axis:
+              - 16
+              - 8
+            marginx: 0
+            marginy: 0
+            imgWidth: 32
+            imgHeight: 16
+            width: 32
+            height: 16
+            offx: 0
+            offy: 0
+            origname: ig9dzNRnphKjh2F.png
+            shape: rect
+            left: 16
+            right: 16
+            top: 8
+            bottom: 8
+            uid: g9dzNRnphKjh2F
+            padding: 1
+            isBlank: false
+            source: >-
+              C:\Users\niceh\OneDrive\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\tableTop.png
+      - type: folder
+        uid: hzjmK6hCH3Ptd4
+        colorClass: text
+        icon: home
+        name: Main Menu Textures
+        lastmod: 1714005061758
+        entries:
+          - lastmod: 1713994003832
+            type: texture
+            name: Logo
+            untill: 0
+            grid:
+              - 1
+              - 1
+            axis:
+              - 640
+              - 360
+            marginx: 0
+            marginy: 0
+            imgWidth: 1280
+            imgHeight: 720
+            width: 1280
+            height: 720
+            offx: 0
+            offy: 0
+            origname: i7FPhpcwBNP8cdw.png
+            shape: rect
+            left: 440
+            right: 452
+            top: 321
+            bottom: 154
+            uid: 7FPhpcwBNP8cdw
+            padding: 1
+            isBlank: false
+            source: >-
+              C:\Users\150073267\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\Logo.png
+          - lastmod: 1713841163202
+            type: texture
+            name: vsPlayer
+            untill: 0
+            grid:
+              - 1
+              - 1
+            axis:
+              - 32
+              - 32
+            marginx: 0
+            marginy: 0
+            imgWidth: 64
+            imgHeight: 64
+            width: 64
+            height: 64
+            offx: 0
+            offy: 0
+            origname: indhJ196J15kJn8.png
+            shape: rect
+            left: 32
+            right: 32
+            top: 32
+            bottom: 32
+            uid: ndhJ196J15kJn8
+            padding: 1
+            isBlank: false
+            source: >-
+              C:\Users\niceh\OneDrive\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\vsPlayer.png
+      - type: folder
+        uid: Gj5fJrF3Rb37j8
+        colorClass: act
+        icon: test-tube
+        name: Placeholders
+        lastmod: 1714005118511
+        entries:
+          - lastmod: 1713386230077
+            type: texture
+            name: Placeholder
+            untill: 0
+            grid:
+              - 1
+              - 1
+            axis:
+              - 0
+              - 0
+            marginx: 0
+            marginy: 0
+            imgWidth: 64
+            imgHeight: 64
+            width: 64
+            height: 64
+            offx: 0
+            offy: 0
+            origname: im96hHkhbLtkrLg.png
+            shape: rect
+            left: 0
+            right: 64
+            top: 0
+            bottom: 64
+            uid: m96hHkhbLtkrLg
+            padding: 1
+            isBlank: false
+          - lastmod: 1713388030678
+            type: texture
+            name: test
+            untill: 0
+            grid:
+              - 1
+              - 1
+            axis:
+              - 640
+              - 360
+            marginx: 0
+            marginy: 0
+            imgWidth: 1280
+            imgHeight: 720
+            width: 1280
+            height: 720
+            offx: 0
+            offy: 0
+            origname: i4fgwq14BfdczDW.png
+            shape: rect
+            left: 640
+            right: 640
+            top: 360
+            bottom: 360
+            uid: 4fgwq14BfdczDW
+            padding: 1
+            isBlank: false
+            tiled: true
+            source: 'C:\Users\150073267\Downloads\tilebackground.png'
+  - type: folder
+    uid: gdzfzq6M9thrJ6
+    colorClass: success
+    icon: ui
+    name: Styles
+    lastmod: 1714004951571
+    entries:
+      - type: font
+        typefaceName: Silkscreen-Regular
+        weight: '400'
+        italic: false
+        origname: fDwB9KGKF95gpmn.ttf
+        lastmod: 1713990930684
+        bitmapFont: false
+        bitmapFontSize: 16
+        bitmapFontLineHeight: 18
+        charsets:
+          - allInFont
+        customCharset: ''
+        uid: DwB9KGKF95gpmn
+      - type: style
+        name: Text Color Go Brrr
+        uid: bB52C3b5NBNHhB
+        font:
+          family: '"CTPROJFONTSilkscreen-Regular", "Silkscreen-Regular", sans-serif'
+          halign: left
+          italic: false
+          size: 40
+          weight: '400'
+          wrap: true
+          wrapPosition: 640
+          lineHeight: 53.3
+        fill:
+          type: 0
+          color: '#FFFFFF'
+          color1: '#cccccc'
+          color2: '#ffffff'
+          gradtype: 1
+        lastmod: 1713990937488
+        stroke:
+          color: '#000000'
+          weight: 4
+      - type: font
+        typefaceName: Silkscreen-Bold
+        weight: '400'
+        italic: false
+        origname: fqpFphFkGGhcQQ2.ttf
+        lastmod: 1714010838017
+        bitmapFont: false
+        bitmapFontSize: 16
+        bitmapFontLineHeight: 18
+        charsets:
+          - allInFont
+        customCharset: ''
+        uid: qpFphFkGGhcQQ2
+      - type: style
+        name: Winner Text
+        uid: 24Q7H1f395pg44
+        font:
+          family: '"CTPROJFONTSilkscreen-Bold", "Silkscreen-Bold", sans-serif'
+          halign: left
+          italic: false
+          size: 128
+          weight: '400'
+          wrap: false
+          wrapPosition: 640
+          lineHeight: .nan
+        fill:
+          type: 0
+          color: '#ffffff'
+          color1: '#cccccc'
+          color2: '#ffffff'
+          gradtype: 1
+        lastmod: 1714011152222
+        stroke:
+          color: '#000000'
+          weight: 12
+        shadow:
+          color: '#000000'
+          x: -2
+          'y': 2
+          blur: 0
 settings:
   authoring:
     author: Noah & Isaac
