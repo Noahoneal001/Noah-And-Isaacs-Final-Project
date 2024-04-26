@@ -108,33 +108,11 @@ assets:
                               templates.copy('Spot Finder', this.x - 68, this.y + 42, { summoner: this })
                           }
                       }
-                      else if (this.isComboTime) {
-                          if (this.isKing) {
-                              if (place.occupied(this, this.x + 68, this.y - 42, `Pieces`) && !place.occupied(this,this.x + 136,this.y - 84,`Pieces`) && !(this.x == 878 || this.x == 810) && !(this.y == 229 || this.y == 271)) {
-                                  templates.copy('Spot Finder', this.x + 136, this.y - 84, { summoner: this, targetCombo: place.occupied(this, this.x + 68, this.y - 42, `Pieces`) })
-                              }
-                              if (place.occupied(this, this.x - 68, this.y - 42, `Pieces`) && !place.occupied(this,this.x - 136,this.y - 84,`Pieces`) && !(this.x == 402 || this.x == 470) && !(this.y == 229 || this.y == 271)) {
-                                  templates.copy('Spot Finder', this.x - 136, this.y - 84, { summoner: this, targetCombo: place.occupied(this, this.x - 68, this.y - 42, `Pieces`) })
-                              }
-                          }
-                      if (place.occupied(this, this.x + 68, this.y + 42, `Pieces`) && !place.occupied(this,this.x + 136,this.y + 84,`Pieces`) && !(this.x == 878 || this.x == 810) && !(this.y == 523 || this.y == 481)) {
-                          templates.copy('Spot Finder', this.x + 136, this.y + 84, { summoner: this, targetCombo: place.occupied(this, this.x + 68, this.y + 42, `Pieces`) })
-                      }
-                      if (place.occupied(this, this.x - 68, this.y + 42, `Pieces`) && !place.occupied(this,this.x - 136,this.y + 84,`Pieces`) && !(this.x == 402 || this.x == 470) && !(this.y == 523 || this.y == 481)) {
-                          templates.copy('Spot Finder', this.x - 136, this.y + 84, { summoner: this, targetCombo: place.occupied(this, this.x - 68, this.y + 42, `Pieces`) })
-                      }
-                      if (!templates.exists('Spot Finder')) {
-                          this.isComboTime = false;
-                          rooms.current.letHimCook = false;
-                          rooms.current.playerOnesTurn = true
-                      }
-
-                  }
                 arguments: {}
                 lib: core
             extends:
               cgroup: Pieces
-            lastmod: 1713929681331
+            lastmod: 1714093244737
             uid: 7Q7zB9NDt3wndF
             behaviors: []
           - type: template
@@ -152,11 +130,33 @@ assets:
                 arguments: {}
                 lib: core
               - eventKey: OnPointerClick
-                code: rooms.current.clearSpotHelp()
+                code: >-
+                  // if (rooms.current.letHimCook) {
+
+                  //     rooms.current.letHimCook = false;
+
+                  //     rooms.current.playerOnesTurn =
+                  !rooms.current.playerOnesTurn
+
+                  //     for (let i of templates.list['Black Pawn']) {
+
+                  //         i.isComboTime == false
+
+                  //     }
+
+                  //     for (let i of templates.list['Red Pawn']) {
+
+                  //         i.isComboTime == false
+
+                  //     }
+
+                  // }
+
+                  // rooms.current.clearSpotHelp()
                 arguments: {}
                 lib: core
             extends: {}
-            lastmod: 1713639518404
+            lastmod: 1714104654665
             uid: k5dgFTKK7j5wLB
             behaviors: []
           - type: template
@@ -239,21 +239,33 @@ assets:
                 arguments: {}
                 lib: core
               - eventKey: OnPointerClick
-                code: |
+                code: >
                   this.summoner.x = this.x;
+
                   this.summoner.y = this.y;
-                  console.log(this.target)
-                  console.log(this.targetForce)
+
+                  if ((this.y <= 229 && this.summoner.team == `red`) || (this.y
+                  >= 523 && this.summoner.team == `black`)) {
+                      this.summoner.isKing = true
+                      this.summoner.tex = `red_paw_king`
+                  }
+
+
                   if (this.targetCombo){
                       this.targetCombo.kill = true;
-                      console.log(this.targetCombo)
+                      rooms.current.clearSpotHelp();
+                      rooms.current.mutiJumpCode(this.summoner)
                   }
+
                   else if (this.target || this.targetForce) {
+                      console.log(`hello world`)
                       this.target.kill = true;
                       this.summoner.isComboTime = true
                       rooms.current.letHimCook = true
                       rooms.current.clearSpotHelp();
+                      rooms.current.mutiJumpCode(this.summoner)
                   }
+
                   else {
                       rooms.current.playerOnesTurn = !rooms.current.playerOnesTurn;
                       rooms.current.clearSpotHelp();
@@ -261,7 +273,7 @@ assets:
                 arguments: {}
                 lib: core
             extends: {}
-            lastmod: 1713924823373
+            lastmod: 1714104543516
             uid: LdT8cChcc8KPJ1
             behaviors: []
           - type: template
@@ -343,33 +355,11 @@ assets:
                           templates.copy('Spot Finder', this.x - 68, this.y - 42, { summoner: this })
                       }
                       }
-                  else if (this.isComboTime) {
-                      rooms.current.clearSpotHelp()
-                      if (this.isKing) {
-                          if (place.occupied(this,this.x + 68,this.y + 42,`Pieces`) && !place.occupied(this,this.x + 136,this.y + 84,`Pieces`) && !(this.x == 878 || this.x == 810) && !(this.y == 523 || this.y == 481)) {
-                              templates.copy('Spot Finder',this.x + 136, this.y + 84,{summoner:this, targetCombo:place.occupied(this,this.x + 68,this.y + 42,`Pieces`)})
-                          }
-                          if (place.occupied(this,this.x - 68,this.y + 42,`Pieces`) && !place.occupied(this,this.x - 136,this.y + 84,`Pieces`) && !(this.x == 402 || this.x == 470) && !(this.y == 523 || this.y == 481)) {
-                              templates.copy('Spot Finder',this.x - 136, this.y + 84,{summoner:this, targetCombo:place.occupied(this,this.x - 68,this.y + 42,`Pieces`)})
-                          }
-                      }
-                      if (place.occupied(this,this.x + 68,this.y - 42,`Pieces`) && !place.occupied(this,this.x + 136,this.y - 84,`Pieces`) && !(this.x == 878 || this.x == 810) && !(this.y == 229 || this.y == 271)) {
-                          templates.copy('Spot Finder',this.x + 136, this.y - 84,{summoner:this, targetCombo:place.occupied(this,this.x + 68,this.y - 42,`Pieces`)})
-                      }
-                      if (place.occupied(this,this.x - 68,this.y - 42,`Pieces`) && !place.occupied(this,this.x - 136,this.y - 84,`Pieces`) && !(this.x == 402 || this.x == 470) && !(this.y == 229 || this.y == 271)) {
-                          templates.copy('Spot Finder',this.x - 136, this.y - 84,{summoner:this, targetCombo:place.occupied(this,this.x - 68,this.y - 42,`Pieces`)})
-                      }
-                      if (!templates.exists('Spot Finder')) {
-                          this.isComboTime = false;
-                          rooms.current.letHimCook = false;
-                          rooms.current.playerOnesTurn = false
-                      }
-                  }
                 arguments: {}
                 lib: core
             extends:
               cgroup: Pieces
-            lastmod: 1713928676416
+            lastmod: 1714095363381
             uid: QH2mWWbMnWrLDz
             behaviors: []
           - type: template
@@ -498,7 +488,7 @@ assets:
                 code: this.move();
                 arguments: {}
             extends: {}
-            lastmod: 1713994063936
+            lastmod: 1714099296777
             uid: M7kmw7HjtLK8Nb
             behaviors: []
           - type: template
@@ -516,15 +506,11 @@ assets:
                 code: ''
                 arguments: {}
               - eventKey: OnPointerClick
-                code: |-
-                  console.log(`hi`)
-                  console.log(this.zIndex)
-                  rooms.switch('play')
-                  function freeme(s,E,n,d,h,e,l,p) {}
+                code: rooms.switch('play')
                 arguments: {}
                 lib: core
             extends: {}
-            lastmod: 1713841039224
+            lastmod: 1714099208364
             uid: LnJz2qc5Ngf4Mp
             behaviors: []
             defaultText: ''
@@ -560,11 +546,11 @@ assets:
                 code: this.move();
                 arguments: {}
               - eventKey: OnPointerClick
-                code: ''
+                code: rooms.current.playerOnesTurn = !rooms.current.playerOnesTurn
                 arguments: {}
                 lib: core
             extends: {}
-            lastmod: 1713922910046
+            lastmod: 1714094336351
             uid: zMqzGq7BFqcbTk
             behaviors: []
             defaultText: ''
@@ -1007,9 +993,21 @@ assets:
             exts: {}
             customProperties: {}
             bindings: {}
+          - x: 1024
+            'y': 448
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: zMqzGq7BFqcbTk
+            exts: {}
+            customProperties: {}
+            bindings: {}
         tiles: []
         extends: {}
-        lastmod: 1714082740893
+        lastmod: 1714105008601
         events:
           - eventKey: OnRoomStart
             code: >
@@ -1027,6 +1025,55 @@ assets:
                   spot.kill = true;
                   }
               }
+
+              this.mutiJumpCode = (currentsummoner) => {
+                  this.clearSpotHelp
+                  if (currentsummoner.team == `red`) {
+                      if (currentsummoner.isKing) {
+                          if (place.occupied(currentsummoner,currentsummoner.x + 68,currentsummoner.y + 42,`Pieces`) && !place.occupied(currentsummoner,currentsummoner.x + 136,currentsummoner.y + 84,`Pieces`) && !(currentsummoner.x == 878 || currentsummoner.x == 810) && !(currentsummoner.y == 523 || currentsummoner.y == 481) && !place.occupied(currentsummoner,currentsummoner.x + 68,currentsummoner.y + 42,`Pieces`).kill) {
+                          templates.copy('Spot Finder',currentsummoner.x + 136, currentsummoner.y + 84,{summoner:currentsummoner, targetCombo:place.occupied(currentsummoner,currentsummoner.x + 68,currentsummoner.y + 42,`Pieces`)})
+                          }
+                          if (place.occupied(currentsummoner,currentsummoner.x - 68,currentsummoner.y + 42,`Pieces`) && !place.occupied(currentsummoner,currentsummoner.x - 136,currentsummoner.y + 84,`Pieces`) && !(currentsummoner.x == 402 || currentsummoner.x == 470) && !(currentsummoner.y == 523 || currentsummoner.y == 481) && !place.occupied(currentsummoner,currentsummoner.x - 68,currentsummoner.y + 42,`Pieces`).kill) {
+                          templates.copy('Spot Finder',currentsummoner.x - 136, currentsummoner.y + 84,{summoner:currentsummoner, targetCombo:place.occupied(currentsummoner,currentsummoner.x - 68,currentsummoner.y + 42,`Pieces`)})
+                          }
+                      }
+                      if (place.occupied(currentsummoner,currentsummoner.x + 68,currentsummoner.y - 42,`Pieces`) && !place.occupied(currentsummoner,currentsummoner.x + 136,currentsummoner.y - 84,`Pieces`) && !(currentsummoner.x == 878 || currentsummoner.x == 810) && !(currentsummoner.y == 229 || currentsummoner.y == 271) && !place.occupied(currentsummoner,currentsummoner.x + 68,currentsummoner.y - 42,`Pieces`).kill) {
+                          templates.copy('Spot Finder',currentsummoner.x + 136, currentsummoner.y - 84,{summoner:currentsummoner, targetCombo:place.occupied(currentsummoner,currentsummoner.x + 68,currentsummoner.y - 42,`Pieces`)})
+                      }
+                      if (place.occupied(currentsummoner,currentsummoner.x - 68,currentsummoner.y - 42,`Pieces`) && !place.occupied(currentsummoner,currentsummoner.x - 136,currentsummoner.y - 84,`Pieces`) && !(currentsummoner.x == 402 || currentsummoner.x == 470) && !(currentsummoner.y == 229 || currentsummoner.y == 271) && !place.occupied(currentsummoner,currentsummoner.x - 68,currentsummoner.y - 42,`Pieces`).kill) {
+                          templates.copy('Spot Finder',currentsummoner.x - 136, currentsummoner.y - 84,{summoner:currentsummoner, targetCombo:place.occupied(currentsummoner,currentsummoner.x - 68,currentsummoner.y - 42,`Pieces`)})
+                      }
+                      
+                      if (!templates.exists('Spot Finder') || !templates.list['Spot Finder'].some((i) => {i.kill})) {
+                          currentsummoner.isComboTime = false;
+                          this.letHimCook = false;
+                          this.playerOnesTurn = false
+                          console.log(`got you`)
+                      }
+                  }
+                  else if (currentsummoner.team == `black`) {
+                      if (currentsummoner.isKing) {
+                          if (place.occupied(currentsummoner, currentsummoner.x + 68, currentsummoner.y - 42, `Pieces`) && !place.occupied(currentsummoner,currentsummoner.x + 136,currentsummoner.y - 84,`Pieces`) && !(currentsummoner.x == 878 || currentsummoner.x == 810) && !(currentsummoner.y == 229 || currentsummoner.y == 271) && !place.occupied(currentsummoner, currentsummoner.x + 68, currentsummoner.y - 42, `Pieces`).kill) {
+                              templates.copy('Spot Finder', currentsummoner.x + 136, currentsummoner.y - 84, { summoner: currentsummoner, targetCombo: place.occupied(currentsummoner, currentsummoner.x + 68, currentsummoner.y - 42, `Pieces`) })
+                          }
+                          if (place.occupied(currentsummoner, currentsummoner.x - 68, currentsummoner.y - 42, `Pieces`) && !place.occupied(currentsummoner,currentsummoner.x - 136,currentsummoner.y - 84,`Pieces`) && !(currentsummoner.x == 402 || currentsummoner.x == 470) && !(currentsummoner.y == 229 || currentsummoner.y == 271) && !place.occupied(currentsummoner, currentsummoner.x - 68, currentsummoner.y - 42, `Pieces`).kill) {
+                              templates.copy('Spot Finder', currentsummoner.x - 136, currentsummoner.y - 84, { summoner: currentsummoner, targetCombo: place.occupied(currentsummoner, currentsummoner.x - 68, currentsummoner.y - 42, `Pieces`) })
+                          }
+                      }
+                      if (place.occupied(currentsummoner, currentsummoner.x + 68, currentsummoner.y + 42, `Pieces`) && !place.occupied(currentsummoner,currentsummoner.x + 136,currentsummoner.y + 84,`Pieces`) && !(currentsummoner.x == 878 || currentsummoner.x == 810) && !(currentsummoner.y == 523 || currentsummoner.y == 481)) {
+                          templates.copy('Spot Finder', currentsummoner.x + 136, currentsummoner.y + 84, { summoner: currentsummoner, targetCombo: place.occupied(currentsummoner, currentsummoner.x + 68, currentsummoner.y + 42, `Pieces`) })
+                      }
+                      if (place.occupied(currentsummoner, currentsummoner.x - 68, currentsummoner.y + 42, `Pieces`) && !place.occupied(currentsummoner,currentsummoner.x - 136,currentsummoner.y + 84,`Pieces`) && !(currentsummoner.x == 402 || currentsummoner.x == 470) && !(currentsummoner.y == 523 || currentsummoner.y == 481)) {
+                          templates.copy('Spot Finder', currentsummoner.x - 136, currentsummoner.y + 84, { summoner: currentsummoner, targetCombo: place.occupied(currentsummoner, currentsummoner.x - 68, currentsummoner.y + 42, `Pieces`) })
+                      }
+                      if (!templates.exists('Spot Finder') || !templates.list['Spot Finder'].some((i) => {i.kill})) {
+                          currentsummoner.isComboTime = false;
+                          this.letHimCook = false;
+                          this.playerOnesTurn = true
+                      }
+                  }
+              }
+
 
               this.timerpain = timer.add(600000,`the final brain cell`) 
 
