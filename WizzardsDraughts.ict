@@ -130,33 +130,22 @@ assets:
                 arguments: {}
                 lib: core
               - eventKey: OnPointerClick
-                code: >-
-                  // if (rooms.current.letHimCook) {
-
-                  //     rooms.current.letHimCook = false;
-
-                  //     rooms.current.playerOnesTurn =
-                  !rooms.current.playerOnesTurn
-
-                  //     for (let i of templates.list['Black Pawn']) {
-
-                  //         i.isComboTime == false
-
-                  //     }
-
-                  //     for (let i of templates.list['Red Pawn']) {
-
-                  //         i.isComboTime == false
-
-                  //     }
-
-                  // }
-
-                  // rooms.current.clearSpotHelp()
+                code: |-
+                  if (rooms.current.letHimCook) {
+                      rooms.current.letHimCook = false;
+                      rooms.current.playerOnesTurn = !rooms.current.playerOnesTurn
+                      for (let i of templates.list['Black Pawn']) {
+                          i.isComboTime == false
+                      }
+                      for (let i of templates.list['Red Pawn']) {
+                          i.isComboTime == false
+                      }
+                  }
+                  rooms.current.clearSpotHelp()
                 arguments: {}
                 lib: core
             extends: {}
-            lastmod: 1714104654665
+            lastmod: 1714167533436
             uid: k5dgFTKK7j5wLB
             behaviors: []
           - type: template
@@ -239,10 +228,12 @@ assets:
                 arguments: {}
                 lib: core
               - eventKey: OnPointerClick
-                code: >
+                code: >-
                   this.summoner.x = this.x;
 
                   this.summoner.y = this.y;
+
+                  rooms.current.clearSpotHelp();
 
                   if ((this.y <= 229 && this.summoner.team == `red`) || (this.y
                   >= 523 && this.summoner.team == `black`)) {
@@ -253,7 +244,6 @@ assets:
 
                   if (this.targetCombo){
                       this.targetCombo.kill = true;
-                      rooms.current.clearSpotHelp();
                       rooms.current.mutiJumpCode(this.summoner)
                   }
 
@@ -262,18 +252,18 @@ assets:
                       this.target.kill = true;
                       this.summoner.isComboTime = true
                       rooms.current.letHimCook = true
-                      rooms.current.clearSpotHelp();
                       rooms.current.mutiJumpCode(this.summoner)
                   }
 
                   else {
                       rooms.current.playerOnesTurn = !rooms.current.playerOnesTurn;
-                      rooms.current.clearSpotHelp();
                   }
+
+                  camera.shake = 0.5
                 arguments: {}
                 lib: core
             extends: {}
-            lastmod: 1714104543516
+            lastmod: 1714167075464
             uid: LdT8cChcc8KPJ1
             behaviors: []
           - type: template
@@ -441,11 +431,39 @@ assets:
             visible: true
             events:
               - eventKey: OnPointerClick
-                code: 'window.alert(`I do nothing yet :3`)'
+                code: >-
+                  let power = random.dice(`none`,`chessnt`,`shield`,
+                  `mines`,`fireball`)
+
+                  if (rooms.current.playerOnesTurn) {
+
+                  switch (power) {
+                      case `none`:
+                      break;
+
+                      case `chessnt`:
+                          for (let i of templates.list['Red Pawn']) {
+                              i.isChessnt = false
+                          }
+                          templates.list['Red Pawn'][random.range(0,templates.list['Red Pawn'].length)].isChessnt = true
+                      break;
+                      case `shield`:
+                          for (let i of templates.list['Red Pawn']) {
+                              i.isNoped = false
+                          }
+                          templates.list['Red Pawn'][random.range(0,templates.list['Red Pawn'].length)].isNoped = true
+                      break;
+                      case `mines`:
+                      break;
+                      case `fireball`:
+                      break;
+                  }
+
+                  }
                 arguments: {}
                 lib: core
             extends: {}
-            lastmod: 1714081649603
+            lastmod: 1714171807587
             uid: TpL88D4BmjMhLz
             behaviors: []
           - type: template
@@ -827,7 +845,7 @@ assets:
           - x: 878
             'y': 229
             opacity: 1
-            tint: 16777215
+            tint: '#ffffff'
             scale:
               x: 1
               'y': 1
@@ -1007,7 +1025,7 @@ assets:
             bindings: {}
         tiles: []
         extends: {}
-        lastmod: 1714105008601
+        lastmod: 1714170541309
         events:
           - eventKey: OnRoomStart
             code: >
@@ -1027,7 +1045,7 @@ assets:
               }
 
               this.mutiJumpCode = (currentsummoner) => {
-                  this.clearSpotHelp
+                  this.clearSpotHelp()
                   if (currentsummoner.team == `red`) {
                       if (currentsummoner.isKing) {
                           if (place.occupied(currentsummoner,currentsummoner.x + 68,currentsummoner.y + 42,`Pieces`) && !place.occupied(currentsummoner,currentsummoner.x + 136,currentsummoner.y + 84,`Pieces`) && !(currentsummoner.x == 878 || currentsummoner.x == 810) && !(currentsummoner.y == 523 || currentsummoner.y == 481) && !place.occupied(currentsummoner,currentsummoner.x + 68,currentsummoner.y + 42,`Pieces`).kill) {
@@ -1044,7 +1062,7 @@ assets:
                           templates.copy('Spot Finder',currentsummoner.x - 136, currentsummoner.y - 84,{summoner:currentsummoner, targetCombo:place.occupied(currentsummoner,currentsummoner.x - 68,currentsummoner.y - 42,`Pieces`)})
                       }
                       
-                      if (!templates.exists('Spot Finder') || !templates.list['Spot Finder'].some((i) => {i.kill})) {
+                      if (!templates.exists('Spot Finder')) {
                           currentsummoner.isComboTime = false;
                           this.letHimCook = false;
                           this.playerOnesTurn = false
