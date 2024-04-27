@@ -54,9 +54,12 @@ assets:
                 lib: core
               - eventKey: OnStep
                 code: |-
-                  this.move;
                   if(this.y >= 523 && !this.isKing) {
                       this.isKing = true
+                      this.tex = `black_pawn_king`
+                      console.log(`im bugged`)
+                  }
+                  if (this.isKing && (!this.isChessnt && !this.isNoped)) {
                       this.tex = `black_pawn_king`
                   }
                 arguments: {}
@@ -115,7 +118,7 @@ assets:
                 lib: core
             extends:
               cgroup: Pieces
-            lastmod: 1714093244737
+            lastmod: 1714195908164
             uid: 7Q7zB9NDt3wndF
             behaviors: []
           - type: template
@@ -298,16 +301,13 @@ assets:
                 arguments: {}
                 lib: core
               - eventKey: OnStep
-                code: >-
+                code: |-
                   this.move;
-
                   if(this.y <= 229 && !this.isKing) {
                       this.isKing = true
                       this.tex = `red_paw_king`
                   }
-
-                  if (this.isKing && this.tex != `red_paw_king` &&
-                  (this.isChessnt || this.isNoped)) {
+                  if (this.isKing && (!this.isChessnt || !this.isNoped)) {
                       this.tex = `red_paw_king`
                   }
                 arguments: {}
@@ -368,7 +368,7 @@ assets:
                 lib: core
             extends:
               cgroup: Pieces
-            lastmod: 1714191395079
+            lastmod: 1714195960081
             uid: QH2mWWbMnWrLDz
             behaviors: []
           - type: template
@@ -687,6 +687,76 @@ assets:
             lastmod: 1714194654089
             uid: qcLcNpmf7nbQNM
             behaviors: []
+          - type: template
+            baseClass: AnimatedSprite
+            name: Chessnt Power
+            depth: 0
+            texture: 4zqQ5TwwtmzjqR
+            playAnimationOnStart: false
+            loopAnimation: true
+            animationFPS: 30
+            visible: true
+            events:
+              - eventKey: OnStep
+                lib: core
+                code: this.move();
+                arguments: {}
+            extends: {}
+            lastmod: 1714196444986
+            uid: ttKQD4RRwMCCQq
+            behaviors: []
+          - type: template
+            baseClass: Text
+            name: Cheesnt Red Time
+            depth: 0
+            texture: -1
+            playAnimationOnStart: false
+            loopAnimation: true
+            animationFPS: 30
+            visible: true
+            events:
+              - eventKey: OnStep
+                lib: core
+                code: |-
+                  if (rooms.current.crossovertimeRed) {
+                      this.text = `X${rooms.current.huhRedTime}`
+                  }
+                  else {
+                      this.text = `X0`
+                  }
+                arguments: {}
+            extends: {}
+            lastmod: 1714196887658
+            uid: J4GC8qC6wcbWhM
+            behaviors: []
+            defaultText: X0
+            textStyle: 9ThdgzFNRcdmnD
+          - type: template
+            baseClass: Text
+            name: Chessnt Black Time
+            depth: 0
+            texture: -1
+            playAnimationOnStart: false
+            loopAnimation: true
+            animationFPS: 30
+            visible: true
+            events:
+              - eventKey: OnStep
+                lib: core
+                code: |-
+                  if (rooms.current.crossovertimeBlack) {
+                      this.text = `X${rooms.current.huhBlackTime}`
+                  }
+                  else {
+                      this.text = `X0`
+                  }
+                arguments: {}
+            extends: {}
+            lastmod: 1714196998719
+            uid: PhPFb1Q3rF6zgT
+            behaviors: []
+            defaultText: X0
+            textStyle: 99Mkzgr7FkBJm1
       - type: folder
         uid: BC8MgMpmMpkkQK
         colorClass: text
@@ -1252,9 +1322,57 @@ assets:
             exts: {}
             customProperties: {}
             bindings: {}
+          - x: 216
+            'y': 320
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 2.5
+              'y': 2.5
+            rotation: 0
+            uid: ttKQD4RRwMCCQq
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 216
+            'y': 384
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 2.5
+              'y': 2.5
+            rotation: 0
+            uid: ttKQD4RRwMCCQq
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 248
+            'y': 296
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 0.8
+              'y': 0.8
+            rotation: 0
+            uid: J4GC8qC6wcbWhM
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 248
+            'y': 360
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 0.8
+              'y': 0.8
+            rotation: 0
+            uid: PhPFb1Q3rF6zgT
+            exts: {}
+            customProperties: {}
+            bindings: {}
         tiles: []
         extends: {}
-        lastmod: 1714193087293
+        lastmod: 1714197795049
         events:
           - eventKey: OnRoomStart
             code: >
@@ -1262,6 +1380,14 @@ assets:
               down
 
               this.holdYourHorses = false
+
+              this.crossovertimeRed = false
+
+              this.crossovertimeBlack = false
+
+              this.huhRedTime = 4
+
+              this.huhBlackTime = 4
 
               this.playerOnesTurn = true
 
@@ -1368,6 +1494,25 @@ assets:
                       this.sweepingTime
                   };
               }
+
+              if (this.crossovertimeRed && !this.holdYourHorses) {
+                  this.huhRedTime--
+                  this.holdYourHorses = true
+                  if(this.huhRedTime <= 0) {
+                      this.crossovertimeRed = false;
+                      this.huhRedTime = 4
+                  };
+              }
+
+              if (this.minesweepersim && !this.holdYourHorses) {
+                  this.sweepingTime--
+                  this.holdYourHorses = true
+                  if(this.sweepingTime <= 0) {
+                      this.minesweepersim = false;
+                      this.sweepingTime
+                  };
+              }
+
               if (!templates.exists('Black Pawn')) {
                   sessionStorage.winner = `PLAYER 1 WINS`
                   rooms.switch('Win Screen')
@@ -2064,7 +2209,7 @@ assets:
                 source: >-
                   C:\Users\niceh\OneDrive\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\empty
                   card.png
-              - lastmod: 1714192285224
+              - lastmod: 1714196340020
                 type: texture
                 name: mine_ui
                 untill: 0
@@ -2093,6 +2238,36 @@ assets:
                 isBlank: false
                 source: >-
                   C:\Users\niceh\OneDrive\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\mine
+                  ui.png
+              - lastmod: 1714196390645
+                type: texture
+                name: chessnt_ui
+                untill: 0
+                grid:
+                  - 1
+                  - 1
+                axis:
+                  - 11
+                  - 11
+                marginx: 0
+                marginy: 0
+                imgWidth: 23
+                imgHeight: 23
+                width: 23
+                height: 23
+                offx: 0
+                offy: 0
+                origname: i4zqQ5TwwtmzjqR.png
+                shape: rect
+                left: 10
+                right: 11
+                top: 10
+                bottom: 11
+                uid: 4zqQ5TwwtmzjqR
+                padding: 1
+                isBlank: false
+                source: >-
+                  C:\Users\niceh\OneDrive\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\chessnt
                   ui.png
           - lastmod: 1714081281097
             type: texture
@@ -2449,6 +2624,50 @@ assets:
           x: -2
           'y': 2
           blur: 0
+      - type: style
+        name: Blue Team
+        uid: 99Mkzgr7FkBJm1
+        font:
+          family: '"CTPROJFONTSilkscreen-Regular", "Silkscreen-Regular", sans-serif'
+          halign: left
+          italic: false
+          size: 40
+          weight: '400'
+          wrap: true
+          wrapPosition: 640
+          lineHeight: 53.3
+        fill:
+          type: 0
+          color: '#0077FF'
+          color1: '#cccccc'
+          color2: '#ffffff'
+          gradtype: 1
+        lastmod: 1714196687457
+        stroke:
+          color: '#000000'
+          weight: 4
+      - type: style
+        name: Red Team
+        uid: 9ThdgzFNRcdmnD
+        font:
+          family: '"CTPROJFONTSilkscreen-Regular", "Silkscreen-Regular", sans-serif'
+          halign: left
+          italic: false
+          size: 40
+          weight: '400'
+          wrap: true
+          wrapPosition: 640
+          lineHeight: 53.3
+        fill:
+          type: 0
+          color: '#FF0000'
+          color1: '#cccccc'
+          color2: '#ffffff'
+          gradtype: 1
+        lastmod: 1714196727920
+        stroke:
+          color: '#000000'
+          weight: 4
 settings:
   authoring:
     author: Noah & Isaac
