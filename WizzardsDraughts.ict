@@ -679,12 +679,12 @@ assets:
             animationFPS: 30
             visible: true
             events:
-              - eventKey: OnStep
-                lib: core
-                code: ''
+              - eventKey: OnPointerClick
+                code: rooms.switch('Start Screen')
                 arguments: {}
+                lib: core
             extends: {}
-            lastmod: 1714193944868
+            lastmod: 1714194654089
             uid: qcLcNpmf7nbQNM
             behaviors: []
       - type: folder
