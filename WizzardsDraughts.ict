@@ -139,6 +139,9 @@ assets:
                 code: |-
                   if (rooms.current.letHimCook) {
                       rooms.current.letHimCook = false;
+                      for (let i = 0; i < rooms.current.holdYourHorses.length; i++) {
+                          rooms.current.holdYourHorses[i] = false
+                      }
                       rooms.current.playerOnesTurn = !rooms.current.playerOnesTurn
                       for (let i of templates.list['Black Pawn']) {
                           i.isComboTime == false
@@ -151,7 +154,7 @@ assets:
                 arguments: {}
                 lib: core
             extends: {}
-            lastmod: 1714167533436
+            lastmod: 1714249493076
             uid: k5dgFTKK7j5wLB
             behaviors: []
           - type: template
@@ -165,7 +168,7 @@ assets:
             visible: true
             events:
               - eventKey: OnCreate
-                code: >
+                code: >-
                   this.moveDirectionY = `UP`
 
                   this.moveDirectionX = `RIGHT`
@@ -231,6 +234,30 @@ assets:
                           }
                       }
                   }
+
+
+                  if (this.summoner.isChessnt && !this.target) {
+                      if (this.moveDirectionY == `UP` && this.moveDirectionX == `RIGHT`) {
+                          if (this.x < 878 && this.y > 229) {
+                              templates.copy('Spot Finder',this.x + 68,this.y - 42,{summoner:this.summoner})
+                          }
+                      }
+                      else if (this.moveDirectionY == `UP` && this.moveDirectionX == `LEFT`) {
+                          if(this.x > 402 && this.y > 229) {
+                              templates.copy('Spot Finder',this.x - 68,this.y - 42,{summoner:this.summoner})
+                          }
+                      }
+                      else if (this.moveDirectionY == `DOWN` && this.moveDirectionX == `RIGHT`) {
+                          if(this.x < 878 && this.y < 523) {
+                              templates.copy('Spot Finder',this.x)
+                          }
+                      }
+                          else if (this.moveDirectionY == `DOWN` && this.moveDirectionX == `LEFT`) {
+                          if(this.x > 402 && this.y < 523) {
+                              templates.copy('Spot Finder',this.x)
+                          }
+                      }
+                  }
                 arguments: {}
                 lib: core
               - eventKey: OnPointerClick
@@ -270,7 +297,13 @@ assets:
                   }
 
                   else {
-                      rooms.current.holdYourHorses = false
+
+                  for (let i = 0; i < rooms.current.holdYourHorses.length; i++)
+                  {
+                          rooms.current.holdYourHorses[i] = false
+                  }
+
+                  console.log(`hi`)
                       rooms.current.playerOnesTurn = !rooms.current.playerOnesTurn;
                   }
 
@@ -278,7 +311,7 @@ assets:
                 arguments: {}
                 lib: core
             extends: {}
-            lastmod: 1714191505903
+            lastmod: 1714249500408
             uid: LdT8cChcc8KPJ1
             behaviors: []
           - type: template
@@ -310,44 +343,47 @@ assets:
                   if (this.isKing && (!this.isChessnt || !this.isNoped)) {
                       this.tex = `red_paw_king`
                   }
+                  if(this.isChessnt) {
+                      this.tex = 'red_paw_chessnt'
+                  }
                 arguments: {}
                 lib: core
               - eventKey: OnPointerClick
-                code: >-
+                code: >+
                   if (rooms.current.playerOnesTurn && !rooms.current.letHimCook)
                   {
 
                   rooms.current.clearSpotHelp()
 
-                      if (this.x <= 402 && this.y == 523 && this.isKing ){
+                      if (this.x <= 402 && this.y == 523 && (this.isKing || this.isChessnt) ){
                           templates.copy('Spot Finder', this.x + 68, this.y - 42, { summoner: this })
                       }
-                      else if (this.x >= 878 && this.y == 523 && this.isKing) {
+                      else if (this.x >= 878 && this.y == 523 && (this.isKing || this.isChessnt)) {
                           templates.copy('Spot Finder', this.x - 68, this.y - 42, { summoner: this })
                       }
-                      else if (this.x <= 402 && this.y == 229 && this.isKing) {
+                      else if (this.x <= 402 && this.y == 229 && (this.isKing || this.isChessnt)) {
                           templates.copy('Spot Finder', this.x + 68, this.y + 42, { summoner: this })
                       }
-                      else if (this.x >= 878 && this.y == 229 && this.isKing) {
+                      else if (this.x >= 878 && this.y == 229 && (this.isKing || this.isChessnt)) {
                           templates.copy('Spot Finder', this.x - 68, this.y + 42, { summoner: this })
                       }
-                      else if (this.x <= 402 && this.isKing) {
+                      else if (this.x <= 402 && (this.isKing || this.isChessnt)) {
                           templates.copy('Spot Finder', this.x + 68, this.y + 42, { summoner: this })
                           templates.copy('Spot Finder', this.x + 68, this.y - 42, { summoner: this })
                       }
-                      else if (this.x >= 878 && this.isKing) {
+                      else if (this.x >= 878 && (this.isKing || this.isChessnt)) {
                           templates.copy('Spot Finder', this.x - 68, this.y + 42, { summoner: this })
                           templates.copy('Spot Finder', this.x - 68, this.y - 42, { summoner: this })
                       }
-                      else if (this.y == 229 && this.isKing) {
+                      else if (this.y == 229 && (this.isKing || this.isChessnt)) {
                           templates.copy('Spot Finder', this.x + 68, this.y + 42, { summoner: this })
                           templates.copy('Spot Finder', this.x - 68, this.y + 42, { summoner: this })
                       }
-                      else if (this.y == 523 && this.isKing) {
+                      else if (this.y == 523 && (this.isKing || this.isChessnt)) {
                           templates.copy('Spot Finder', this.x + 68, this.y - 42, { summoner: this })
                           templates.copy('Spot Finder', this.x - 68, this.y - 42, { summoner: this })
                       }
-                      else if (this.isKing) {
+                      else if (this.isKing || this.isChessnt) {
                           templates.copy('Spot Finder', this.x + 68, this.y + 42, { summoner: this })
                           templates.copy('Spot Finder', this.x - 68, this.y + 42, { summoner: this })
                           templates.copy('Spot Finder', this.x + 68, this.y - 42, { summoner: this })
@@ -364,11 +400,12 @@ assets:
                           templates.copy('Spot Finder', this.x - 68, this.y - 42, { summoner: this })
                       }
                       }
+
                 arguments: {}
                 lib: core
             extends:
               cgroup: Pieces
-            lastmod: 1714195960081
+            lastmod: 1714261778314
             uid: QH2mWWbMnWrLDz
             behaviors: []
           - type: template
@@ -499,10 +536,12 @@ assets:
                   else {
                       switch (power) {
                           case `none`:
+                          cardUpside = `empty_card`
                           break;
 
                           case `chessnt`:
                               rooms.current.crossoverTimeBlack = true
+                              cardUpside = `bishop_card`
                               for (let i of templates.list['Black Pawn']) {
                                   i.isChessnt = false
                               }
@@ -510,6 +549,7 @@ assets:
                           break;
 
                           case `shield`:
+                              cardUpside = `shield_card`
                               for (let i of templates.list['Black Pawn']) {
                                   i.isNoped = false
                               }
@@ -517,10 +557,13 @@ assets:
                           break;
 
                           case `mines`:
+                              cardUpside = `mine_card`
                               rooms.current.minesweepersim = true
+                              rooms.current.sweepingTime = 4;
                           break;
                           
                           case `fireball`:
+                          cardUpside = `fireball_card`
                           for (let i of templates.list['Black Pawn']) {
                                   i.isAWizardHarry = false
                               }
@@ -534,7 +577,13 @@ assets:
 
                   rooms.current.playerOnesTurn = !rooms.current.playerOnesTurn
 
-                  rooms.current.holdYourHorses = false
+                  for (let i = 0; i < rooms.current.holdYourHorses.length; i++)
+                  {
+                          console.log(rooms.current.holdYourHorses[i])
+                          rooms.current.holdYourHorses[i] = false
+                  }
+
+                  console.log(rooms.current.holdYourHorses)
 
                   if (templates.exists('Used Card')){
 
@@ -547,7 +596,7 @@ assets:
                 arguments: {}
                 lib: core
             extends: {}
-            lastmod: 1714193784890
+            lastmod: 1714249498499
             uid: TpL88D4BmjMhLz
             behaviors: []
           - type: template
@@ -837,13 +886,15 @@ assets:
                 code: this.move();
                 arguments: {}
               - eventKey: OnPointerClick
-                code: >-
-                  console.log(Math.floor(random.range(0,templates.list['Black
-                  Pawn'].length + 1)))
+                code: |-
+                  for (let i = 0; i < rooms.current.holdYourHorses; i++) {
+                          console.log(rooms.current.holdYourHorses[i])
+                          rooms.current.holdYourHorses[i] = false
+                  }
                 arguments: {}
                 lib: core
             extends: {}
-            lastmod: 1714185100618
+            lastmod: 1714249398561
             uid: zMqzGq7BFqcbTk
             behaviors: []
             defaultText: ''
@@ -899,7 +950,7 @@ assets:
         gridX: 64
         gridY: 64
         diagonalGrid: false
-        disableGrid: false
+        disableGrid: true
         simulate: true
         width: 1280
         height: 720
@@ -1372,14 +1423,14 @@ assets:
             bindings: {}
         tiles: []
         extends: {}
-        lastmod: 1714197795049
+        lastmod: 1714261958333
         events:
           - eventKey: OnRoomStart
             code: >
               //Change by 68 to move left and right. Change by 42 to move up and
               down
 
-              this.holdYourHorses = false
+              this.holdYourHorses = [false,false,false]
 
               this.crossovertimeRed = false
 
@@ -1486,30 +1537,35 @@ assets:
               else if (actions.fullscreen.pressed){
                   settings.fullscreen = false
               }
-              if (this.minesweepersim && !this.holdYourHorses) {
-                  this.sweepingTime--
-                  this.holdYourHorses = true
+              if (this.minesweepersim && !this.holdYourHorses[0]) {
+                  this.sweepingTime--;
+                  this.holdYourHorses[0] = true;
+                  console.log(this.holdYourHorses[0])
+                  console.log(this.sweepingTime)
                   if(this.sweepingTime <= 0) {
                       this.minesweepersim = false;
-                      this.sweepingTime
+                      this.sweepingTime = 4;
                   };
-              }
+              };
 
-              if (this.crossovertimeRed && !this.holdYourHorses) {
+              if (this.crossovertimeRed && !this.holdYourHorses[1]) {
                   this.huhRedTime--
-                  this.holdYourHorses = true
+                  this.holdYourHorses[1] = true
                   if(this.huhRedTime <= 0) {
                       this.crossovertimeRed = false;
                       this.huhRedTime = 4
+                      for (let i = 0; i < templates.list['Red Pawn'].length; i++) {
+                          templates.list['Red Pawn'][i].isChessnt = false
+                      }
                   };
               }
 
-              if (this.minesweepersim && !this.holdYourHorses) {
-                  this.sweepingTime--
-                  this.holdYourHorses = true
-                  if(this.sweepingTime <= 0) {
-                      this.minesweepersim = false;
-                      this.sweepingTime
+              if (this.crossovertimeBlack && !this.holdYourHorses[2]) {
+                  this.huhBlackTime--;
+                  this.holdYourHorses[2] = true;
+                  if(this.huhBlackTime <= 0) {
+                      this.crossovertimeBlack = false;
+                      this.huhBlackTime = 4;
                   };
               }
 
