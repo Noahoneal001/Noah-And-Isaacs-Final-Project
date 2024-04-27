@@ -669,6 +669,24 @@ assets:
             behaviors: []
             defaultText: X0
             textStyle: bB52C3b5NBNHhB
+          - type: template
+            baseClass: AnimatedSprite
+            name: Back Button
+            depth: 0
+            texture: Cb3n2BGGBBqgLw
+            playAnimationOnStart: false
+            loopAnimation: true
+            animationFPS: 30
+            visible: true
+            events:
+              - eventKey: OnStep
+                lib: core
+                code: ''
+                arguments: {}
+            extends: {}
+            lastmod: 1714193944868
+            uid: qcLcNpmf7nbQNM
+            behaviors: []
       - type: folder
         uid: BC8MgMpmMpkkQK
         colorClass: text
@@ -1483,9 +1501,21 @@ assets:
             customProperties: {}
             bindings: {}
             customWordWrap: '1000'
+          - x: 650
+            'y': 500
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 6
+              'y': 6
+            rotation: 0
+            uid: qcLcNpmf7nbQNM
+            exts: {}
+            customProperties: {}
+            bindings: {}
         tiles: []
         extends: {}
-        lastmod: 1714023275869
+        lastmod: 1714194019569
         events: []
         behaviors: []
         uid: 21NH5pc2kf8N4w
@@ -2216,6 +2246,35 @@ assets:
             isBlank: false
             source: >-
               C:\Users\niceh\OneDrive\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\vsPlayer.png
+          - lastmod: 1714193959687
+            type: texture
+            name: BackMenu
+            untill: 0
+            grid:
+              - 1
+              - 1
+            axis:
+              - 11
+              - 11
+            marginx: 0
+            marginy: 0
+            imgWidth: 23
+            imgHeight: 23
+            width: 23
+            height: 23
+            offx: 0
+            offy: 0
+            origname: iCb3n2BGGBBqgLw.png
+            shape: rect
+            left: 11
+            right: 12
+            top: 11
+            bottom: 12
+            uid: Cb3n2BGGBBqgLw
+            padding: 1
+            isBlank: false
+            source: >-
+              C:\Users\niceh\OneDrive\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\BackMenu.png
       - type: folder
         uid: Gj5fJrF3Rb37j8
         colorClass: act
