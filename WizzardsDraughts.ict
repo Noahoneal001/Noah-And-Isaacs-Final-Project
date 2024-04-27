@@ -14,7 +14,10 @@ libs:
   random: {}
 startroom: npr3P8MBbkB68q
 contentTypes: []
-actions: []
+actions:
+  - name: fullscreen
+    methods:
+      - code: keyboard.F11
 scripts: []
 assets:
   - type: folder
@@ -229,11 +232,19 @@ assets:
                 lib: core
               - eventKey: OnPointerClick
                 code: >-
+                  let minex = this.summoner.x
+
+                  let miney = this.summoner.y
+
                   this.summoner.x = this.x;
 
                   this.summoner.y = this.y;
 
                   rooms.current.clearSpotHelp();
+
+                  if(rooms.current.minesweepersim) {
+                      templates.copy('Mine',minex,miney)
+                  }
 
                   if ((this.y <= 229 && this.summoner.team == `red`) || (this.y
                   >= 523 && this.summoner.team == `black`)) {
@@ -256,6 +267,7 @@ assets:
                   }
 
                   else {
+                      rooms.current.holdYourHorses = false
                       rooms.current.playerOnesTurn = !rooms.current.playerOnesTurn;
                   }
 
@@ -263,7 +275,7 @@ assets:
                 arguments: {}
                 lib: core
             extends: {}
-            lastmod: 1714167075464
+            lastmod: 1714191505903
             uid: LdT8cChcc8KPJ1
             behaviors: []
           - type: template
@@ -277,18 +289,25 @@ assets:
             visible: true
             events:
               - eventKey: OnCreate
-                code: |
+                code: |-
                   this.team = `red`;
                   this.isKing = false;
                   this.isChessnt = false;
                   this.isNoped = false;
+                  this.isAWisardHarry = false;
                 arguments: {}
                 lib: core
               - eventKey: OnStep
-                code: |-
+                code: >-
                   this.move;
+
                   if(this.y <= 229 && !this.isKing) {
                       this.isKing = true
+                      this.tex = `red_paw_king`
+                  }
+
+                  if (this.isKing && this.tex != `red_paw_king` &&
+                  (this.isChessnt || this.isNoped)) {
                       this.tex = `red_paw_king`
                   }
                 arguments: {}
@@ -349,7 +368,7 @@ assets:
                 lib: core
             extends:
               cgroup: Pieces
-            lastmod: 1714095363381
+            lastmod: 1714191395079
             uid: QH2mWWbMnWrLDz
             behaviors: []
           - type: template
@@ -435,35 +454,100 @@ assets:
                   let power = random.dice(`none`,`chessnt`,`shield`,
                   `mines`,`fireball`)
 
+                  let cardUpside = ``
+
+
                   if (rooms.current.playerOnesTurn) {
+                      switch (power) {
+                          case `none`:
+                              cardUpside = `empty_card`
+                          break;
 
-                  switch (power) {
-                      case `none`:
-                      break;
+                          case `chessnt`:
+                              rooms.current.crossoverTimeRed = true
+                              cardUpside = `bishop_card`
+                              for (let i of templates.list['Red Pawn']) {
+                                  i.isChessnt = false
+                              }
+                              templates.list['Red Pawn'][Math.floor(random.range(0,templates.list['Red Pawn'].length))].isChessnt = true
+                          break;
 
-                      case `chessnt`:
-                          for (let i of templates.list['Red Pawn']) {
-                              i.isChessnt = false
-                          }
-                          templates.list['Red Pawn'][random.range(0,templates.list['Red Pawn'].length)].isChessnt = true
-                      break;
-                      case `shield`:
-                          for (let i of templates.list['Red Pawn']) {
-                              i.isNoped = false
-                          }
-                          templates.list['Red Pawn'][random.range(0,templates.list['Red Pawn'].length)].isNoped = true
-                      break;
-                      case `mines`:
-                      break;
-                      case `fireball`:
-                      break;
+                          case `shield`:
+                              cardUpside = `shield_card`
+                              for (let i of templates.list['Red Pawn']) {
+                                  i.isNoped = false
+                              }
+                              templates.list['Red Pawn'][Math.floor(random.range(0,templates.list['Red Pawn'].length))].isNoped = true
+                          break;
+
+                          case `mines`:
+                              cardUpside = `mine_card`
+                              rooms.current.minesweepersim = true
+                              rooms.current.sweepingTime = 4;
+                          break;
+                          
+                          case `fireball`:
+                              cardUpside = `fireball_card`
+                              for (let i of templates.list['Red Pawn']) {
+                                  i.isAWizardHarry = false
+                              }
+                              templates.list['Red Pawn'][Math.floor(random.range(0,templates.list['Red Pawn'].length))].isAWizardHarry = true
+                          break;
+                      }
                   }
 
+                  else {
+                      switch (power) {
+                          case `none`:
+                          break;
+
+                          case `chessnt`:
+                              rooms.current.crossoverTimeBlack = true
+                              for (let i of templates.list['Black Pawn']) {
+                                  i.isChessnt = false
+                              }
+                              templates.list['Black Pawn'][Math.floor(random.range(0,templates.list['Black Pawn'].length))].isChessnt = true
+                          break;
+
+                          case `shield`:
+                              for (let i of templates.list['Black Pawn']) {
+                                  i.isNoped = false
+                              }
+                              templates.list['Black Pawn'][Math.floor(random.range(0,templates.list['Black Pawn'].length))].isNoped = true
+                          break;
+
+                          case `mines`:
+                              rooms.current.minesweepersim = true
+                          break;
+                          
+                          case `fireball`:
+                          for (let i of templates.list['Black Pawn']) {
+                                  i.isAWizardHarry = false
+                              }
+                              templates.list['Black Pawn'][Math.floor(random.range(0,templates.list['Black Pawn'].length))].isAWizardHarry = true
+                          break;
+                      }
                   }
+
+
+                  camera.shake = 0.4
+
+                  rooms.current.playerOnesTurn = !rooms.current.playerOnesTurn
+
+                  rooms.current.holdYourHorses = false
+
+                  if (templates.exists('Used Card')){
+
+                  templates.list['Used Card'][0].kill
+
+                  }
+
+                  templates.copy('Used Card',this.x,this.y + 200,
+                  {tex:cardUpside, scale:5})
                 arguments: {}
                 lib: core
             extends: {}
-            lastmod: 1714171807587
+            lastmod: 1714193784890
             uid: TpL88D4BmjMhLz
             behaviors: []
           - type: template
@@ -484,6 +568,107 @@ assets:
             lastmod: 1714082546288
             uid: W6Q2gPjp1jTR38
             behaviors: []
+          - type: template
+            baseClass: AnimatedSprite
+            name: Used Card
+            depth: 0
+            texture: CkcBmj66RwNJf2
+            playAnimationOnStart: false
+            loopAnimation: true
+            animationFPS: 30
+            visible: true
+            events:
+              - eventKey: OnStep
+                lib: core
+                code: this.move();
+                arguments: {}
+            extends: {}
+            lastmod: 1714184728254
+            uid: d8gL2j97tRKLdT
+            behaviors: []
+          - type: template
+            baseClass: AnimatedSprite
+            name: Mine
+            depth: -1
+            texture: tghmtmp2p13T9k
+            playAnimationOnStart: false
+            loopAnimation: true
+            animationFPS: 30
+            visible: true
+            events:
+              - eventKey: OnDraw
+                code: |-
+                  if (place.occupied(this,`Pieces`)) {
+                      place.occupied(this,`Pieces`).kill = true
+                      this.kill = true
+                  }
+                arguments: {}
+                lib: core
+            extends: {}
+            lastmod: 1714189765591
+            uid: DFNRF8HtNcb3dc
+            behaviors: []
+          - type: template
+            baseClass: AnimatedSprite
+            name: Mine Icon
+            depth: 0
+            texture: Q8zJPPprMNPQq8
+            playAnimationOnStart: false
+            loopAnimation: true
+            animationFPS: 30
+            visible: true
+            events:
+              - eventKey: OnStep
+                lib: core
+                code: this.move();
+                arguments: {}
+            extends: {}
+            lastmod: 1714192330440
+            uid: gDndfQ2qwCtF7r
+            behaviors: []
+            tilingSettings:
+              scrollSpeedX: 0
+              scrollSpeedY: 0
+              isUi: false
+            repeaterSettings:
+              defaultCount: 3
+            defaultText: ''
+            textStyle: -1
+            nineSliceSettings:
+              top: 16
+              left: 16
+              bottom: 16
+              right: 16
+              autoUpdate: false
+            hoverTexture: -1
+            pressedTexture: -1
+            disabledTexture: -1
+          - type: template
+            baseClass: Text
+            name: Mine Time
+            depth: 0
+            texture: -1
+            playAnimationOnStart: false
+            loopAnimation: true
+            animationFPS: 30
+            visible: true
+            events:
+              - eventKey: OnStep
+                lib: core
+                code: |-
+                  if (rooms.current.minesweepersim) {
+                      this.text = `X${rooms.current.sweepingTime}`
+                  }
+                  else {
+                      this.text = `X0`
+                  }
+                arguments: {}
+            extends: {}
+            lastmod: 1714192841480
+            uid: MHhMgw85hHQpL8
+            behaviors: []
+            defaultText: X0
+            textStyle: bB52C3b5NBNHhB
       - type: folder
         uid: BC8MgMpmMpkkQK
         colorClass: text
@@ -564,11 +749,13 @@ assets:
                 code: this.move();
                 arguments: {}
               - eventKey: OnPointerClick
-                code: rooms.current.playerOnesTurn = !rooms.current.playerOnesTurn
+                code: >-
+                  console.log(Math.floor(random.range(0,templates.list['Black
+                  Pawn'].length + 1)))
                 arguments: {}
                 lib: core
             extends: {}
-            lastmod: 1714094336351
+            lastmod: 1714185100618
             uid: zMqzGq7BFqcbTk
             behaviors: []
             defaultText: ''
@@ -1023,18 +1210,48 @@ assets:
             exts: {}
             customProperties: {}
             bindings: {}
+          - x: 216
+            'y': 256
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 2.5
+              'y': 2.5
+            rotation: 0
+            uid: gDndfQ2qwCtF7r
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 248
+            'y': 232
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 0.8
+              'y': 0.8
+            rotation: 0
+            uid: MHhMgw85hHQpL8
+            exts: {}
+            customProperties: {}
+            bindings: {}
         tiles: []
         extends: {}
-        lastmod: 1714170541309
+        lastmod: 1714193087293
         events:
           - eventKey: OnRoomStart
             code: >
               //Change by 68 to move left and right. Change by 42 to move up and
               down
 
+              this.holdYourHorses = false
+
               this.playerOnesTurn = true
 
               this.letHimCook = false
+
+              this.minesweepersim = false
+
+              this.sweepingTime =  4;
 
               storage.setSession(`winner`,`NO WINNER`)
 
@@ -1119,6 +1336,20 @@ assets:
             lib: core
           - eventKey: OnStep
             code: |-
+              if (actions.fullscreen.pressed && !settings.fullscreen) {
+                   settings.fullscreen = true
+              }
+              else if (actions.fullscreen.pressed){
+                  settings.fullscreen = false
+              }
+              if (this.minesweepersim && !this.holdYourHorses) {
+                  this.sweepingTime--
+                  this.holdYourHorses = true
+                  if(this.sweepingTime <= 0) {
+                      this.minesweepersim = false;
+                      this.sweepingTime
+                  };
+              }
               if (!templates.exists('Black Pawn')) {
                   sessionStorage.winner = `PLAYER 1 WINS`
                   rooms.switch('Win Screen')
@@ -1191,8 +1422,18 @@ assets:
             bindings: {}
         tiles: []
         extends: {}
-        lastmod: 1714019839460
-        events: []
+        lastmod: 1714183047135
+        events:
+          - eventKey: OnStep
+            code: |-
+              if (actions.fullscreen.pressed && !settings.fullscreen) {
+                   settings.fullscreen = true
+              }
+              else if (actions.fullscreen.pressed){
+                  settings.fullscreen = false
+              }
+            arguments: {}
+            lib: core
         behaviors: []
         uid: npr3P8MBbkB68q
       - type: room
@@ -1763,6 +2004,66 @@ assets:
                 source: >-
                   C:\Users\150073267\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\shield
                   card.png
+              - lastmod: 1714184285439
+                type: texture
+                name: empty_card
+                untill: 0
+                grid:
+                  - 1
+                  - 1
+                axis:
+                  - 7
+                  - 15
+                marginx: 0
+                marginy: 0
+                imgWidth: 15
+                imgHeight: 30
+                width: 15
+                height: 30
+                offx: 0
+                offy: 0
+                origname: iCkcBmj66RwNJf2.png
+                shape: rect
+                left: 7
+                right: 8
+                top: 15
+                bottom: 5
+                uid: CkcBmj66RwNJf2
+                padding: 1
+                isBlank: false
+                source: >-
+                  C:\Users\niceh\OneDrive\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\empty
+                  card.png
+              - lastmod: 1714192285224
+                type: texture
+                name: mine_ui
+                untill: 0
+                grid:
+                  - 1
+                  - 1
+                axis:
+                  - 11
+                  - 11
+                marginx: 0
+                marginy: 0
+                imgWidth: 23
+                imgHeight: 23
+                width: 23
+                height: 23
+                offx: 0
+                offy: 0
+                origname: iQ8zJPPprMNPQq8.png
+                shape: rect
+                left: 10
+                right: 11
+                top: 10
+                bottom: 11
+                uid: Q8zJPPprMNPQq8
+                padding: 1
+                isBlank: false
+                source: >-
+                  C:\Users\niceh\OneDrive\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\mine
+                  ui.png
           - lastmod: 1714081281097
             type: texture
             name: cardupsidedown
@@ -1821,6 +2122,35 @@ assets:
             isBlank: false
             source: >-
               C:\Users\150073267\Documents\GitHub\WizzardsDraughts\assets\pausebutton.png
+          - lastmod: 1714188897586
+            type: texture
+            name: mine
+            untill: 0
+            grid:
+              - 1
+              - 1
+            axis:
+              - 32
+              - 32
+            marginx: 0
+            marginy: 0
+            imgWidth: 64
+            imgHeight: 64
+            width: 64
+            height: 64
+            offx: 0
+            offy: 0
+            origname: itghmtmp2p13T9k.png
+            shape: rect
+            left: 31
+            right: 31
+            top: 20
+            bottom: 18
+            uid: tghmtmp2p13T9k
+            padding: 1
+            isBlank: false
+            source: >-
+              C:\Users\niceh\OneDrive\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\mine.png
       - type: folder
         uid: hzjmK6hCH3Ptd4
         colorClass: text
@@ -1949,6 +2279,35 @@ assets:
             isBlank: false
             tiled: true
             source: 'C:\Users\150073267\Downloads\tilebackground.png'
+      - lastmod: 1714181050266
+        type: texture
+        name: star
+        untill: 0
+        grid:
+          - 1
+          - 1
+        axis:
+          - 16
+          - 16
+        marginx: 0
+        marginy: 0
+        imgWidth: 32
+        imgHeight: 32
+        width: 32
+        height: 32
+        offx: 0
+        offy: 0
+        origname: iHgcqPtjWBnfCRB.png
+        shape: rect
+        left: 16
+        right: 16
+        top: 16
+        bottom: 16
+        uid: HgcqPtjWBnfCRB
+        padding: 1
+        isBlank: false
+        source: >-
+          C:\Users\niceh\OneDrive\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\star.png
   - type: folder
     uid: gdzfzq6M9thrJ6
     colorClass: success
@@ -2073,7 +2432,7 @@ settings:
   branding:
     accent: '#000000'
     invertPreloaderScheme: true
-    icon: -1
+    icon: HgcqPtjWBnfCRB
     splashScreen: -1
     forceSmoothIcons: false
     forceSmoothSplashScreen: false
