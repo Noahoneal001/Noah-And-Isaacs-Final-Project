@@ -57,10 +57,22 @@ assets:
                   if(this.y >= 523 && !this.isKing) {
                       this.isKing = true
                       this.tex = `black_pawn_king`
-                      console.log(`im bugged`)
-                  }
+                  };
                   if (this.isKing && (!this.isChessnt && !this.isNoped)) {
                       this.tex = `black_pawn_king`
+                  };
+                  if (this.isChessnt) {
+                      this.tex = `black_pawn_chessnt`
+                  };
+                  if (this.isNoped) {
+                      this.tex = `black_pawn_shield`
+                  };
+                  if (!this.isNoped && !this.isChessnt && !this.isKing) {
+                      this.tex = `black_pawn_norm`
+                  };
+                  if (this.isAWizardHarry) {
+                      templates.copy('fireBall',this.x,this.y,{summoner:this, direction: 90,angle:180})
+                      this.isAWizardHarry = false
                   }
                 arguments: {}
                 lib: core
@@ -150,7 +162,7 @@ assets:
                 lib: core
             extends:
               cgroup: Pieces
-            lastmod: 1714269905711
+            lastmod: 1714356766144
             uid: 7Q7zB9NDt3wndF
             behaviors: []
           - type: template
@@ -315,13 +327,13 @@ assets:
                   }
 
 
-                  if (this.targetCombo){
+                  if (this.targetCombo && !this.targetCombo.isNoped){
                       this.targetCombo.kill = true;
                       rooms.current.mutiJumpCode(this.summoner)
                   }
 
-                  else if (this.target || this.targetForce) {
-                      console.log(`hello world`)
+                  else if ((this.target || this.targetForce) &&
+                  !this.target.isNoped) {
                       this.target.kill = true;
                       this.summoner.isComboTime = true
                       rooms.current.letHimCook = true
@@ -329,13 +341,9 @@ assets:
                   }
 
                   else {
-
-                  for (let i = 0; i < rooms.current.holdYourHorses.length; i++)
-                  {
-                          rooms.current.holdYourHorses[i] = false
-                  }
-
-                  console.log(`hi`)
+                      for (let i = 0; i < rooms.current.holdYourHorses.length; i++) {
+                              rooms.current.holdYourHorses[i] = false
+                      }
                       rooms.current.playerOnesTurn = !rooms.current.playerOnesTurn;
                   }
 
@@ -343,7 +351,7 @@ assets:
                 arguments: {}
                 lib: core
             extends: {}
-            lastmod: 1714270369501
+            lastmod: 1714346548893
             uid: LdT8cChcc8KPJ1
             behaviors: []
           - type: template
@@ -367,16 +375,25 @@ assets:
                 lib: core
               - eventKey: OnStep
                 code: |-
-                  this.move;
                   if(this.y <= 229 && !this.isKing) {
                       this.isKing = true
                       this.tex = `red_paw_king`
-                  }
+                  };
                   if (this.isKing && (!this.isChessnt || !this.isNoped)) {
                       this.tex = `red_paw_king`
-                  }
+                  };
                   if(this.isChessnt) {
                       this.tex = 'red_paw_chessnt'
+                  };
+                  if(this.isNoped) {
+                      this.tex = `red_paw_shield`
+                  };
+                  if (!this.isNoped && !this.isChessnt && !this.isKing) {
+                      this.tex = `red_paw_norm`
+                  };
+                  if (this.isAWizardHarry) {
+                      templates.copy('fireBall',this.x,this.y,{summoner:this, direction: -90})
+                      this.isAWizardHarry = false
                   }
                 arguments: {}
                 lib: core
@@ -465,7 +482,7 @@ assets:
                 lib: core
             extends:
               cgroup: Pieces
-            lastmod: 1714267047038
+            lastmod: 1714352403477
             uid: QH2mWWbMnWrLDz
             behaviors: []
           - type: template
@@ -553,6 +570,13 @@ assets:
 
                   let cardUpside = ``
 
+                  let randomNumberRed =
+                  Math.floor(random.range(0,templates.list['Red Pawn'].length))
+
+                  let randomNumberBlack =
+                  Math.floor(random.range(0,templates.list['Black
+                  Pawn'].length))
+
 
                   if (rooms.current.playerOnesTurn) {
                       switch (power) {
@@ -561,18 +585,33 @@ assets:
                           break;
 
                           case `chessnt`:
-                              rooms.current.crossoverTimeRed = true
+                              rooms.current.crossover.red = true
+                              rooms.current.crossoverTime.red = 4;
                               cardUpside = `bishop_card`
                               for (let i of templates.list['Red Pawn']) {
                                   i.isChessnt = false
                               }
-                              templates.list['Red Pawn'][Math.floor(random.range(0,templates.list['Red Pawn'].length))].isChessnt = true
+                              if(templates.list['Red Pawn'][randomNumberRed].isNoped) {
+                                  templates.list['Red Pawn'][randomNumberRed].isNoped = false
+                                  rooms.current.denied.red = false
+                                  rooms.current.deniedTime.red = 4
+                                  rooms.current.holdYourHorses[3] = false
+                              }
+                              templates.list['Red Pawn'][randomNumberRed].isChessnt = true
                           break;
 
                           case `shield`:
+                              rooms.current.denied.red = true
+                              rooms.current.deniedTime.red = 4
                               cardUpside = `shield_card`
                               for (let i of templates.list['Red Pawn']) {
                                   i.isNoped = false
+                              }
+                              if(templates.list['Red Pawn'][randomNumberRed].isChessnt) {
+                                  templates.list['Red Pawn'][randomNumberRed].isChessnt = false
+                                  rooms.current.crossover.red = false
+                                  rooms.current.crossoverTime.red = 4
+                                  rooms.current.holdYourHorses[1] = false
                               }
                               templates.list['Red Pawn'][Math.floor(random.range(0,templates.list['Red Pawn'].length))].isNoped = true
                           break;
@@ -600,18 +639,33 @@ assets:
                           break;
 
                           case `chessnt`:
-                              rooms.current.crossoverTimeBlack = true
+                              rooms.current.crossover.black = true
+                              rooms.current.crossoverTime.black = 4
                               cardUpside = `bishop_card`
                               for (let i of templates.list['Black Pawn']) {
                                   i.isChessnt = false
                               }
-                              templates.list['Black Pawn'][Math.floor(random.range(0,templates.list['Black Pawn'].length))].isChessnt = true
+                              if(templates.list['Black Pawn'][randomNumberBlack].isNoped) {
+                                  templates.list['Black Pawn'][randomNumberBlack].isNoped = false
+                                  rooms.current.denied.black = false
+                                  rooms.current.deniedTime.black = 4
+                                  rooms.current.holdYourHorses[4] = false
+                              }
+                              templates.list['Black Pawn'][randomNumberBlack].isChessnt = true
                           break;
 
                           case `shield`:
+                              rooms.current.denied.black = true
+                              rooms.current.deniedTime.black = 4
                               cardUpside = `shield_card`
                               for (let i of templates.list['Black Pawn']) {
                                   i.isNoped = false
+                              }
+                              if(templates.list['Black Pawn'][randomNumberBlack].isChessnt) {
+                                  templates.list['Black Pawn'][randomNumberBlack].isChessnt = false
+                                  rooms.current.crossover.black = false
+                                  rooms.current.crossoverTime.black = 4
+                                  rooms.current.holdYourHorses[2] = false
                               }
                               templates.list['Black Pawn'][Math.floor(random.range(0,templates.list['Black Pawn'].length))].isNoped = true
                           break;
@@ -643,8 +697,6 @@ assets:
                           rooms.current.holdYourHorses[i] = false
                   }
 
-                  console.log(rooms.current.holdYourHorses)
-
                   if (templates.exists('Used Card')){
 
                   templates.list['Used Card'][0].kill
@@ -656,7 +708,7 @@ assets:
                 arguments: {}
                 lib: core
             extends: {}
-            lastmod: 1714249498499
+            lastmod: 1714346291545
             uid: TpL88D4BmjMhLz
             behaviors: []
           - type: template
@@ -827,15 +879,15 @@ assets:
               - eventKey: OnStep
                 lib: core
                 code: |-
-                  if (rooms.current.crossovertimeRed) {
-                      this.text = `X${rooms.current.huhRedTime}`
+                  if (rooms.current.crossover.red) {
+                      this.text = `X${rooms.current.crossoverTime.red}`
                   }
                   else {
                       this.text = `X0`
                   }
                 arguments: {}
             extends: {}
-            lastmod: 1714196887658
+            lastmod: 1714339574490
             uid: J4GC8qC6wcbWhM
             behaviors: []
             defaultText: X0
@@ -853,19 +905,128 @@ assets:
               - eventKey: OnStep
                 lib: core
                 code: |-
-                  if (rooms.current.crossovertimeBlack) {
-                      this.text = `X${rooms.current.huhBlackTime}`
+                  if (rooms.current.crossover.black) {
+                      this.text = `X${rooms.current.crossoverTime.black}`
                   }
                   else {
                       this.text = `X0`
                   }
                 arguments: {}
             extends: {}
-            lastmod: 1714196998719
+            lastmod: 1714339619024
             uid: PhPFb1Q3rF6zgT
             behaviors: []
             defaultText: X0
             textStyle: 99Mkzgr7FkBJm1
+          - type: template
+            baseClass: AnimatedSprite
+            name: Shield Power
+            depth: 0
+            texture: 5DpGB1H7NzFgd6
+            playAnimationOnStart: false
+            loopAnimation: true
+            animationFPS: 30
+            visible: true
+            events:
+              - eventKey: OnStep
+                lib: core
+                code: this.move();
+                arguments: {}
+            extends: {}
+            lastmod: 1714341340850
+            uid: qHJ8JmWnpw26mP
+            behaviors: []
+          - type: template
+            baseClass: Text
+            name: Shield Red Time
+            depth: 0
+            texture: -1
+            playAnimationOnStart: false
+            loopAnimation: true
+            animationFPS: 30
+            visible: true
+            events:
+              - eventKey: OnStep
+                lib: core
+                code: |-
+                  if (rooms.current.denied.red) {
+                      this.text =`X${rooms.current.deniedTime.red}`
+                  }
+                  else {
+                      this.text = `X0`
+                  }
+                arguments: {}
+            extends: {}
+            lastmod: 1714344678685
+            uid: rPW4bMrNnqGH98
+            behaviors: []
+            defaultText: X0
+            textStyle: 9ThdgzFNRcdmnD
+          - type: template
+            baseClass: Text
+            name: Shield Blue Time
+            depth: 0
+            texture: -1
+            playAnimationOnStart: false
+            loopAnimation: true
+            animationFPS: 30
+            visible: true
+            events:
+              - eventKey: OnStep
+                lib: core
+                code: |-
+                  if (rooms.current.denied.black) {
+                      this.text = `X${rooms.current.deniedTime[`black`]}`
+                  }
+                  else {
+                      this.text = `X0`
+                  }
+                arguments: {}
+            extends: {}
+            lastmod: 1714346305443
+            uid: wrKKNmQNN97j4t
+            behaviors: []
+            defaultText: X0
+            textStyle: 99Mkzgr7FkBJm1
+          - type: template
+            baseClass: AnimatedSprite
+            name: fireBall
+            depth: 0
+            texture: pnGK6TQh7rPDf2
+            playAnimationOnStart: false
+            loopAnimation: true
+            animationFPS: 30
+            visible: true
+            events:
+              - eventKey: OnCreate
+                code: this.speed = 120
+                arguments: {}
+                lib: core
+              - eventKey: OnStep
+                code: >-
+                  this.move();
+
+                  let somethingThere = place.occupied(this,`Pieces`)
+
+                  if (somethingThere && somethingThere.team !=
+                  this.summoner.team) {
+                      place.occupied(this,`Pieces`).kill = true
+                      this.kill = true
+                  }
+
+                  if (this.y < 229 || this.y > 523) {
+                      this.kill = true
+                  }
+
+                  this.speed += 10
+                arguments: {}
+                lib: core
+            extends:
+              cgroup: Pieces
+            lastmod: 1714357735056
+            uid: 2p4RdKz8Fk64KQ
+            behaviors: []
+            blendMode: normal
       - type: folder
         uid: BC8MgMpmMpkkQK
         colorClass: text
@@ -1231,7 +1392,7 @@ assets:
           - x: 878
             'y': 229
             opacity: 1
-            tint: '#ffffff'
+            tint: 16777215
             scale:
               x: 1
               'y': 1
@@ -1397,18 +1558,6 @@ assets:
             exts: {}
             customProperties: {}
             bindings: {}
-          - x: 1024
-            'y': 448
-            opacity: 1
-            tint: 16777215
-            scale:
-              x: 1
-              'y': 1
-            rotation: 0
-            uid: zMqzGq7BFqcbTk
-            exts: {}
-            customProperties: {}
-            bindings: {}
           - x: 216
             'y': 256
             opacity: 1
@@ -1481,16 +1630,64 @@ assets:
             exts: {}
             customProperties: {}
             bindings: {}
+          - x: 216
+            'y': 448
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 2.5
+              'y': 2.5
+            rotation: 0
+            uid: qHJ8JmWnpw26mP
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 216
+            'y': 512
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 2.5
+              'y': 2.5
+            rotation: 0
+            uid: qHJ8JmWnpw26mP
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 248
+            'y': 424
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 0.8
+              'y': 0.8
+            rotation: 0
+            uid: rPW4bMrNnqGH98
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 248
+            'y': 488
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 0.8
+              'y': 0.8
+            rotation: 0
+            uid: wrKKNmQNN97j4t
+            exts: {}
+            customProperties: {}
+            bindings: {}
         tiles: []
         extends: {}
-        lastmod: 1714278458197
+        lastmod: 1714357720094
         events:
           - eventKey: OnRoomStart
             code: >-
               //Change by 68 to move left and right. Change by 42 to move up and
               down
 
-              this.holdYourHorses = [false,false,false];
+              this.holdYourHorses = [false,false,false,false,false];
 
 
               this.crossover = {red:false, black:false};
@@ -1526,36 +1723,49 @@ assets:
               this.mutiJumpCode = (jumper) => {
                   this.clearSpotHelp();
 
-                  if (jumper.team == `red`) {
+                      if (jumper.team == `red`) {
                       if (jumper.isKing) {
-                          canJump(jumper, 68, 42, 810, 481);
-                          canJump(jumper, -68, 42, 402, 481);
-                      };
-
-                      canJump(jumper, 68, -42, 810, 229);
-                      canJump(jumper, -68, -42, 402, 229);
-                      
-                      if (!templates.exists('Spot Finder')) {
+                          if (place.occupied(jumper,jumper.x + 68,jumper.y + 42,`Pieces`) && !place.occupied(jumper,jumper.x + 136,jumper.y + 84,`Pieces`) && !(jumper.x == 878 || jumper.x == 810) && !(jumper.y == 523 || jumper.y == 481) && !place.occupied(jumper,jumper.x + 68,jumper.y + 42,`Pieces`).kill) {
+                              templates.copy('Spot Finder',jumper.x + 136, jumper.y + 84,{summoner:jumper, targetCombo:place.occupied(jumper,jumper.x + 68,jumper.y + 42,`Pieces`)})
+                          }
+                          if (place.occupied(jumper,jumper.x - 68,jumper.y + 42,`Pieces`) && !place.occupied(jumper,jumper.x - 136,jumper.y + 84,`Pieces`) && !(jumper.x == 402 || jumper.x == 470) && !(jumper.y == 523 || jumper.y == 481) && !place.occupied(jumper,jumper.x - 68,jumper.y + 42,`Pieces`).kill) {
+                              templates.copy('Spot Finder',jumper.x - 136, jumper.y + 84,{summoner:jumper, targetCombo:place.occupied(jumper,jumper.x - 68,jumper.y + 42,`Pieces`)})
+                          }
+                      }
+                      if (place.occupied(jumper,jumper.x + 68,jumper.y - 42,`Pieces`) && !place.occupied(jumper,jumper.x + 136,jumper.y - 84,`Pieces`) && !(jumper.x == 878 || jumper.x == 810) && !(jumper.y == 229 || jumper.y == 271) && !place.occupied(jumper,jumper.x + 68,jumper.y - 42,`Pieces`).kill) {
+                          templates.copy('Spot Finder',jumper.x + 136, jumper.y - 84,{summoner:jumper, targetCombo:place.occupied(jumper,jumper.x + 68,jumper.y - 42,`Pieces`)})
+                      }
+                      if (place.occupied(jumper,jumper.x - 68,jumper.y - 42,`Pieces`) && !place.occupied(jumper,jumper.x - 136,jumper.y - 84,`Pieces`) && !(jumper.x == 402 || jumper.x == 470) && !(jumper.y == 229 || jumper.y == 271) && !place.occupied(jumper,jumper.x - 68,jumper.y - 42,`Pieces`).kill) {
+                          templates.copy('Spot Finder',jumper.x - 136, jumper.y - 84,{summoner:jumper, targetCombo:place.occupied(jumper,jumper.x - 68,jumper.y - 42,`Pieces`)})
+                      }
+                                    
+                      if (!templates.exists('Spot Finder') || !templates.list['Spot Finder'].some((i) => {i.kill})) {
                           jumper.isComboTime = false;
                           this.letHimCook = false;
-                          this.playerOnesTurn = false;
-                      };
+                          this.playerOnesTurn = false
+                      }
                   }
                   else if (jumper.team == `black`) {
                       if (jumper.isKing) {
-                          canJump(jumper, 68, -42, 810, 229);
-                          canJump(jumper, -68, -42, 402, 229);
+                          if (place.occupied(jumper, jumper.x + 68, jumper.y - 42, `Pieces`) && !place.occupied(jumper,jumper.x + 136,jumper.y - 84,`Pieces`) && !(jumper.x == 878 || jumper.x == 810) && !(jumper.y == 229 || jumper.y == 271) && !place.occupied(jumper, jumper.x + 68, jumper.y - 42, `Pieces`).kill) {
+                              templates.copy('Spot Finder', jumper.x + 136, jumper.y - 84, { summoner: jumper, targetCombo: place.occupied(jumper, jumper.x + 68, jumper.y - 42, `Pieces`) })
+                          }
+                          if (place.occupied(jumper, jumper.x - 68, jumper.y - 42, `Pieces`) && !place.occupied(jumper,jumper.x - 136,jumper.y - 84,`Pieces`) && !(jumper.x == 402 || jumper.x == 470) && !(jumper.y == 229 || jumper.y == 271) && !place.occupied(jumper, jumper.x - 68, jumper.y - 42, `Pieces`).kill) {
+                              templates.copy('Spot Finder', jumper.x - 136, jumper.y - 84, { summoner: jumper, targetCombo: place.occupied(jumper, jumper.x - 68, jumper.y - 42, `Pieces`) })
+                          }
                       }
-
-                      canJump(jumper, 68, 42, 810, 481);
-                      canJump(jumper, -68, 42, 402, 481);
-
-                      if (!templates.exists('Spot Finder')) {
+                      if (place.occupied(jumper, jumper.x + 68, jumper.y + 42, `Pieces`) && !place.occupied(jumper,jumper.x + 136,jumper.y + 84,`Pieces`) && !(jumper.x == 878 || jumper.x == 810) && !(jumper.y == 523 || jumper.y == 481)) {
+                          templates.copy('Spot Finder', jumper.x + 136, jumper.y + 84, { summoner: jumper, targetCombo: place.occupied(jumper, jumper.x + 68, jumper.y + 42, `Pieces`) })
+                      }
+                      if (place.occupied(jumper, jumper.x - 68, jumper.y + 42, `Pieces`) && !place.occupied(jumper,jumper.x - 136,jumper.y + 84,`Pieces`) && !(jumper.x == 402 || jumper.x == 470) && !(jumper.y == 523 || jumper.y == 481)) {
+                          templates.copy('Spot Finder', jumper.x - 136, jumper.y + 84, { summoner: jumper, targetCombo: place.occupied(jumper, jumper.x - 68, jumper.y + 42, `Pieces`) })
+                      }
+                      if (!templates.exists('Spot Finder') || !templates.list['Spot Finder'].some((i) => {i.kill})) {
                           jumper.isComboTime = false;
                           this.letHimCook = false;
-                          this.playerOnesTurn = true;
-                      };
-                  };
+                          this.playerOnesTurn = true
+                      }
+                  }
               };
 
 
@@ -1589,17 +1799,10 @@ assets:
               function teamLength(team) {
                   return templates.list[team].length;
               };
-
-
-              function canJump(piece, targetX, targetY, maxX, maxY) {
-                  if (place.occupied(piece, piece.x + targetX, piece.y - targetY, `Pieces`) && !place.occupied(piece,piece.x + targetX * 2,piece.y + targetY * 2,`Pieces`) && !(piece.x == maxX || piece.x == maxX + 68) && !(piece.y == maxY || piece.y == maxY + 42) && !place.occupied(piece, piece.x + targetX, piece.y + targetY, `Pieces`).kill) {
-                      templates.copy('Spot Finder', piece.x + targetX * 2, piece.y + targetY * 2, { summoner: piece, targetCombo: place.occupied(piece, piece.x + targetX, piece.y + targetY, `Pieces`) });
-                  };
-              };
             arguments: {}
             lib: core
           - eventKey: OnStep
-            code: |-
+            code: |
               let redTeam = templates.list['Red Pawn'];
               let blackTeam = templates.list['Black Pawn'];
 
@@ -1619,26 +1822,77 @@ assets:
                   };
               };
 
-              if (this.crossovertimeRed && !this.holdYourHorses[1]) {
-                  this.huhRedTime--
-                  this.holdYourHorses[1] = true
-                  if(this.huhRedTime <= 0) {
-                      this.crossovertimeRed = false;
-                      this.huhRedTime = 4
-                      for (let i = 0; i < templates.list['Red Pawn'].length; i++) {
-                          templates.list['Red Pawn'][i].isChessnt = false
-                      }
+              if (this.crossover.red && !this.holdYourHorses[1]) {
+                  this.crossoverTime.red--;
+                  this.holdYourHorses[1] = true;
+                  if(this.crossoverTime.red <= 0) {
+                      this.crossover.red = false;
+                      this.crossoverTime.red = 4;
+                      for (let i = 0; i < redTeam.length; i++) {
+                          if(redTeam[i].isChessnt && !redTeam[i].isKing) {
+                              redTeam[i].isChessnt = false;
+                              redTeam[i].tex = `red_paw_norm`
+                          }
+                          else {
+                              redTeam[i].isChessnt = false
+                          }
+                      };
                   };
-              }
+              };
 
-              if (this.crossovertimeBlack && !this.holdYourHorses[2]) {
-                  this.huhBlackTime--;
+              if (this.crossover.black && !this.holdYourHorses[2]) {
+                  this.crossoverTime.black--;
                   this.holdYourHorses[2] = true;
-                  if(this.huhBlackTime <= 0) {
-                      this.crossovertimeBlack = false;
-                      this.huhBlackTime = 4;
+                  if(this.crossoverTime.black <= 0) {
+                      this.crossover.black = false;
+                      this.crossoverTime.black = 4;
+                      for (let i = 0; i < blackTeam.length; i++) {
+                          if(blackTeam[i].isChessnt && !blackTeam[i].isKing) {
+                              blackTeam[i].isChessnt = false;
+                              blackTeam[i].tex = `black_pawn_norm`
+                          }
+                          else {
+                              blackTeam[i].isChessnt = false;
+                          }
+                      };
                   };
-              }
+              };
+
+              if (this.denied.red && !this.holdYourHorses[3]) {
+                  this.deniedTime.red--;
+                  this.holdYourHorses[3] = true;
+                  if(this.deniedTime.red <= 0) {
+                      this.denied.red = false;
+                      this.deniedTime.red = 4;
+                      for (let i = 0; i < redTeam.length; i++) {
+                          if(redTeam[i].isNoped && !redTeam[i].isKing) {
+                              redTeam[i].isNoped = false;
+                              redTeam[i].tex = `red_paw_norm`
+                          }
+                          else {
+                              redTeam[i].isNoped = false
+                          }
+                      };
+                  };
+              };
+
+              if (this.denied.black && !this.holdYourHorses[4]) {
+                  this.deniedTime.black--;
+                  this.holdYourHorses[4] = true;
+                  if(this.deniedTime.black <= 0) {
+                      this.denied.black = false;
+                      this.deniedTime.black = 4;
+                      for (let i = 0; i < blackTeam.length; i++) {
+                          if(blackTeam[i].isNoped && !blackTeam[i].isKing) {
+                              blackTeam[i].isNoped = false;
+                              blackTeam[i].tex = `black_pawn_norm`
+                          }
+                          else {
+                              blackTeam[i].isNoped = false;
+                          }
+                      };
+                  };
+              };
 
               if (!templates.exists('Black Pawn')) {
                   sessionStorage.winner = `PLAYER 1 WINS`
@@ -1648,20 +1902,6 @@ assets:
                   sessionStorage.winner = `PLAYER 2 WINS`
                   rooms.switch('Win Screen')
               }
-
-              function countDown(power, time, horse, teamLength) {
-                  if (power && !horse) {
-                      time--;
-                      horse = true;
-                      if(time <= 0) {
-                          power = false;
-                          time = 4;
-                          for (let i = 0; i < team.length; i++) {
-                              team[i].isChessnt = false
-                          }
-                      };
-                  };
-              };
             arguments: {}
             lib: core
         behaviors: []
@@ -1805,6 +2045,749 @@ assets:
         events: []
         behaviors: []
         uid: 21NH5pc2kf8N4w
+      - type: room
+        oncreate: ''
+        onstep: ''
+        ondraw: ''
+        onleave: ''
+        gridX: 64
+        gridY: 64
+        diagonalGrid: false
+        disableGrid: true
+        simulate: true
+        width: 1280
+        height: 720
+        restrictCamera: false
+        restrictMaxX: 1280
+        restrictMinX: 1280
+        restrictMaxY: 720
+        restrictMinY: 720
+        isUi: false
+        name: playVsCPU
+        backgroundColor: '#000000'
+        follow: -1
+        backgrounds:
+          - depth: -10
+            texture: 4fgwq14BfdczDW
+            shiftX: 0
+            shiftY: 0
+            parallaxX: 1
+            parallaxY: 1
+            movementX: 0
+            movementY: 0
+            scaleX: 1
+            scaleY: 1
+            repeat: repeat
+        copies:
+          - x: 640
+            'y': 385
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: k5dgFTKK7j5wLB
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 402
+            'y': 523
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: QH2mWWbMnWrLDz
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 674
+            'y': 523
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: QH2mWWbMnWrLDz
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 538
+            'y': 523
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: QH2mWWbMnWrLDz
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 470
+            'y': 481
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: QH2mWWbMnWrLDz
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 606
+            'y': 481
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: QH2mWWbMnWrLDz
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 810
+            'y': 523
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: QH2mWWbMnWrLDz
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 742
+            'y': 481
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: QH2mWWbMnWrLDz
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 538
+            'y': 439
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: QH2mWWbMnWrLDz
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 402
+            'y': 439
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: QH2mWWbMnWrLDz
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 674
+            'y': 439
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: QH2mWWbMnWrLDz
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 878
+            'y': 481
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: QH2mWWbMnWrLDz
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 810
+            'y': 439
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: QH2mWWbMnWrLDz
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 470
+            'y': 229
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: 7Q7zB9NDt3wndF
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 402
+            'y': 271
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: 7Q7zB9NDt3wndF
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 538
+            'y': 271
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: 7Q7zB9NDt3wndF
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 878
+            'y': 229
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: 7Q7zB9NDt3wndF
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 606
+            'y': 229
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: 7Q7zB9NDt3wndF
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 742
+            'y': 229
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: 7Q7zB9NDt3wndF
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 810
+            'y': 271
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: 7Q7zB9NDt3wndF
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 674
+            'y': 271
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: 7Q7zB9NDt3wndF
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 606
+            'y': 313
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: 7Q7zB9NDt3wndF
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 742
+            'y': 313
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: 7Q7zB9NDt3wndF
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 470
+            'y': 313
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: 7Q7zB9NDt3wndF
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 878
+            'y': 313
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: 7Q7zB9NDt3wndF
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 4
+            'y': -11
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: Mrnf4t68RC2HWM
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 646
+            'y': 386
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 30
+              'y': 30
+            rotation: 0
+            uid: 3HkdDrpKGFcnkD
+            exts: {}
+            customProperties:
+              newProperty1: ''
+            bindings: {}
+          - x: 0
+            'y': 24
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: GwbHRmMjC6wn5h
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 1024
+            'y': 320
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 5
+              'y': 5
+            rotation: 0
+            uid: TpL88D4BmjMhLz
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 1221
+            'y': 48
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 3
+              'y': 3
+            rotation: 0
+            uid: W6Q2gPjp1jTR38
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 216
+            'y': 256
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 2.5
+              'y': 2.5
+            rotation: 0
+            uid: gDndfQ2qwCtF7r
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 248
+            'y': 232
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 0.8
+              'y': 0.8
+            rotation: 0
+            uid: MHhMgw85hHQpL8
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 216
+            'y': 320
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 2.5
+              'y': 2.5
+            rotation: 0
+            uid: ttKQD4RRwMCCQq
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 216
+            'y': 384
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 2.5
+              'y': 2.5
+            rotation: 0
+            uid: ttKQD4RRwMCCQq
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 248
+            'y': 296
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 0.8
+              'y': 0.8
+            rotation: 0
+            uid: J4GC8qC6wcbWhM
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 248
+            'y': 360
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 0.8
+              'y': 0.8
+            rotation: 0
+            uid: PhPFb1Q3rF6zgT
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 216
+            'y': 448
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 2.5
+              'y': 2.5
+            rotation: 0
+            uid: qHJ8JmWnpw26mP
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 216
+            'y': 512
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 2.5
+              'y': 2.5
+            rotation: 0
+            uid: qHJ8JmWnpw26mP
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 248
+            'y': 424
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 0.8
+              'y': 0.8
+            rotation: 0
+            uid: rPW4bMrNnqGH98
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 248
+            'y': 488
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 0.8
+              'y': 0.8
+            rotation: 0
+            uid: wrKKNmQNN97j4t
+            exts: {}
+            customProperties: {}
+            bindings: {}
+        tiles: []
+        extends: {}
+        lastmod: 1714359577406
+        events:
+          - eventKey: OnRoomStart
+            code: >-
+              //Change by 68 to move left and right. Change by 42 to move up and
+              down
+
+              this.holdYourHorses = [false,false,false,false,false];
+
+
+              this.crossover = {red:false, black:false};
+
+              this.crossoverTime = {red: 4, black:4}
+
+
+              this.denied = {red:false, black:false}
+
+              this.deniedTime = {red:4, black:4}
+
+
+              this.minesweepersim = false
+
+              this.sweepingTime =  4;
+
+
+              this.playerOnesTurn = true
+
+              this.letHimCook = false
+
+
+              storage.setSession(`winner`,`NO WINNER`)
+
+
+              this.clearSpotHelp = () => {
+                  for (let spot of templates.list[`Spot Finder`]) {
+                  spot.kill = true;
+                  }
+              }
+
+
+              this.mutiJumpCode = (jumper) => {
+                  this.clearSpotHelp();
+
+                      if (jumper.team == `red`) {
+                      if (jumper.isKing) {
+                          if (place.occupied(jumper,jumper.x + 68,jumper.y + 42,`Pieces`) && !place.occupied(jumper,jumper.x + 136,jumper.y + 84,`Pieces`) && !(jumper.x == 878 || jumper.x == 810) && !(jumper.y == 523 || jumper.y == 481) && !place.occupied(jumper,jumper.x + 68,jumper.y + 42,`Pieces`).kill) {
+                              templates.copy('Spot Finder',jumper.x + 136, jumper.y + 84,{summoner:jumper, targetCombo:place.occupied(jumper,jumper.x + 68,jumper.y + 42,`Pieces`)})
+                          }
+                          if (place.occupied(jumper,jumper.x - 68,jumper.y + 42,`Pieces`) && !place.occupied(jumper,jumper.x - 136,jumper.y + 84,`Pieces`) && !(jumper.x == 402 || jumper.x == 470) && !(jumper.y == 523 || jumper.y == 481) && !place.occupied(jumper,jumper.x - 68,jumper.y + 42,`Pieces`).kill) {
+                              templates.copy('Spot Finder',jumper.x - 136, jumper.y + 84,{summoner:jumper, targetCombo:place.occupied(jumper,jumper.x - 68,jumper.y + 42,`Pieces`)})
+                          }
+                      }
+                      if (place.occupied(jumper,jumper.x + 68,jumper.y - 42,`Pieces`) && !place.occupied(jumper,jumper.x + 136,jumper.y - 84,`Pieces`) && !(jumper.x == 878 || jumper.x == 810) && !(jumper.y == 229 || jumper.y == 271) && !place.occupied(jumper,jumper.x + 68,jumper.y - 42,`Pieces`).kill) {
+                          templates.copy('Spot Finder',jumper.x + 136, jumper.y - 84,{summoner:jumper, targetCombo:place.occupied(jumper,jumper.x + 68,jumper.y - 42,`Pieces`)})
+                      }
+                      if (place.occupied(jumper,jumper.x - 68,jumper.y - 42,`Pieces`) && !place.occupied(jumper,jumper.x - 136,jumper.y - 84,`Pieces`) && !(jumper.x == 402 || jumper.x == 470) && !(jumper.y == 229 || jumper.y == 271) && !place.occupied(jumper,jumper.x - 68,jumper.y - 42,`Pieces`).kill) {
+                          templates.copy('Spot Finder',jumper.x - 136, jumper.y - 84,{summoner:jumper, targetCombo:place.occupied(jumper,jumper.x - 68,jumper.y - 42,`Pieces`)})
+                      }
+                                    
+                      if (!templates.exists('Spot Finder') || !templates.list['Spot Finder'].some((i) => {i.kill})) {
+                          jumper.isComboTime = false;
+                          this.letHimCook = false;
+                          this.playerOnesTurn = false
+                      }
+                  }
+                  else if (jumper.team == `black`) {
+                      if (jumper.isKing) {
+                          if (place.occupied(jumper, jumper.x + 68, jumper.y - 42, `Pieces`) && !place.occupied(jumper,jumper.x + 136,jumper.y - 84,`Pieces`) && !(jumper.x == 878 || jumper.x == 810) && !(jumper.y == 229 || jumper.y == 271) && !place.occupied(jumper, jumper.x + 68, jumper.y - 42, `Pieces`).kill) {
+                              templates.copy('Spot Finder', jumper.x + 136, jumper.y - 84, { summoner: jumper, targetCombo: place.occupied(jumper, jumper.x + 68, jumper.y - 42, `Pieces`) })
+                          }
+                          if (place.occupied(jumper, jumper.x - 68, jumper.y - 42, `Pieces`) && !place.occupied(jumper,jumper.x - 136,jumper.y - 84,`Pieces`) && !(jumper.x == 402 || jumper.x == 470) && !(jumper.y == 229 || jumper.y == 271) && !place.occupied(jumper, jumper.x - 68, jumper.y - 42, `Pieces`).kill) {
+                              templates.copy('Spot Finder', jumper.x - 136, jumper.y - 84, { summoner: jumper, targetCombo: place.occupied(jumper, jumper.x - 68, jumper.y - 42, `Pieces`) })
+                          }
+                      }
+                      if (place.occupied(jumper, jumper.x + 68, jumper.y + 42, `Pieces`) && !place.occupied(jumper,jumper.x + 136,jumper.y + 84,`Pieces`) && !(jumper.x == 878 || jumper.x == 810) && !(jumper.y == 523 || jumper.y == 481)) {
+                          templates.copy('Spot Finder', jumper.x + 136, jumper.y + 84, { summoner: jumper, targetCombo: place.occupied(jumper, jumper.x + 68, jumper.y + 42, `Pieces`) })
+                      }
+                      if (place.occupied(jumper, jumper.x - 68, jumper.y + 42, `Pieces`) && !place.occupied(jumper,jumper.x - 136,jumper.y + 84,`Pieces`) && !(jumper.x == 402 || jumper.x == 470) && !(jumper.y == 523 || jumper.y == 481)) {
+                          templates.copy('Spot Finder', jumper.x - 136, jumper.y + 84, { summoner: jumper, targetCombo: place.occupied(jumper, jumper.x - 68, jumper.y + 42, `Pieces`) })
+                      }
+                      if (!templates.exists('Spot Finder') || !templates.list['Spot Finder'].some((i) => {i.kill})) {
+                          jumper.isComboTime = false;
+                          this.letHimCook = false;
+                          this.playerOnesTurn = true
+                      }
+                  }
+              };
+
+
+              this.timerpain = timer.add(600000,`the final brain cell`);
+
+
+              this.timerpain.then(() => {
+                  if (teamLength(`Red Pawn`) > teamLength(`Black Pawn`)) {
+                      setWinner(`PLAYER 1 WINS`);
+                  }
+                  else if (teamLength(`Black Pawn`) > teamLength(`Red Pawn`)) {
+                      setWinner(`PLAYER 2 WINS`);
+                  }
+                  else {
+                      setWinner(`NO WINNER`);
+                  };
+              })
+
+
+              .catch(e => {
+                  console.log('Timer removed', e);
+              });
+
+
+              function setWinner(winnerText) {
+                  sessionStorage.winner = winnerText;
+                  rooms.switch('Win Screen');
+              };
+
+
+              function teamLength(team) {
+                  return templates.list[team].length;
+              };
+            arguments: {}
+            lib: core
+          - eventKey: OnStep
+            code: |
+              let redTeam = templates.list['Red Pawn'];
+              let blackTeam = templates.list['Black Pawn'];
+
+              if (actions.fullscreen.pressed && !settings.fullscreen) {
+                   settings.fullscreen = true;
+              }
+              else if (actions.fullscreen.pressed){
+                  settings.fullscreen = false;
+              };
+
+              if (this.minesweepersim && !this.holdYourHorses[0]) {
+                  this.sweepingTime--;
+                  this.holdYourHorses[0] = true;
+                  if(this.sweepingTime <= 0) {
+                      this.minesweepersim = false;
+                      this.sweepingTime = 4;
+                  };
+              };
+
+              if (this.crossover.red && !this.holdYourHorses[1]) {
+                  this.crossoverTime.red--;
+                  this.holdYourHorses[1] = true;
+                  if(this.crossoverTime.red <= 0) {
+                      this.crossover.red = false;
+                      this.crossoverTime.red = 4;
+                      for (let i = 0; i < redTeam.length; i++) {
+                          if(redTeam[i].isChessnt && !redTeam[i].isKing) {
+                              redTeam[i].isChessnt = false;
+                              redTeam[i].tex = `red_paw_norm`
+                          }
+                          else {
+                              redTeam[i].isChessnt = false
+                          }
+                      };
+                  };
+              };
+
+              if (this.crossover.black && !this.holdYourHorses[2]) {
+                  this.crossoverTime.black--;
+                  this.holdYourHorses[2] = true;
+                  if(this.crossoverTime.black <= 0) {
+                      this.crossover.black = false;
+                      this.crossoverTime.black = 4;
+                      for (let i = 0; i < blackTeam.length; i++) {
+                          if(blackTeam[i].isChessnt && !blackTeam[i].isKing) {
+                              blackTeam[i].isChessnt = false;
+                              blackTeam[i].tex = `black_pawn_norm`
+                          }
+                          else {
+                              blackTeam[i].isChessnt = false;
+                          }
+                      };
+                  };
+              };
+
+              if (this.denied.red && !this.holdYourHorses[3]) {
+                  this.deniedTime.red--;
+                  this.holdYourHorses[3] = true;
+                  if(this.deniedTime.red <= 0) {
+                      this.denied.red = false;
+                      this.deniedTime.red = 4;
+                      for (let i = 0; i < redTeam.length; i++) {
+                          if(redTeam[i].isNoped && !redTeam[i].isKing) {
+                              redTeam[i].isNoped = false;
+                              redTeam[i].tex = `red_paw_norm`
+                          }
+                          else {
+                              redTeam[i].isNoped = false
+                          }
+                      };
+                  };
+              };
+
+              if (this.denied.black && !this.holdYourHorses[4]) {
+                  this.deniedTime.black--;
+                  this.holdYourHorses[4] = true;
+                  if(this.deniedTime.black <= 0) {
+                      this.denied.black = false;
+                      this.deniedTime.black = 4;
+                      for (let i = 0; i < blackTeam.length; i++) {
+                          if(blackTeam[i].isNoped && !blackTeam[i].isKing) {
+                              blackTeam[i].isNoped = false;
+                              blackTeam[i].tex = `black_pawn_norm`
+                          }
+                          else {
+                              blackTeam[i].isNoped = false;
+                          }
+                      };
+                  };
+              };
+
+              if (!templates.exists('Black Pawn')) {
+                  sessionStorage.winner = `PLAYER 1 WINS`
+                  rooms.switch('Win Screen')
+              }
+              else if (!templates.exists('Red Pawn')) {
+                  sessionStorage.winner = `PLAYER 2 WINS`
+                  rooms.switch('Win Screen')
+              }
+            arguments: {}
+            lib: core
+        behaviors: []
+        uid: 2mKzMKH5d5TQ1N
   - type: folder
     uid: 2TQCBfnLFTqcR6
     colorClass: error
@@ -2105,7 +3088,7 @@ assets:
                   C:\Users\150073267\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\red
                   paw norm.png
                 r: 32
-              - lastmod: 1713559009127
+              - lastmod: 1714343803308
                 type: texture
                 name: red_paw_shield
                 untill: 0
@@ -2113,8 +3096,8 @@ assets:
                   - 1
                   - 1
                 axis:
-                  - 0
-                  - 0
+                  - 32
+                  - 32
                 marginx: 0
                 marginy: 0
                 imgWidth: 64
@@ -2125,10 +3108,10 @@ assets:
                 offy: 0
                 origname: i2tM8f75DzKdW2B.png
                 shape: rect
-                left: 0
-                right: 64
-                top: 0
-                bottom: 64
+                left: 31
+                right: 31
+                top: 23
+                bottom: 19
                 uid: 2tM8f75DzKdW2B
                 padding: 1
                 isBlank: false
@@ -2410,6 +3393,36 @@ assets:
                 source: >-
                   C:\Users\niceh\OneDrive\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\chessnt
                   ui.png
+              - lastmod: 1714341225414
+                type: texture
+                name: shield_ui
+                untill: 0
+                grid:
+                  - 1
+                  - 1
+                axis:
+                  - 11
+                  - 11
+                marginx: 0
+                marginy: 0
+                imgWidth: 23
+                imgHeight: 23
+                width: 23
+                height: 23
+                offx: 0
+                offy: 0
+                origname: i5DpGB1H7NzFgd6.png
+                shape: rect
+                left: 10
+                right: 11
+                top: 10
+                bottom: 11
+                uid: 5DpGB1H7NzFgd6
+                padding: 1
+                isBlank: false
+                source: >-
+                  C:\Users\niceh\OneDrive\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\shield
+                  ui.png
           - lastmod: 1714081281097
             type: texture
             name: cardupsidedown
@@ -2497,6 +3510,36 @@ assets:
             isBlank: false
             source: >-
               C:\Users\niceh\OneDrive\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\mine.png
+          - lastmod: 1714356612477
+            type: texture
+            name: fireball_again
+            untill: 0
+            grid:
+              - 1
+              - 1
+            axis:
+              - 12
+              - 15
+            marginx: 0
+            marginy: 0
+            imgWidth: 24
+            imgHeight: 30
+            width: 24
+            height: 30
+            offx: 0
+            offy: 0
+            origname: ipnGK6TQh7rPDf2.png
+            shape: rect
+            left: 12
+            right: 12
+            top: 15
+            bottom: 15
+            uid: pnGK6TQh7rPDf2
+            padding: 1
+            isBlank: false
+            source: >-
+              C:\Users\niceh\OneDrive\Documents\GitHub\Noah-And-Isaacs-Final-Project\assets\fireball
+              again.png
       - type: folder
         uid: hzjmK6hCH3Ptd4
         colorClass: text
