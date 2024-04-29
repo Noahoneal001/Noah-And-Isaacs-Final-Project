@@ -120,7 +120,7 @@ assets:
                       else if (atRight && atTop && canMoveBack) {
                           createSpotFinder(this,left,down);
                       }
-                      else if (left && canMoveBack) {
+                      else if (atLeft && canMoveBack) {
                           createSpotFinder(this,right,down);
                           createSpotFinder(this,right,up);
                       }
@@ -162,7 +162,7 @@ assets:
                 lib: core
             extends:
               cgroup: Pieces
-            lastmod: 1714356766144
+            lastmod: 1714360400680
             uid: 7Q7zB9NDt3wndF
             behaviors: []
           - type: template
@@ -482,7 +482,7 @@ assets:
                 lib: core
             extends:
               cgroup: Pieces
-            lastmod: 1714352403477
+            lastmod: 1714360477409
             uid: QH2mWWbMnWrLDz
             behaviors: []
           - type: template
@@ -3859,7 +3859,7 @@ settings:
     title: Wizard's Draughts
     version:
       - 0
-      - 1
+      - 5
       - 0
     versionPostfix: ''
     appId: ''
