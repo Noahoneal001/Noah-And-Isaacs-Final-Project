@@ -1708,18 +1708,6 @@ assets:
             exts: {}
             customProperties: {}
             bindings: {}
-          - x: 1221
-            'y': 48
-            opacity: 1
-            tint: 16777215
-            scale:
-              x: 3
-              'y': 3
-            rotation: 0
-            uid: W6Q2gPjp1jTR38
-            exts: {}
-            customProperties: {}
-            bindings: {}
           - x: 216
             'y': 256
             opacity: 1
@@ -1842,7 +1830,7 @@ assets:
             bindings: {}
         tiles: []
         extends: {}
-        lastmod: 1714447824164
+        lastmod: 1714449611678
         events:
           - eventKey: OnRoomStart
             code: >-
