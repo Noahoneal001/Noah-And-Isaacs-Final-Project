@@ -2322,21 +2322,9 @@ assets:
             exts: {}
             customProperties: {}
             bindings: {}
-          - x: 1088
-            'y': 512
-            opacity: 1
-            tint: 16777215
-            scale:
-              x: 1
-              'y': 1
-            rotation: 0
-            uid: zMqzGq7BFqcbTk
-            exts: {}
-            customProperties: {}
-            bindings: {}
         tiles: []
         extends: {}
-        lastmod: 1714448845932
+        lastmod: 1714449246634
         events:
           - eventKey: OnStep
             code: |-
