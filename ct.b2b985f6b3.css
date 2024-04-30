@@ -99,16 +99,16 @@ canvas, img{
 
 
 @font-face {
-    font-family: 'Silkscreen-Regular';
-    src: url('fonts/fDwB9KGKF95gpmn.ttf.woff') format('woff'),
-         url('fonts/fDwB9KGKF95gpmn.ttf') format('truetype');
+    font-family: 'Silkscreen-Bold';
+    src: url('fonts/fqpFphFkGGhcQQ2.ttf.woff') format('woff'),
+         url('fonts/fqpFphFkGGhcQQ2.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
 }
 @font-face {
-    font-family: 'Silkscreen-Bold';
-    src: url('fonts/fqpFphFkGGhcQQ2.ttf.woff') format('woff'),
-         url('fonts/fqpFphFkGGhcQQ2.ttf') format('truetype');
+    font-family: 'Silkscreen-Regular';
+    src: url('fonts/fDwB9KGKF95gpmn.ttf.woff') format('woff'),
+         url('fonts/fDwB9KGKF95gpmn.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
 }
