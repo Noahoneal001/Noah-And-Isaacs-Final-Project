@@ -7023,7 +7023,7 @@ rooms.templates['Start Screen'] = {
     width: 1280,
     height: 720,
     behaviors: JSON.parse('[]'),
-    objects: JSON.parse('[{"x":362,"y":485,"opacity":1,"tint":16777215,"scale":{"x":2,"y":2},"rotation":0,"exts":{},"customProperties":{},"template":"PVP Button"},{"x":640.00004881,"y":336.99999439,"opacity":1,"tint":16777215,"scale":{"x":0.8,"y":0.8},"rotation":0,"exts":{},"customProperties":{},"template":"LOGO"},{"x":746,"y":485,"opacity":1,"tint":16777215,"scale":{"x":2,"y":2},"rotation":0,"exts":{},"customProperties":{},"template":"PVE"},{"x":1088,"y":512,"opacity":1,"tint":16777215,"scale":{"x":1,"y":1},"rotation":0,"exts":{},"customProperties":{},"template":"Playzone"}]'),
+    objects: JSON.parse('[{"x":362,"y":485,"opacity":1,"tint":16777215,"scale":{"x":2,"y":2},"rotation":0,"exts":{},"customProperties":{},"template":"PVP Button"},{"x":640.00004881,"y":336.99999439,"opacity":1,"tint":16777215,"scale":{"x":0.8,"y":0.8},"rotation":0,"exts":{},"customProperties":{},"template":"LOGO"},{"x":746,"y":485,"opacity":1,"tint":16777215,"scale":{"x":2,"y":2},"rotation":0,"exts":{},"customProperties":{},"template":"PVE"}]'),
     bgs: JSON.parse('[{"texture":"test","depth":0,"exts":{"movementX":0,"movementY":0,"parallaxX":1,"parallaxY":1,"repeat":"repeat","scaleX":1,"scaleY":1,"shiftX":0,"shiftY":0}}]'),
     tiles: JSON.parse('[]'),
     backgroundColor: '#000000',
