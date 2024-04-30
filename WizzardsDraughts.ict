@@ -635,7 +635,7 @@ assets:
                       }
                   }
 
-                  else if (!rooms.current.playerOnesTurn){
+                  else {
                       switch (power) {
                           case `none`:
                           cardUpside = `empty_card`
@@ -688,9 +688,6 @@ assets:
                           break;
                       }
                   }
-
-
-                  if (!sessionStorage.vsCPU && rooms.current.playerOnesTurn){
                       camera.shake = 0.4
                       rooms.current.playerOnesTurn = !rooms.current.playerOnesTurn
                       for (let i = 0; i < rooms.current.holdYourHorses.length; i++) {
@@ -701,13 +698,77 @@ assets:
                           templates.list['Used Card'][0].kill
                       }
                       templates.copy('Used Card',this.x,this.y + 200, {tex:cardUpside, scale:5})
+
                   }
+
+                  else if(rooms.current.playerOnesTurn) {
+                          switch (power) {
+                          case `none`:
+                              cardUpside = `empty_card`
+                          break;
+
+                          case `chessnt`:
+                              rooms.current.crossover.red = true
+                              rooms.current.crossoverTime.red = 4;
+                              cardUpside = `bishop_card`
+                              for (let i of templates.list['Red Pawn']) {
+                                  i.isChessnt = false
+                              }
+                              if(templates.list['Red Pawn'][randomNumberRed].isNoped) {
+                                  templates.list['Red Pawn'][randomNumberRed].isNoped = false
+                                  rooms.current.denied.red = false
+                                  rooms.current.deniedTime.red = 4
+                                  rooms.current.holdYourHorses[3] = false
+                              }
+                              templates.list['Red Pawn'][randomNumberRed].isChessnt = true
+                          break;
+
+                          case `shield`:
+                              rooms.current.denied.red = true
+                              rooms.current.deniedTime.red = 4
+                              cardUpside = `shield_card`
+                              for (let i of templates.list['Red Pawn']) {
+                                  i.isNoped = false
+                              }
+                              if(templates.list['Red Pawn'][randomNumberRed].isChessnt) {
+                                  templates.list['Red Pawn'][randomNumberRed].isChessnt = false
+                                  rooms.current.crossover.red = false
+                                  rooms.current.crossoverTime.red = 4
+                                  rooms.current.holdYourHorses[1] = false
+                              }
+                              templates.list['Red Pawn'][Math.floor(random.range(0,templates.list['Red Pawn'].length))].isNoped = true
+                          break;
+
+                          case `mines`:
+                              cardUpside = `mine_card`
+                              rooms.current.minesweepersim = true
+                              rooms.current.sweepingTime = 4;
+                          break;
+                          
+                          case `fireball`:
+                              cardUpside = `fireball_card`
+                              for (let i of templates.list['Red Pawn']) {
+                                  i.isAWizardHarry = false
+                              }
+                              templates.list['Red Pawn'][Math.floor(random.range(0,templates.list['Red Pawn'].length))].isAWizardHarry = true
+                          break;
+                      }
+                      camera.shake = 0.4
+                      rooms.current.playerOnesTurn = !rooms.current.playerOnesTurn
+                      for (let i = 0; i < rooms.current.holdYourHorses.length; i++) {
+                          console.log(rooms.current.holdYourHorses[i])
+                          rooms.current.holdYourHorses[i] = false
+                      }
+                      if (templates.exists('Used Card')){
+                          templates.list['Used Card'][0].kill
+                      }
+                      templates.copy('Used Card',this.x,this.y + 200, {tex:cardUpside, scale:5})
 
                   }
                 arguments: {}
                 lib: core
             extends: {}
-            lastmod: 1714423229827
+            lastmod: 1714439959369
             uid: TpL88D4BmjMhLz
             behaviors: []
           - type: template
@@ -1097,11 +1158,11 @@ assets:
                 code: |-
                   sessionStorage.vsCPU = true
 
-                  rooms.switch('play')
+                  rooms.switch('Warning')
                 arguments: {}
                 lib: core
             extends: {}
-            lastmod: 1714421758528
+            lastmod: 1714448633882
             uid: JNLbBPKg1JKcF1
             behaviors: []
             defaultText: ''
@@ -1138,14 +1199,15 @@ assets:
                     arguments: {}
                   - eventKey: OnPointerClick
                     code: |-
-                      for (let i = 0; i < rooms.current.holdYourHorses; i++) {
-                              console.log(rooms.current.holdYourHorses[i])
-                              rooms.current.holdYourHorses[i] = false
-                      }
+                      let test = [1,2,3,4,5]
+                      let rng = Math.floor(random.range(0,5))
+                      test.splice(rng,rng)
+                      console.log(rng)
+                      console.log(test)
                     arguments: {}
                     lib: core
                 extends: {}
-                lastmod: 1714249398561
+                lastmod: 1714444242106
                 uid: zMqzGq7BFqcbTk
                 behaviors: []
                 defaultText: ''
@@ -1159,6 +1221,76 @@ assets:
                 hoverTexture: -1
                 pressedTexture: -1
                 disabledTexture: -1
+          - type: template
+            baseClass: Text
+            name: Warning Text
+            depth: 0
+            texture: -1
+            playAnimationOnStart: false
+            loopAnimation: true
+            animationFPS: 30
+            visible: true
+            events:
+              - eventKey: OnStep
+                lib: core
+                code: this.move();
+                arguments: {}
+            extends: {}
+            lastmod: 1714448286704
+            uid: Mb7HfJM4gGkWC9
+            behaviors: []
+            defaultText: >-
+              Warning the CPU is a wizard and it will use its magic to cheat are
+              sure you want to continue?
+            textStyle: 24Q7H1f395pg44
+          - type: template
+            baseClass: Text
+            name: 'Yes'
+            depth: 0
+            texture: -1
+            playAnimationOnStart: false
+            loopAnimation: true
+            animationFPS: 30
+            visible: true
+            events:
+              - eventKey: OnStep
+                lib: core
+                code: this.move();
+                arguments: {}
+              - eventKey: OnPointerClick
+                code: rooms.switch('play')
+                arguments: {}
+                lib: core
+            extends: {}
+            lastmod: 1714448482715
+            uid: f3nLt9z6r6hjPb
+            behaviors: []
+            defaultText: 'YES'
+            textStyle: 2N8KcGr2541bFk
+          - type: template
+            baseClass: Text
+            name: 'No'
+            depth: 0
+            texture: -1
+            playAnimationOnStart: false
+            loopAnimation: true
+            animationFPS: 30
+            visible: true
+            events:
+              - eventKey: OnStep
+                lib: core
+                code: this.move();
+                arguments: {}
+              - eventKey: OnPointerClick
+                code: rooms.switch('Start Screen')
+                arguments: {}
+                lib: core
+            extends: {}
+            lastmod: 1714448534662
+            uid: Twb451qqwqW8CH
+            behaviors: []
+            defaultText: 'NO'
+            textStyle: 9ThdgzFNRcdmnD
       - type: folder
         uid: TBgjH2wkkBWfDG
         colorClass: warning
@@ -1710,7 +1842,7 @@ assets:
             bindings: {}
         tiles: []
         extends: {}
-        lastmod: 1714422039389
+        lastmod: 1714447824164
         events:
           - eventKey: OnRoomStart
             code: >-
@@ -1932,6 +2064,190 @@ assets:
                   sessionStorage.winner = `PLAYER 2 WINS`
                   rooms.switch('Win Screen')
               }
+
+              if (sessionStorage.vsCPU && !this.playerOnesTurn) {
+                  let cardUpside = ``
+                  let brain = random.dice(`draw`, `move`)
+                  let pieceList = templates.list['Black Pawn']
+                  let power = random.dice(`none`,`chessnt`,`shield`, `mines`,`fireball`)
+                  let randomNumberBlack = Math.floor(random.range(0,pieceList.length))
+                  let chosenPiece = pieceList[randomNumberBlack]
+
+                  switch(brain) {
+                      case `draw`:
+
+                          switch (power) {
+                              case `none`:
+                                  cardUpside = `empty_card`
+                              break;
+
+                              case `chessnt`:
+                                  rooms.current.crossover.black = true
+                                  rooms.current.crossoverTime.black = 4
+                                  cardUpside = `bishop_card`
+                                  for (let i of templates.list['Black Pawn']) {
+                                      i.isChessnt = false
+                                  }
+                                  if(templates.list['Black Pawn'][randomNumberBlack].isNoped) {
+                                      templates.list['Black Pawn'][randomNumberBlack].isNoped = false
+                                      rooms.current.denied.black = false
+                                      rooms.current.deniedTime.black = 4
+                                      rooms.current.holdYourHorses[4] = false
+                                  }
+                                  templates.list['Black Pawn'][randomNumberBlack].isChessnt = true
+                              break;
+
+                              case `shield`:
+                                  rooms.current.denied.black = true
+                                  rooms.current.deniedTime.black = 4
+                                  cardUpside = `shield_card`
+                                  for (let i of templates.list['Black Pawn']) {
+                                      i.isNoped = false
+                                  }
+                                  if(templates.list['Black Pawn'][randomNumberBlack].isChessnt) {
+                                      templates.list['Black Pawn'][randomNumberBlack].isChessnt = false
+                                      rooms.current.crossover.black = false
+                                      rooms.current.crossoverTime.black = 4
+                                      rooms.current.holdYourHorses[2] = false
+                                  }
+                                  templates.list['Black Pawn'][Math.floor(random.range(0,templates.list['Black Pawn'].length))].isNoped = true
+                              break;
+
+                              case `mines`:
+                                  cardUpside = `mine_card`
+                                  rooms.current.minesweepersim = true
+                                  rooms.current.sweepingTime = 4;
+                              break;
+                      
+                              case `fireball`:
+                                  cardUpside = `fireball_card`
+                                  for (let i of templates.list['Black Pawn']) {
+                                      i.isAWizardHarry = false
+                                  }
+                                  templates.list['Black Pawn'][Math.floor(random.range(0,templates.list['Black Pawn'].length))].isAWizardHarry = true
+                              break;
+                          }
+
+                          camera.shake = 0.4
+                          rooms.current.playerOnesTurn = !rooms.current.playerOnesTurn
+                          for (let i = 0; i < rooms.current.holdYourHorses.length; i++) {
+                              console.log(rooms.current.holdYourHorses[i])
+                              rooms.current.holdYourHorses[i] = false
+                          }
+                          if (templates.exists('Used Card')){
+                              templates.list['Used Card'][0].kill
+                          }
+                          templates.copy('Used Card',1024,520, {tex:cardUpside, scale:5})
+
+                      break;
+
+                      case `move` :
+
+                          moveBrain(chosenPiece,pieceList,randomNumberBlack)
+                          
+                          let spotFinderList = []
+                          for (let i of templates.list['Spot Finder']) {
+                              if(i.summoner.team == `black` && !i.kill) {
+                                  spotFinderList.push(i)
+                              }
+                          }
+                          let randomSpotFinder = Math.floor(random.range(0,spotFinderList.length))
+                          let whereTo = spotFinderList[randomSpotFinder]
+                          console.log(`index: ${randomSpotFinder} length: ${spotFinderList.length}`)
+                          console.log(whereTo)
+                          if(spotFinderList.length) {
+                          if(whereTo.target) {
+                              whereTo.target.kill = true
+                          }
+
+                          chosenPiece.x = whereTo.x
+                          chosenPiece.y = whereTo.y
+
+                          this.clearSpotHelp()
+                          }
+                          else {
+                              camera.shake = 1
+                          }
+
+                      break;
+                  }
+                  this.playerOnesTurn = !this.playerOnesTurn
+              }
+
+              function moveBrain(piece, pieceList,rng) {
+
+                  let canMoveBack = piece.isKing || piece.isChessnt
+
+                  let up = -42
+                  let down = 42
+                  let left = -68
+                  let right = 68
+
+                  let atTop = piece.y == 229
+
+                  let atLeft = piece.x <= 402
+                  let atRight = piece.x >= 878
+
+                  let atBottom = piece.y == 523
+                  let aboveBottom = piece.y < 523
+
+                  rooms.current.clearSpotHelp()
+
+                  if (atLeft && atBottom && canMoveBack) {
+                      createSpotFinder(piece,right,up)
+                  }
+                  else if (atRight && atBottom && canMoveBack) {
+                      createSpotFinder(piece,left,up)
+                  }
+                  else if (atLeft && atTop && canMoveBack) {
+                      createSpotFinder(piece,right,down)
+                  }
+                  else if (atRight && atTop && canMoveBack) {
+                      createSpotFinder(piece,left,down);
+                  }
+                  else if (atLeft && canMoveBack) {
+                      createSpotFinder(piece,right,down);
+                      createSpotFinder(piece,right,up);
+                  }
+                  else if (atRight && canMoveBack) {
+                      createSpotFinder(piece,left,down);
+                      createSpotFinder(piece,left,up);
+                  }
+                  else if (atTop && canMoveBack) {
+                      createSpotFinder(piece,right,down);
+                      createSpotFinder(piece,left,down);
+                  }
+                  else if (atBottom && canMoveBack) {
+                      createSpotFinder(piece,right,up);
+                      createSpotFinder(piece,left,up);
+                  }
+                  else if (canMoveBack) {
+                      createSpotFinder(piece,right,down);
+                      createSpotFinder(piece,left,down);
+                      createSpotFinder(piece,right,up);
+                      createSpotFinder(piece,left,up);
+                  }
+                  else if (atLeft && aboveBottom) {
+                      createSpotFinder(piece,right,down);
+                  }
+                  else if (atRight && aboveBottom) {
+                      createSpotFinder(piece,left,down);
+                  }
+                  else if (aboveBottom) {
+                      createSpotFinder(piece,right,down);
+                      createSpotFinder(piece,left,down);
+                  };
+
+                  if(!templates.exists('Spot Finder')|| templates.list['Spot Finder'].every((hi) => {hi.kill})) {
+                      pieceList.splice(rng,1)
+                      rng = Math.floor(random.range(0,pieceList.length))
+                      piece = pieceList[rng]
+                      return moveBrain(piece, pieceList, rng)
+                  }
+              }
+              function createSpotFinder(thisTemplate,x,y) {
+                  templates.copy('Spot Finder', thisTemplate.x + x, thisTemplate.y + y, {summoner:thisTemplate});
+              };
             arguments: {}
             lib: core
         behaviors: []
@@ -2006,9 +2322,21 @@ assets:
             exts: {}
             customProperties: {}
             bindings: {}
+          - x: 1088
+            'y': 512
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 1
+              'y': 1
+            rotation: 0
+            uid: zMqzGq7BFqcbTk
+            exts: {}
+            customProperties: {}
+            bindings: {}
         tiles: []
         extends: {}
-        lastmod: 1714421811944
+        lastmod: 1714448845932
         events:
           - eventKey: OnStep
             code: |-
@@ -2087,6 +2415,83 @@ assets:
         events: []
         behaviors: []
         uid: 21NH5pc2kf8N4w
+      - type: room
+        oncreate: ''
+        onstep: ''
+        ondraw: ''
+        onleave: ''
+        gridX: 64
+        gridY: 64
+        diagonalGrid: false
+        disableGrid: false
+        simulate: true
+        width: 1280
+        height: 720
+        restrictCamera: false
+        restrictMaxX: 1280
+        restrictMinX: 1280
+        restrictMaxY: 720
+        restrictMinY: 720
+        isUi: false
+        name: Warning
+        backgroundColor: '#000000'
+        follow: -1
+        backgrounds:
+          - depth: 0
+            texture: 4fgwq14BfdczDW
+            shiftX: 0
+            shiftY: 0
+            parallaxX: 1
+            parallaxY: 1
+            movementX: 0
+            movementY: 0
+            scaleX: 1
+            scaleY: 1
+            repeat: repeat
+        copies:
+          - x: 128
+            'y': 64
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 0.4
+              'y': 0.4
+            rotation: 0
+            uid: Mb7HfJM4gGkWC9
+            exts: {}
+            customProperties: {}
+            bindings: {}
+            customWordWrap: '3000'
+          - x: 768
+            'y': 512
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 2
+              'y': 2
+            rotation: 0
+            uid: Twb451qqwqW8CH
+            exts: {}
+            customProperties: {}
+            bindings: {}
+          - x: 320
+            'y': 512
+            opacity: 1
+            tint: 16777215
+            scale:
+              x: 2
+              'y': 2
+            rotation: 0
+            uid: f3nLt9z6r6hjPb
+            exts: {}
+            customProperties: {}
+            bindings: {}
+        tiles: []
+        extends: {}
+        lastmod: 1714448639711
+        events: []
+        behaviors: []
+        uid: HtpDh24bhKtjmG
   - type: folder
     uid: 2TQCBfnLFTqcR6
     colorClass: error
@@ -3179,6 +3584,28 @@ assets:
         stroke:
           color: '#000000'
           weight: 4
+      - type: style
+        name: 'Yes'
+        uid: 2N8KcGr2541bFk
+        font:
+          family: '"CTPROJFONTSilkscreen-Regular", "Silkscreen-Regular", sans-serif'
+          halign: left
+          italic: false
+          size: 40
+          weight: '400'
+          wrap: false
+          wrapPosition: 640
+          lineHeight: 53.25
+        fill:
+          type: 0
+          color: '#2BFF00'
+          color1: '#cccccc'
+          color2: '#ffffff'
+          gradtype: 1
+        lastmod: 1714448402846
+        stroke:
+          color: '#000000'
+          weight: 5
 settings:
   authoring:
     author: Noah & Isaac
